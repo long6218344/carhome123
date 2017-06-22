@@ -18,7 +18,7 @@
 | loading any of our classes later on. It feels great to relax.
 |
 */
-
+//require __DIR__.'/../vendor/autoload.php';
 require __DIR__.'/../bootstrap/autoload.php';
 
 /*
@@ -34,6 +34,7 @@ require __DIR__.'/../bootstrap/autoload.php';
 */
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
+
 
 /*
 |--------------------------------------------------------------------------

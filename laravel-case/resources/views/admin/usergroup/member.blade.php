@@ -1,0 +1,171 @@
+@extends('admin.public.layout')
+
+@section('plugin')
+    <script src="{{asset('/js/admin/jquery.js')}}"></script>
+@endsection
+@section('main-content')
+    <div class="main-content">
+        <div class="breadcrumbs" id="breadcrumbs">
+            <script type="text/javascript">
+                try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+            </script>
+
+            <ul class="breadcrumb">
+                <li>
+                    <i class="icon-home home-icon"></i>
+                    <a href="__APP__">后台主页</a>
+                </li>
+
+                <li>
+                    <a href="#">权限管理</a>
+                </li>
+                <li class="active">权限列表</li>
+            </ul><!-- .breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                </form>
+            </div><!-- #nav-search -->
+        </div>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h1>
+                    用户组权限
+                    <small>
+                        <i class="icon-double-angle-right"></i>
+                        会员组权限
+                    </small>
+                </h1>
+            </div><!-- /.page-header -->
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
+                                <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="center">
+                                            <label>
+                                                <input type="checkbox" class="ace" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </th>
+                                        <th>编号</th>
+                                        <th>头衔</th>
+                                        <th class="hidden-480">用户组图标</th>
+
+                                        <th>
+                                            升级点数
+                                        </th>
+
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody id="tbody">
+                                    <foreach name="names" item="gname">
+                                        <tr>
+                                            <td class="center">
+                                                <label>
+                                                    <input type="checkbox" class="ace" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </td>
+
+                                            <td>
+                                                {$gname['gid']}
+                                            </td>
+                                            <td>{$gname['groupname']}</td>
+                                            <td class="hidden-480"><img src="__PUBLIC__/uploads/level/{$gname['groupicon']}"/></td>
+                                            <td>{$gname['points']}</td>
+
+
+                                            <td>
+                                                <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+
+                                                    <a href="__CONTROLLER__/mod/gid/{$gname['gid']}" class="btn btn-xs btn-info">
+                                                        <i class="icon-edit bigger-120"></i>
+                                                    </a>
+
+                                                    <a href="__CONTROLLER__/del/gid/{$gname['gid']}" class="btn btn-xs btn-danger"  onclick="return confirm('你确定要删除么？')">
+                                                        <i class="icon-trash bigger-120"></i>
+                                                    </a>
+
+
+                                                </div>
+
+                                                <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                    <div class="inline position-relative">
+                                                        <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
+                                                            <i class="icon-cog icon-only bigger-110"></i>
+                                                        </button>
+
+                                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                                            <li>
+                                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+																				<span class="blue">
+																					<i class="icon-zoom-in bigger-120"></i>
+																				</span>
+                                                                </a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+																				<span class="green">
+																					<i class="icon-edit bigger-120"></i>
+																				</span>
+                                                                </a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																				<span class="red">
+																					<i class="icon-trash bigger-120"></i>
+																				</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </foreach>
+                                    </tbody>
+                                    <form action="__CONTROLLER__/insert" method="post">
+                                        <tfoot>
+                                        <tr>
+                                            <td colspan="2">
+                                                头衔:<input type="text" name="groupname" size="18" />
+                                            </td>
+                                            <td colspan="2">
+                                                <input type="file" name="groupicon" size="10" />
+                                            </td>
+                                            <td>
+                                                升级点数:<input type="text" name="points" size="10" />
+                                            </td>
+                                            <td><button type="submit" id="addone">添加</button></td>
+                                        </tr>
+                                        </tfoot>
+                                    </form>
+                                </table>
+                            </div><!-- /.table-responsive -->
+                        </div><!-- /span -->
+                    </div><!-- /row -->
+
+                    <div class="hr hr-18 dotted hr-double"></div>
+
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
+
+@endsection
