@@ -45,6 +45,7 @@
                     <form action="/amdin/user/updategroup" class="form-horizontal" id="regform" method="post" role="form">
                         {{csrf_field()}}
                         <input type="hidden" name="uid" value="{{$uid}}"/>
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户名 </label>
                             <div class="col-sm-9">
@@ -52,14 +53,16 @@
                                        value="{{$username->username}}"
                                        class="col-xs-10 col-sm-3"/>
                                 <span class="help-inline col-xs-12 col-sm-7">
-												<span id="yzname" class="middle"></span>
+                                    <span id="yzname" class="middle"></span>
 											</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right"
                                    for="form-field-1">你当前的用户组</label>
-                            @foreach( $user as $v)
+                            @if(empty($user))
+                            @else
+                                @foreach( $user as $v)
                                 <label class="col-sm-3 control-label no-padding-right"
                                        for="form-field-1"> </label>
                                 <div class="col-sm-9">
@@ -68,6 +71,7 @@
                                 </div>
                             @endforeach
                         </div>
+                        @endif
                         <hr/>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right"
@@ -101,9 +105,9 @@
             </div><!-- /.row -->
         </div><!-- /.page-content -->
     </div><!-- /.main-content -->
-    @if(!empty(session('error')))
-        <script>
-            alert('{{session('error')}}');
-        </script>
-    @endif
+    {{--@if(!empty(session('error')))--}}
+        {{--<script>--}}
+            {{--alert('{{session('error')}}');--}}
+        {{--</script>--}}
+    {{--@endif--}}
 @endsection

@@ -36,10 +36,10 @@
                 <div class="col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
 
-                    <form action="#" method="post">
+                    <form action="/admin/authrule/insert" method="post">
                         <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                             <thead>
-
+                            {{csrf_field()}}
                             <tr>
                                 <th class="center" style="width:100px;">
                                     <label>

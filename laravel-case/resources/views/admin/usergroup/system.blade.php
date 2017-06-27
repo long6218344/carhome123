@@ -1,8 +1,4 @@
 @extends('admin.public.layout')
-
-@section('plugin')
-    <script src="{{asset('/js/admin/jquery.js')}}"></script>
-@endsection
 @section('main-content')
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
@@ -38,7 +34,7 @@
                     用户组权限
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        普通用户组权限
+                        管理组权限
                     </small>
                 </h1>
             </div><!-- /.page-header -->
@@ -53,7 +49,12 @@
                                 <table id="sample-table-1" class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-
+                                        <th class="center">
+                                            <label>
+                                                <input type="checkbox" class="ace" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </th>
                                         <th>编号</th>
                                         <th>头衔</th>
                                         <th class="hidden-480">用户组图标</th>
@@ -66,15 +67,23 @@
                                     </tr>
                                     </thead>
 
-                                    <tbody id="tbody">
-                                    @foreach($users as $v)
+                                    <tbody>
+                                    @foreach($system as $v)
                                         <tr>
+                                            <td class="center">
+                                                <label>
+                                                    <input type="checkbox" class="ace" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </td>
+
                                             <td>
                                                 {{$v->gid}}
                                             </td>
                                             <td>{{$v->groupname}}</td>
-                                            <td class="hidden-480"><img src="1111传值"/></td>
+                                            <td class="hidden-480"><img src="__PUBLIC__/uploads/level/{$gname['groupicon']}"/></td>
                                             <td>{{$v->points}}</td>
+
 
                                             <td>
                                                 <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
@@ -127,22 +136,6 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                    <form action="/admin/powergroupadd" method="post">                          {{csrf_field()}}
-                                        <tfoot>
-                                        <tr>
-                                            <td colspan="2">
-                                                头衔:<input type="text" name="groupname" size="18" />
-                                            </td>
-                                            <td colspan="2">
-                                                <input type="file" name="groupicon" size="10" />
-                                            </td>
-                                            <td>
-                                                升级点数:<input type="text" name="points" size="10" />
-                                            </td>
-                                            <td><button type="submit" id="addone">添加</button></td>
-                                        </tr>
-                                        </tfoot>
-                                    </form>
                                 </table>
                             </div><!-- /.table-responsive -->
                         </div><!-- /span -->

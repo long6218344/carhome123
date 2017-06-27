@@ -269,7 +269,8 @@
                         <img class="nav-user-photo" src="{{asset('/imgs/user.jpg')}}" alt="Jason's Photo" />
                         <span class="user-info">
 									<small>欢迎光临,</small>
-									Jason
+                                    {{Session()->get('adminusername')}}
+
 								</span>
 
                         <i class="icon-caret-down"></i>
@@ -403,21 +404,21 @@
 
                             <ul class="submenu">
                                 <li>
-                                    <a href="__APP__/UserGroup/members">
+                                    <a href="/admin/powergroup">
                                         <i class="icon-leaf"></i>
-                                        会员组
+                                        普通用户组
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="__APP__/UserGroup/defaults">
+                                    <a href="/admin/usermember">
                                         <i class="icon-leaf"></i>
                                         默认组
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="__APP__/UserGroup/systems">
+                                    <a href="/admin/usergroupsystem">
                                         <i class="icon-leaf"></i>
                                         管理组
                                     </a>
@@ -440,14 +441,14 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/AuthGroup/index">
+                            <a href="/admin/authgroup/index">
                                 <i class="icon-double-angle-right"></i>
                                 浏览管理组
                             </a>
                         </li>
 
                         <li>
-                            <a href="__APP__/AuthGroup/add">
+                            <a href="/admin/authgroup/insertshow">
                                 <i class="icon-double-angle-right"></i>
                                 添加管理组
                             </a>
@@ -465,7 +466,7 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/AuthRule/index">
+                            <a href="/admin/authrule/index">
                                 <i class="icon-double-angle-right"></i>
                                 添加规则
                             </a>
@@ -991,7 +992,11 @@
 
 <!-- inline scripts related to this page -->
 @section('js')
-
+    @if(!empty(session('error')))
+        <script>
+            alert('{{session('error')}}');
+        </script>
+    @endif
 @show
 {{--<block name="js"></block>--}}
 </body>

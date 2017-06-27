@@ -91,25 +91,25 @@
                             <div class="space-4"></div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-2">
-                                    请设置密码 </label>
+                                {{--<label class="col-sm-3 control-label no-padding-right" for="form-field-2">--}}
+                                    {{--请设置密码 </label>--}}
 
-                                <div class="col-sm-9">
-                                    <input type="password" id="form-field-2" name="pwd" class="col-xs-10 col-sm-5" value="{{$v->pwd}}"/>
-                                    <span id="regpwd"></span>
+                                {{--<div class="col-sm-9">--}}
+                                    {{--<input type="password" id="form-field-2" name="pwd" class="col-xs-10 col-sm-5" value="{{$v->pwd}}"/>--}}
+                                    {{--<span id="regpwd"></span>--}}
 
-                                </div>
-                            </div>
+                                {{--</div>--}}
+                            {{--</div>--}}
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-2">
-                                    请确认密码 </label>
+                            {{--<div class="form-group">--}}
+                                {{--<label class="col-sm-3 control-label no-padding-right" for="form-field-2">--}}
+                                    {{--请确认密码 </label>--}}
 
-                                <div class="col-sm-9">
-                                    <input type="password" id="form-field-2" name="repwd" class="col-xs-10 col-sm-5" />
-                                    <div id="regrepwd"></div>
+                                {{--<div class="col-sm-9">--}}
+                                    {{--<input type="password" id="form-field-2" name="repwd" class="col-xs-10 col-sm-5" />--}}
+                                    {{--<div id="regrepwd"></div>--}}
 
-                                </div>
+                                {{--</div>--}}
                             </div>
 
                             <div class="space-4"></div>
@@ -198,7 +198,8 @@
                                 <div class="col-sm-9">
                                     <input type="radio" name="grouppower" value="1" {{$v->grouppower == 1?'checked':''}} />　管理员　　　
                                     <input type="radio" name="grouppower" value="2" {{$v->grouppower == 2?'checked':''}}/>　版主　　　　
-                                    <input type="radio" name="grouppower" value="3" {{$v->grouppower == 3?'checked':''}}/>　会员　　　
+                                    <input type="radio" name="grouppower" value="3" {{$v->grouppower == 3?'checked':''}}/>　会员　　
+                                    <input type="radio" name="grouppower" value="3" {{$v->grouppower == 4?'checked':''}}/>　禁言　
                                 </div>
                             </div>
 
@@ -209,9 +210,9 @@
                                 </label>
 
                                 <div class="col-sm-9">
-                                    <input type="checkbox" name="type" value="1"/>　大众版　　　
-                                    <input type="checkbox" name="type" value="2"/>　宝马版　　　
-                                    <input type="checkbox" name="type" value="3"/>　奔驰版　　　
+                                    <input type="checkbox" name="type" value="1" {{$v->type == 1?'checked':''}}/>　大众版　　　
+                                    <input type="checkbox" name="type" value="2" {{$v->type == 2?'checked':''}}/>　宝马版　　　
+                                    <input type="checkbox" name="type" value="3" {{$v->type == 3?'checked':''}}/>　奔驰版　　　
                                 </div>
                             </div>
 

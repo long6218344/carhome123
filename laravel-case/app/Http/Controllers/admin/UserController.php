@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\admin;
 
 //use Faker\Provider\Image;
-use App\models\Role;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
@@ -46,10 +45,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->flash();
         //执行新增用户
         //判断文件是否上传
         if (!$request->hasFile('icon')) {
-            return back()->with('error', '请上传文件');
+            return back()->with('error', '请上传文件')->withinput();
         }
 
 //        if (!$request->hasFile('icon')){
@@ -68,7 +68,7 @@ class UserController extends Controller
         // 不能为空
         foreach ($input as $v) {
             if ($v == '') {
-                return back()->with('error', '表单不能为空');
+                return back()->with('error', '表单不能为空')->withinput();
             }
         }
 //
@@ -84,7 +84,7 @@ class UserController extends Controller
         // 判断密码
         if (!preg_match('/[0-9a-zA-Z]{6,}/', $pwd)) {
             // 密码长度不够
-            return back();
+            return back()->with('error','密码长度不够');
         }
         $a = preg_match('/[0-9]/', $pwd);
         $b = preg_match('/[a-z]/', $pwd);
@@ -92,11 +92,11 @@ class UserController extends Controller
         $d = preg_match('/^[A-Z]/', $pwd);
         if (!$d) {
             // 密码必须已大写字母开头
-            return back();
+            return back()->with('error','密码必须已大写字母开头');
         }
         if (!($a && $b && $c)) {
             //  notice('密码必须要有数字,小写字母和大写字母组成','add.php');
-            return back();
+            return back()->with('error','密码必须要有数字,小写字母和大写字母组成');
         }
         // 邮箱
         $preg = '/^[\w]{7,}@[\w\*]{1,10}\.(com|cn|net|xyz|edu|org|com)$/';
@@ -105,11 +105,11 @@ class UserController extends Controller
 
         if (!$email) {
             //邮箱格式不正确,至少7位
-            return back();
+            return back()->with('error','邮箱格式不正确,至少7位');
         }
         // 判断两次密码是否一致
         if ($pwd != $repwd) {
-            return back();
+            return back()->with('error','判断两次密码是否一致');
         }
         // 处理图片
         $file = $request->File();
@@ -145,14 +145,14 @@ class UserController extends Controller
             }
         }
         if (!is_uploaded_file($_FILES[$key]['tmp_name'])) {
-            return back();
+            return back()->with('error','上传错误');
         }
 
         // 判断文件类型
         $ext = $request->file('icon')->getClientOriginalExtension();
         if (!in_array($ext, array('jpg', 'png', 'jpeg'))) {
 //                ('不合法的文件类型');
-            return back();
+            return back()->with('error','不合法的文件类型');
         }
         // 移动文件到指定位置
         $size = 300;
@@ -160,7 +160,7 @@ class UserController extends Controller
         $name = date('Ymd') . uniqid();
         $ext = $request->file('icon')->getClientOriginalExtension();
         $filename = $name . '.' . $ext;
-        $img = Image::make($request->file('icon'))->resize(300, 200)->save($path . '/' . $size . '_' . $filename);
+//        $img = Image::make($request->file('icon'))->resize(300, 200)->save($path . '/' . $size . '_' . $filename);
 
         $request->file('icon')->move($path, $filename);
 
@@ -191,7 +191,7 @@ class UserController extends Controller
 //        var_dump($sql);die;
         $result = DB::insert($sql);
         if ($result) {
-            return back();
+            return back()->with('error','添加成功');
         }
     }
 
@@ -249,35 +249,19 @@ class UserController extends Controller
 //        // 不能为空
         foreach ($input as $v) {
             if ($v == '') {
-                return back();
+                return back()->with('error','内容不能为空');
             }
         }
         // 判断手机号
         if (!preg_match('/^[0-9]{11,11}/', $phone)) {
             //  view('手机号长度不够','add.php');
-            return back();
+            return back()->with('error','手机号长度不够');
         } elseif (!preg_match('/^[1][34578]/', $phone)) {
             // 手机号不合法
-            return back();
+            return back()->with('error', '手机号不合法');
         } else {
         }
-        // 判断密码
-        if (!preg_match('/[0-9a-zA-Z]{6,}/', $pwd)) {
-            // 密码长度不够
-            return back();
-        }
-        $a = preg_match('/[0-9]/', $pwd);
-        $b = preg_match('/[a-z]/', $pwd);
-        $c = preg_match('/[A-Z]/', $pwd);
-        $d = preg_match('/^[A-Z]/', $pwd);
-        if (!$d) {
-            // 密码必须已大写字母开头
-            return back();
-        }
-        if (!($a && $b && $c)) {
-            //  notice('密码必须要有数字,小写字母和大写字母组成','add.php');
-            return back();
-        }
+
         // 邮箱
         $preg = '/^[\w]{7,}@[\w\*]{1,10}\.(com|cn|net|xyz|edu|org|com)$/';
 
@@ -285,29 +269,31 @@ class UserController extends Controller
 
         if (!$email) {
             //邮箱格式不正确,至少7位
-            return back();
+            return back()->with('error','邮箱格式不正确');
         }
         // 判断两次密码是否一致
         if ($pwd != $repwd) {
-            return back();
+            return back()->with('error','两次密码不一致');
         }
         // 输入内容不能为空
         foreach ($input as $k => $v) {
             if (empty($v)) {
-                return back();
+                return back()->with('error','内容不能为空');
             }
         }
+
         // 判断图片上传
         if ($request->hasFile('icon')) {
             $result = DB::select('select `icon` from `bbs_user_info` where `uid`= ?', [$uid]);
             $result = $result[0]->icon;
             if ($result) {
                 //删除文件
-                $small = basename($result);
-                $str_path = dirname($result);
-                $smallname = trim(strrchr($small, '_'), '_');
+//                $small = basename($result);
+//                $str_path = dirname($result);
+//                $smallname = trim(strrchr($small, '_'), '_');
+//                unlink($result);
+//                unlink($str_path . '/' . $smallname);
                 unlink($result);
-                unlink($str_path . '/' . $smallname);
             }
 
             $file = $request->File();
@@ -342,25 +328,27 @@ class UserController extends Controller
                 }
             }
             if (!is_uploaded_file($_FILES[$key]['tmp_name'])) {
-                return back();
+                return back()->with('error','请以正确方式上传');
             }
             // 判断文件类型
             $ext = $request->file('icon')->getClientOriginalExtension();
 //            dd($ext);die;
             if (!in_array($ext, array('jpg', 'png', 'jpeg'))) {
 //                ('不合法的文件类型');
-                return back();
+                return back()->with('error','不合法的文件类型');
             }
 
             // 上传图片,保存路径
-            $size = 300;
+//            $size = 300;
             $path = './uploads/' . date('Y/m/d');
             $name = date('Ymd') . uniqid();
             $ext = $request->file('icon')->getClientOriginalExtension();
             $filename = $name . '.' . $ext;
-            $img = Image::make($request->file('icon'))->resize(300, 200);
+//            $img = Image::make($request->file('icon'))->resize(300, 200);
             $request->file('icon')->move($path, $filename);
-            $img->save($path . '/' . $size . '_' . $filename);
+//            $img->save($path . '/' . $size . '_' . $filename);
+//            $img->save($path . '/'. $filename);
+
             if (!file_exists($path)) {
                 mkdir($path, '0777', true);
             }
@@ -377,7 +365,9 @@ class UserController extends Controller
                 $v = md5($v);
             }
             if ($k == 'icon') {
-                $v = $path . '/' . '300_' . $filename;
+//                $v = $path . '/' . '300_' . $filename;
+                $v = $path . '/' .  $filename;
+
             }
             if ($k != '_token') {
                 $str .= '`' . $k . '`="' . $v . '",';
@@ -387,7 +377,7 @@ class UserController extends Controller
         $str = rtrim($str, ',');
         $result = DB::update('update `bbs_user_info` set ' . $str . ' where uid = ?', [$uid]);
         if ($result) {
-            return back();
+            return back()->with('error','更新成功');
         }
     }
 
@@ -401,9 +391,8 @@ class UserController extends Controller
     {
         //删除
         $result = DB::delete('delete from `bbs_user_info` where uid = ? ', [$uid]);
-//        dd($result);
-        return $result;
 
+        return $result;
     }
 
     public function userUpdate($uid)
@@ -423,12 +412,12 @@ class UserController extends Controller
         $repwd = $data['repwd'];
 //         判断两次密码是否一致
         if ($pwd != $repwd) {
-            return back();
+            return back()->with('error','两次密码不一致');
         }
         // 判断密码
         if (!preg_match('/[0-9a-zA-Z]{7,}/', $pwd)) {
             // 密码长度不够
-            return back();
+            return back()->with('error','密码长度不够');
         }
         $a = preg_match('/[0-9]/', $pwd);
         $b = preg_match('/[a-z]/', $pwd);
@@ -437,16 +426,16 @@ class UserController extends Controller
 
         if (!$d) {
             // 密码必须已大写字母开头
-            return back();
+            return back()->with('error','密码必须以大写字母开头');
         }
         if (!($a && $b && $c)) {
             //  notice('密码必须要有数字,小写字母和大写字母组成','add.php');
-            return back();
+            return back()->with('error','密码必须要有数字,小写字母和大写字母组成');
         }
         $pwd = md5($pwd);
         $result = DB::update('update `bbs_user_info` set `pwd`= "' . $pwd . '"  where uid = ?', [$data['uid']]);
         if ($result) {
-            return back();
+            return back()->with('error','修改成功');
         }
     }
 
@@ -461,7 +450,7 @@ class UserController extends Controller
         } else {
             $status = 1;
         }
-        DB::update('update bbs_user_info set status = ' . $status . ' where uid = ?', [$uid]);
+       $result = DB::update('update bbs_user_info set status = ' . $status . ' where uid = ?', [$uid]);
 
         return $status;
     }
@@ -470,19 +459,22 @@ class UserController extends Controller
     {
         // 获取用户隐藏uid
         $uid = $request->uid;
-//        var_dump((typeOf(DB::table('bbs_auth_group_access')->where('uid',                 1)->get())));
-        // dump($_POST);
+//
         // 判断是否有更新值
         if (!empty($_POST['group_id'])) {
             if (DB::table('bbs_auth_group_access')->where('uid', $uid)->get()) {
                 DB::table('bbs_auth_group_access')->where('uid', $uid)->delete();
             }
+            foreach ($_POST['group_id'] as $v) {
+                $data['group_id'] = $v;
+
+                DB::table('bbs_auth_group_access')->insert(['uid' => $uid, 'group_id' => $v]);
+            }
+        }else{
+           $result = DB::table('bbs_auth_group_access')->where('uid', $uid)->delete();
         }
-        foreach ($_POST['group_id'] as $v) {
-            $data['group_id'] = $v;
-//            var_dump($v);
-            DB::table('bbs_auth_group_access')->insert(['uid' => $uid, 'group_id' => $v]);
-        }
+//            dd($result);die;
+
         return back()->with('error', '修改成功');
     }
 }

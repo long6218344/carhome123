@@ -99,7 +99,7 @@
                                             {{$v->sex == '1' ? '男' : '女'}}
 															</span>
                                             </td>
-                                            <td><center><a  class="btn btn-danger btn-sm si" status ='{{$v->status}}' data-name="{{$v->username}}" data-id="{{$v->uid}}">{{($v->status==1)?'在线':'离线'}}
+                                            <td><center><a  class="btn {{$v->status==1? 'btn-primary':'btn-danger' }} btn-sm si" status ='{{$v->status}}' data-name="{{$v->username}}" data-id="{{$v->uid}}">{{($v->status==1)?'在线':'离线'}}
                                                 </a></center></td>
                                             <td>{{$v->credits}}</td>
                                             {{--<td></td>--}}
@@ -256,6 +256,7 @@
                 dateType: 'json', // 处理返回的响应值为JSON
                 data: 'status='+stu,
                 success: function (data) {
+                    console.log(data);
                         if(data == 1){
                             obj.attr('status',data);
                             obj.attr('class','btn btn-primary btn-sm si');

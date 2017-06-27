@@ -1,9 +1,6 @@
 @extends('admin.public.layout')
-
-@section('plugin')
-    <script src="{{asset('/js/admin/jquery.js')}}"></script>
-@endsection
 @section('main-content')
+
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
             <script type="text/javascript">
@@ -38,7 +35,7 @@
                     用户组权限
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        普通用户组权限
+                        默认组权限
                     </small>
                 </h1>
             </div><!-- /.page-header -->
@@ -66,14 +63,15 @@
                                     </tr>
                                     </thead>
 
-                                    <tbody id="tbody">
-                                    @foreach($users as $v)
+                                    <tbody>
+                                    @foreach($default as $v )
                                         <tr>
+
                                             <td>
                                                 {{$v->gid}}
                                             </td>
                                             <td>{{$v->groupname}}</td>
-                                            <td class="hidden-480"><img src="1111传值"/></td>
+                                            <td class="hidden-480"><img src="__PUBLIC__/uploads/level/{$gname['groupicon']}"/></td>
                                             <td>{{$v->points}}</td>
 
                                             <td>
@@ -127,22 +125,6 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                    <form action="/admin/powergroupadd" method="post">                          {{csrf_field()}}
-                                        <tfoot>
-                                        <tr>
-                                            <td colspan="2">
-                                                头衔:<input type="text" name="groupname" size="18" />
-                                            </td>
-                                            <td colspan="2">
-                                                <input type="file" name="groupicon" size="10" />
-                                            </td>
-                                            <td>
-                                                升级点数:<input type="text" name="points" size="10" />
-                                            </td>
-                                            <td><button type="submit" id="addone">添加</button></td>
-                                        </tr>
-                                        </tfoot>
-                                    </form>
                                 </table>
                             </div><!-- /.table-responsive -->
                         </div><!-- /span -->

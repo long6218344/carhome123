@@ -168,7 +168,10 @@
                             <div class="col-sm-9">
                                 <input type="radio" name="grouppower" value="1"/>　管理员　　　
                                 <input type="radio" name="grouppower" value="2"/>　版主　　　　
-                                <input type="radio" name="grouppower" value="3"/>　会员　　　
+                                <input type="radio" name="grouppower" value="3"/>　会员
+
+                                <input type="radio" name="grouppower" value="4"/>　禁言
+                                　　　
                             </div>
                         </div>
 
@@ -179,9 +182,9 @@
                             </label>
 
                             <div class="col-sm-9">
-                                <input type="checkbox" name="type" value="1"/>　都市版　　　
-                                <input type="checkbox" name="type" value="2"/>　娱乐版　　　
-                                <input type="checkbox" name="type" value="3"/>　美食版　　　
+                                <input type="checkbox" name="type" value="1"/>　大众版　　　
+                                <input type="checkbox" name="type" value="2"/>　宝马版　　　
+                                <input type="checkbox" name="type" value="3"/>　奔驰版　　　
                             </div>
                         </div>
 
@@ -303,7 +306,7 @@
          *	验证密码
          */
         $("input[name='pwd']").focus(function(){
-            msg = '请设置密码,大写字母开头,小写字母和数字组成,至少7位';
+            msg = '请设置密码,,至少7位';
             ischeck = false;
             color = "#ccc";
             $("#regpwd").html(msg);

@@ -70,7 +70,8 @@
 
                                     <div class="space-6"></div>
 
-                                    <form action="__MODULE__/Public/checkLogin" method="post">
+                                    <form action="{{url('/admin/login/join')}}" method="post">
+                                        {{ csrf_field() }}
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
