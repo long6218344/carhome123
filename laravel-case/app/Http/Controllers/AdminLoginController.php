@@ -34,7 +34,7 @@ class AdminLoginController extends Controller
         $arr = "'$name'";
 
         $uname = DB::select('select * from `bbs_user_info` where `username` = '.$arr);
-
+//        dd($uname[0]->username);
 
         if(empty($uname))
         {
@@ -51,12 +51,9 @@ class AdminLoginController extends Controller
 //        session()->get('adminusername',$uname[0]->username);
         $name = session()->put('adminusername',$uname[0]->username);
 //       dd(session()->get('adminusername'));
-//        session_star();
-//        $_SESSION['admin'] = $name;
-//        $_SESSION['id'] = $uid;
 
        Session(['uid' => $uid]);
-
+//        dd(session()->get('uid')[0]->uid);
 
 //        return view('/admin.public.layout',['name'=>$name]);
         $this->notice('登录成功','/admin/user');

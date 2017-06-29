@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 class CheckPower
 {
@@ -26,9 +27,22 @@ class CheckPower
                 ->get();
 //        dd($result);
 
-        // 2.获取规则组权限
-        $rulepower = DB::table('bbs_auth_rule')->select('id')->get();
-//        dump($rulepower);die;
+        // 2. 判断用户当前操作是否在规则里面
+        $action = Route::currentRouteAction();
+//        dd($action);
+//       dd(strstr($action,'Controllers')) ;
+
+        $d = strchr(strstr($action,'Controllers'),'\\');
+        $e = trim($d,'\\');
+
+//        dd($e);
+        // 3. 获取规则组权限
+        $rulepower = DB::table('bbs_auth_rule')
+            ->select('id')
+            ->where('name','=',$e)
+            ->get();
+        dump($rulepower);die;
+
         $a = '';
         foreach($rulepower as $v){
             $a .=','.$v->id;
@@ -37,20 +51,25 @@ class CheckPower
         $a = explode(',',$a);
 //        dd($a);die;
 
-        // 3.判断用户权限是否在规则里面
-        foreach ($result as $v){
-           $rules = $v->rules;
-            $r = explode(',',$rules);
-            $num = count($r);
-//            dd($num);die;
-            for ($i=0;$i<$num;$i++){
-                // 判断数组中是否有权限,需要分割
-                $power = in_array($r[$i],$a);
-                if(!$power){
-                    return back()->with('error','权限不足');
-                }
-            }
-        }
+
+
+
+
+
+
+//        foreach ($result as $v){
+//            $rules = $v->rules;
+//            $r = explode(',',$rules);
+//            $num = count($r);
+////            dd($num);die;
+//            for ($i=0;$i<$num;$i++){
+//                // 判断数组中是否有权限,需要分割
+//                $power = in_array($r[$i],$a);
+//                if(!$power){
+//                    return back()->with('error','权限不足');
+//                }
+//            }
+//        }
 
         return $next($request);
     }

@@ -269,7 +269,7 @@
                         <img class="nav-user-photo" src="{{asset('/imgs/user.jpg')}}" alt="Jason's Photo" />
                         <span class="user-info">
 									<small>欢迎光临,</small>
-                                    {{Session()->get('adminusername')}}
+                                    {{session('adminusername')}}
 
 								</span>
 
@@ -526,6 +526,26 @@
                 </li>
 
                 <li>
+                    <a href="__APP__/Type/index" class="dropdown-toggle">
+                        <i class="icon-list"></i>
+                        <span class="menu-text"> 分类管理 </span>
+
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{url('/admin/classify')}}">
+                                <i class="icon-double-angle-right"></i>
+                                浏览所有分类
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+                <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-edit"></i>
                         <span class="menu-text"> 帖子管理 </span>
@@ -708,14 +728,14 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/Sharelikes/index">
+                            <a href="{{url('/admin/blogroll')}}">
                                 <i class="icon-double-angle-right"></i>
                                 浏览链接
                             </a>
                         </li>
 
                         <li>
-                            <a href="__APP__/Sharelikes/add">
+                            <a href="{{url('/admin/blogroll/addshow')}}">
                                 <i class="icon-double-angle-right"></i>
                                 添加链接
                             </a>
@@ -732,14 +752,14 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/Announce/index">
+                            <a href="{{url('/admin/notice')}}">
                                 <i class="icon-double-angle-right"></i>
                                 公告列表
                             </a>
                         </li>
 
                         <li>
-                            <a href="__APP__/Announce/add">
+                            <a href="{{url('/admin/notice/addshow')}}">
                                 <i class="icon-double-angle-right"></i>
                                 添加公告
                             </a>
@@ -829,14 +849,14 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/Ads/index">
+                            <a href="/admin/adver">
                                 <i class="icon-double-angle-right"></i>
                                 广告列表
                             </a>
                         </li>
 
                         <li>
-                            <a href="__APP__/Ads/add">
+                            <a href="/admin/adver/addshow">
                                 <i class="icon-double-angle-right"></i>
                                 广告添加
                             </a>
@@ -844,26 +864,46 @@
                     </ul>
                 </li>
 
-        {{--日历--}}
-                {{--<li>--}}
-                    {{--<a href="__APP__/Index/dateTime">--}}
-                        {{--<i class="icon-calendar"></i>--}}
 
-                        {{--<span class="menu-text">--}}
-									{{--日历--}}
-                            {{--<!--<span class="badge badge-transparent tooltip-error" title="2&nbsp;Important&nbsp;Events">--}}
-                                {{--<i class="icon-warning-sign red bigger-130"></i>--}}
-                            {{--</span>-->--}}
-								{{--</span>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
+                <li>
+                    <a href="/admin/calendar">
+                        <i class="icon-calendar"></i>
 
-                {{--<li>--}}
-                    {{--<a href="__APP__/Index/photo">--}}
-                        {{--<i class="icon-picture"></i>--}}
-                        {{--<span class="menu-text"> 相册 </span>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
+                        <span class="menu-text">
+									新闻
+
+								</span>
+                    </a>
+                </li>
+
+
+
+
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-list"></i>
+                        <span class="menu-text"> 相册管理 </span>
+
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{url('/admin/photo')}}">
+                                <i class="icon-double-angle-right"></i>
+                                相册列表
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{url('/admin/photo/addshow')}}">
+                                <i class="icon-double-angle-right"></i>
+                                照片添加
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
 
 
