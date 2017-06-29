@@ -52,6 +52,9 @@ class AdminLoginController extends Controller
 
         $_SESSION['admin']['name']= $uname[0]->username;
 //       dd(session()->get('adminusername'));
+//        session()->get('adminusername',$uname[0]->username);
+        // $name = session()->put('adminusername',$uname[0]->username);
+//       dd(session()->get('adminusername'));
 
         $_SESSION['admin']['uid'] = $uid[0]->uid;
 //        dd(session()->get('uid')[0]->uid);

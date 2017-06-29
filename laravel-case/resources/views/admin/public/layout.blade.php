@@ -271,6 +271,7 @@
 									<small>欢迎光临,</small>
                                     {{$_SESSION['admin']['name']}}
 
+
 								</span>
 
                         <i class="icon-caret-down"></i>
@@ -728,14 +729,14 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/Sharelikes/index">
+                            <a href="{{url('/admin/blogroll')}}">
                                 <i class="icon-double-angle-right"></i>
                                 浏览链接
                             </a>
                         </li>
 
                         <li>
-                            <a href="__APP__/Sharelikes/add">
+                            <a href="{{url('/admin/blogroll/addshow')}}">
                                 <i class="icon-double-angle-right"></i>
                                 添加链接
                             </a>
@@ -864,26 +865,46 @@
                     </ul>
                 </li>
 
-        {{--日历--}}
-                {{--<li>--}}
-                    {{--<a href="__APP__/Index/dateTime">--}}
-                        {{--<i class="icon-calendar"></i>--}}
 
-                        {{--<span class="menu-text">--}}
-									{{--日历--}}
-                            {{--<!--<span class="badge badge-transparent tooltip-error" title="2&nbsp;Important&nbsp;Events">--}}
-                                {{--<i class="icon-warning-sign red bigger-130"></i>--}}
-                            {{--</span>-->--}}
-								{{--</span>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
+                <li>
+                    <a href="/admin/calendar">
+                        <i class="icon-calendar"></i>
 
-                {{--<li>--}}
-                    {{--<a href="__APP__/Index/photo">--}}
-                        {{--<i class="icon-picture"></i>--}}
-                        {{--<span class="menu-text"> 相册 </span>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
+                        <span class="menu-text">
+									新闻
+
+								</span>
+                    </a>
+                </li>
+
+
+
+
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-list"></i>
+                        <span class="menu-text"> 相册管理 </span>
+
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{url('/admin/photo')}}">
+                                <i class="icon-double-angle-right"></i>
+                                相册列表
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{url('/admin/photo/addshow')}}">
+                                <i class="icon-double-angle-right"></i>
+                                照片添加
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
 
 

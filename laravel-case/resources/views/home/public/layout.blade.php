@@ -179,9 +179,11 @@
     </header>
     <div class="tac"></div>
     <!----------主题内容---------->
+
     @section('main-content')
 
-    @show
+      @show
+
     <div class="tac">
         <br />
     </div>

@@ -17,6 +17,20 @@
 //
 //});
 
+
+
+//前台 登录
+Route::get('/home/login','LoginController@index');
+Route::post('/home/login/join','LoginController@join');
+
+
+//前台注册
+Route::get('/home/sign','SignController@index');
+Route::post('/home/sign/create','SignController@create');
+Route::get('/home/sign/selete/{data?}','SignController@selete');
+Route::get('/home/sign/yzm','SignController@yzm2');
+
+
 //Route::get('/admin/login',function(){
 //    return view('/admin.public.login');
 //});
@@ -143,6 +157,14 @@ Route::post('/admin/authrule/insert','admin\AuthRuleController@insert');
 });
 
 // 张伟康---------------------------------------------------------
+
+
+//进入notice控制器
+Route::get('/admin/notice','NoticeController@index');
+
+
+//后天天气APL接口
+Route::get('/admin/calendar','CalendarController@index');
 
 
 //后台分类路由
@@ -378,6 +400,13 @@ Route::get('/home/{fid}/posting','PostingController@index');
 Route::post('/home/posting/submit','PostingController@submit');
 Route::post('/home/post/submit','PostDetailsController@submit');
 
+// 2. 管理组添加第二步
+Route::post('/admin/authgroup/insert','admin\AuthGroupController@insert');
+// 添加规则列表页面
+Route::get('/admin/authrule/index','admin\AuthRuleController@index');
+// 执行规则添加页面
+Route::post('/admin/authrule/insert','admin\AuthRuleController@insert');
+
 //Route::get('/admin/login',function(){
 //    return view('/admin.public.login');
 //});
@@ -446,6 +475,112 @@ Route::get('/home/2',function(){
 Route::get('/home/3',function(){
     return view('/home.details');
 } );
+
+// 张伟康---------------------------------------------------------
+// 登录
+Route::get('/admin/login','AdminLoginController@index');
+Route::post('/admin/login/join','AdminLoginController@join');
+//后台分类路由
+Route::get('/admin/classify','AdminClassController@index');
+//编辑分类
+Route::get('/admin/classify/editShow/{id}','AdminClassController@editShow');
+Route::post('/admin/classify/edit','AdminClassController@edit');
+//删除分类
+Route::get('/admin/classify/delete/{id}','AdminClassController@delete');
+//新增分类
+Route::get('/admin/classify/addshow','AdminClassController@addshow');
+Route::post('/admin/classify/add','AdminClassController@add');
+//隐藏
+Route::get('/admin/classify/disnone/{id}','AdminClassController@disnone');
+//示
+Route::get('/admin/classify/disblock/{id}','AdminClassController@disblock');
+//添加子分类
+Route::get('/admin/classify/sonclassshow/{id}','AdminClassController@sonclassshow');
+Route::post('/admin/classify/sonclassadd','AdminClassController@sonclassadd');
+//查看后台子分类
+Route::get('/admin/classify/sonindex/{id}','AdminClassController@sonindex');
+//添加一级分类页面
+Route::get('/admin/classify/addone/{data}','AdminClassController@addone');
+
+
+
+
+
+//后台广告管理模块
+Route::get('/admin/adver','AdminAdverController@index');
+Route::get('/admin/adver/delete/{id}','AdminAdverController@delete');
+//后台广告编辑
+Route::get('/admin/adver/editshow/{id}','AdminAdverController@editshow');
+Route::post('/admin/adver/edit','AdminAdverController@edit');
+//后台广告添加
+Route::get('/admin/adver/addshow','AdminAdverController@addshow');
+Route::post('/admin/adver/add','AdminAdverController@add');
+//添加广告检测是否 有重名
+Route::get('/admin/adver/addshow/check/{data}','AdminAdverController@check');
+
+
+
+
+
+//后台公告管理
+Route::get('/admin/notice','AdminNoticeController@index');
+//后台公告删除
+Route::get('/admin/notice/delete/{id}','AdminNoticeController@delete');
+//后台公告添加
+Route::get('/admin/notice/addshow','AdminNoticeController@addshow');
+Route::post('/admin/notice/add','AdminNoticeController@add');
+//后台公告编辑
+Route::get('/admin/notice/editshow/{id}','AdminNoticeController@editshow');
+Route::post('/admin/notice/edit','AdminNoticeController@edit');
+//发布
+Route::get('/admin/notice/disnone/{id}','AdminNoticeController@disnone');
+//未发布
+Route::get('/admin/notice/disblock/{id}','AdminNoticeController@disblock');
+
+
+//后台相册
+Route::get('/admin/photo','PhotoController@index');
+//展示相册增加页面
+Route::get('/admin/photo/addshow','PhotoController@addshow');
+//增加功能
+Route::post('/admin/photo/add','PhotoController@add');
+//删除ajax
+Route::get('/admin/photo/delete/{id}','PhotoController@delete');
+//展示相册编辑页面
+Route::get('/admin/photo/editshow/{id}','PhotoController@editshow');
+//编辑功能
+Route::post('/admin/photo/edit','PhotoController@edit');
+//前台展示
+Route::get('/home/photo/{jd?}','PhotoController@homeshow');
+
+
+
+
+//后台连接
+Route::get('/admin/blogroll','BlogrollController@index');
+//添加连接页面
+Route::get('/admin/blogroll/addshow','BlogrollController@addshow');
+//添加
+Route::post('/admin/blogroll/add','BlogrollController@add');
+//删除
+Route::get('/admin/blogroll/delete/{id}','BlogrollController@delete');
+//编辑页面
+Route::get('/admin/blogroll/editshow/{id}','BlogrollController@editshow');
+//编辑
+Route::post('/admin/blogroll/edit','BlogrollController@edit');
+
+
+
+//帖子详情页面
+Route::get('/home/1',function (){
+    return view('/home.public.layout');
+});
+
+Route::get('/home/2',function (){
+    return view('/home.details');
+});
+
+
 
 
 // ----------------龙淼gai个人中心-------------
