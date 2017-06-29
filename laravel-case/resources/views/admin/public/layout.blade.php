@@ -269,7 +269,7 @@
                         <img class="nav-user-photo" src="{{asset('/imgs/user.jpg')}}" alt="Jason's Photo" />
                         <span class="user-info">
 									<small>欢迎光临,</small>
-                                    {{Session()->get('adminusername')}}
+                                    {{$_SESSION['admin']['name']}}
 
 								</span>
 
@@ -526,6 +526,26 @@
                 </li>
 
                 <li>
+                    <a href="__APP__/Type/index" class="dropdown-toggle">
+                        <i class="icon-list"></i>
+                        <span class="menu-text"> 分类管理 </span>
+
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{url('/admin/classify')}}">
+                                <i class="icon-double-angle-right"></i>
+                                浏览所有分类
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+                <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-edit"></i>
                         <span class="menu-text"> 帖子管理 </span>
@@ -732,14 +752,14 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/Announce/index">
+                            <a href="{{url('/admin/notice')}}">
                                 <i class="icon-double-angle-right"></i>
                                 公告列表
                             </a>
                         </li>
 
                         <li>
-                            <a href="__APP__/Announce/add">
+                            <a href="{{url('/admin/notice/addshow')}}">
                                 <i class="icon-double-angle-right"></i>
                                 添加公告
                             </a>
@@ -804,14 +824,14 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/Point/index">
+                            <a href="/admin/point/index">
                                 <i class="icon-double-angle-right"></i>
                                 积分规则表
                             </a>
                         </li>
 
                         <li>
-                            <a href="__APP__/Point/add">
+                            <a href="/admin/point/addshow">
                                 <i class="icon-double-angle-right"></i>
                                 添加规则
                             </a>
@@ -829,14 +849,14 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/Ads/index">
+                            <a href="/admin/adver">
                                 <i class="icon-double-angle-right"></i>
                                 广告列表
                             </a>
                         </li>
 
                         <li>
-                            <a href="__APP__/Ads/add">
+                            <a href="/admin/adver/addshow">
                                 <i class="icon-double-angle-right"></i>
                                 广告添加
                             </a>

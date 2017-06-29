@@ -73,7 +73,7 @@
                                                 {{$v->gid}}
                                             </td>
                                             <td>{{$v->groupname}}</td>
-                                            <td class="hidden-480"><img src="1111传值"/></td>
+                                            <td class="hidden-480"><img height="18px"  src="{{url(asset($v->groupicon))}}"/></td>
                                             <td>{{$v->points}}</td>
 
                                             <td>
@@ -127,7 +127,7 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                    <form action="/admin/powergroupadd" method="post">                          {{csrf_field()}}
+                                    <form action="/admin/powergroupadd" method="post" enctype="multipart/form-data">                          {{csrf_field()}}
                                         <tfoot>
                                         <tr>
                                             <td colspan="2">
@@ -154,9 +154,9 @@
             </div><!-- /.row -->
         </div><!-- /.page-content -->
     </div><!-- /.main-content -->
-    @if(!empty(session('error')))
-        <script>
-            alert('{{session('error')}}');
-        </script>
-    @endif
+    {{--@if(!empty(session('error')))--}}
+        {{--<script>--}}
+            {{--alert('{{session('error')}}');--}}
+        {{--</script>--}}
+    {{--@endif--}}
 @endsection

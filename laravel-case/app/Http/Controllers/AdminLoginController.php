@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Barryvdh\Debugbar\DataCollector\SessionCollector;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 //use Illuminate\Support\Facades\Session;
@@ -34,7 +35,7 @@ class AdminLoginController extends Controller
         $arr = "'$name'";
 
         $uname = DB::select('select * from `bbs_user_info` where `username` = '.$arr);
-
+//        dd($uname[0]->username);
 
         if(empty($uname))
         {
@@ -48,16 +49,13 @@ class AdminLoginController extends Controller
         if ($pass !== $pwd){$this->notice('您的密码不正确');}
 
         $uid = DB::select('select `uid` from `bbs_user_info` where `username` = '.$arr);
-//        session()->get('adminusername',$uname[0]->username);
-        $name = session()->put('adminusername',$uname[0]->username);
+
+        $_SESSION['admin']['name']= $uname[0]->username;
 //       dd(session()->get('adminusername'));
-//        session_star();
-//        $_SESSION['admin'] = $name;
-//        $_SESSION['id'] = $uid;
 
-       Session(['uid' => $uid]);
-
-
+        $_SESSION['admin']['uid'] = $uid[0]->uid;
+//        dd(session()->get('uid')[0]->uid);
+//        dd($_SESSION['admin']['uid'] = $uid);
 //        return view('/admin.public.layout',['name'=>$name]);
         $this->notice('登录成功','/admin/user');
     }

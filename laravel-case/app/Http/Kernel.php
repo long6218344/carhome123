@@ -61,6 +61,7 @@ class Kernel extends HttpKernel
         'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
         'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
          'checkpower'=> \App\Http\Middleware\CheckPower::class,
+        'sign' => \App\Http\Middleware\SignMiddleware::class,
 
     ];
 }

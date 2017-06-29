@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="table-responsive">
-                                <form action="/admin/powergroupupdate" method="post">
+                                <form action="/admin/powergroupupdate" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="gid" value="{{$info->gid}}" />
                                     {{csrf_field()}}
                                     <table id="sample-table-1" class="table table-striped table-bordered table-hover">
@@ -68,7 +68,7 @@
                                         </tr>
                                         <tr>
                                             <td>用户组图标</td>
-                                            <td><input type="file" name="groupicon" size="40" /><img src="__PUBLIC__/uploads/level/{{$info->groupicon}}"></td>
+                                            <td><input type="file" name="groupicon" size="40" /><img height="20px" src="{{url(asset($info->groupicon))}}"></td>
                                         </tr>
                                         <tr>
                                             <td>升级点数</td>
@@ -110,22 +110,22 @@
                                             <th colspan="2" align="left">内容发布设置</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>允许上传</td>
-                                            <td><input type="radio" name="allow_upload" value="1" {{$info->allow_upload ? 'checked' : ''}} />开启　　
-                                                　　　　　　　
-                                                <input type="radio" name="allow_upload" value="0" {{$info->allow_upload ? '' : 'checked'}} />关闭
-                                                　　　　　　　　　　　
-                                        </tr>
-                                        <tr>
-                                            <td>允许下载</td>
-                                            <td><input type="radio" name="allow_download" value="1" {{$info->allow_download ? 'checked' : ''}} />开启　　
-                                                　　　　　　　
-                                                <input type="radio" name="allow_download" value="0" {{$info->allow_download ? '' : 'checked'}} />关闭
-                                                　　　　　　　　　　　
-                                        </tr>
-                                        </tbody>
+                                        {{--<tbody>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>允许上传</td>--}}
+                                            {{--<td><input type="radio" name="allow_upload" value="1" {{$info->allow_upload ? 'checked' : ''}} />开启　　--}}
+                                                {{--　　　　　　　--}}
+                                                {{--<input type="radio" name="allow_upload" value="0" {{$info->allow_upload ? '' : 'checked'}} />关闭--}}
+                                                {{--　　　　　　　　　　　--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>允许下载</td>--}}
+                                            {{--<td><input type="radio" name="allow_download" value="1" {{$info->allow_download ? 'checked' : ''}} />开启　　--}}
+                                                {{--　　　　　　　--}}
+                                                {{--<input type="radio" name="allow_download" value="0" {{$info->allow_download ? '' : 'checked'}} />关闭--}}
+                                                {{--　　　　　　　　　　　--}}
+                                        {{--</tr>--}}
+                                        {{--</tbody>--}}
                                         <thead>
                                         <tr>
                                             <th colspan="2" align="left">消息</th>
@@ -254,9 +254,9 @@
             </div><!-- /.row -->
         </div><!-- /.page-content -->
     </div><!-- /.main-content -->
-    @if(!empty(session('error')))
-        <script>
-            alert('{{session('error')}}');
-        </script>
-    @endif
+    {{--@if(!empty(session('error')))--}}
+        {{--<script>--}}
+            {{--alert('{{session('error')}}');--}}
+        {{--</script>--}}
+    {{--@endif--}}
 @endsection

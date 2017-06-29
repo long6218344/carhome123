@@ -71,7 +71,7 @@
                                                 {{$v->gid}}
                                             </td>
                                             <td>{{$v->groupname}}</td>
-                                            <td class="hidden-480"><img src="__PUBLIC__/uploads/level/{$gname['groupicon']}"/></td>
+                                            <td class="hidden-480"><img height="18px"  src="{{url(asset($v->groupicon))}}"/></td>
                                             <td>{{$v->points}}</td>
 
                                             <td>
@@ -136,9 +136,9 @@
             </div><!-- /.row -->
         </div><!-- /.page-content -->
     </div><!-- /.main-content -->
-    @if(!empty(session('error')))
-        <script>
-            alert('{{session('error')}}');
-        </script>
-    @endif
+    {{--@if(!empty(session('error')))--}}
+        {{--<script>--}}
+            {{--alert('{{session('error')}}');--}}
+        {{--</script>--}}
+    {{--@endif--}}
 @endsection

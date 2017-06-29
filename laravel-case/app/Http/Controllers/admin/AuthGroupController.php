@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 class AuthGroupController extends Controller
 {
@@ -18,13 +19,81 @@ class AuthGroupController extends Controller
     }
 
     // 更新
-    public function update()
+    public function update(Request $request )
     {
-        // 获取用户隐藏uid
+        //---------------权限管理
+        $uid = $_SESSION['admin']['uid'];
+        // 1.获取用户权限
+        $result = DB::table('bbs_auth_group_access')
+            ->join('bbs_auth_group', 'bbs_auth_group_access.group_id', '=', 'bbs_auth_group.id')
+            ->select('bbs_auth_group_access.uid', 'bbs_auth_group.rules')
+            ->where('bbs_auth_group_access.uid', '=', $uid)
+            ->get();
+//        dd($result);
+        // 2. 获取用户当前操作规则
+        $action = Route::currentRouteAction();
+        //控制器和路由
+        $d = strchr(strstr($action, 'Controllers'), '\\');
+        $e = trim($d, '\\');
+//        dd($action);
+        // 3. 获取规则组权限id
+        $rulepower = DB::table('bbs_auth_rule')
+            ->select('id')
+            ->where('name', '=', $e)
+            ->first();
+
+//        foreach($rulepower as $v){
+//            $a .=','.$v->id;
+//        }
+//        $a = ltrim($a,',');
+//        $a = explode(',',$a);
+
+        // 4.判断用户当前操作是否在规则里面
+        $result1 = DB::table('bbs_auth_group_access')
+            ->join('bbs_auth_group', 'bbs_auth_group_access.group_id', '=', 'bbs_auth_group.id')
+            ->select('bbs_auth_group_access.uid', 'bbs_auth_group.rules')
+            ->where('bbs_auth_group_access.uid', '=', $uid)
+            ->first();
+        if(!$result1){
+            return redirect('/admin/layout')->with('error','权限不够');
+        }
+//        dd($rulepower);
+        foreach ($result as $v) {
+            $rule = $v->rules;
+            $r = explode(',', $rule);
+//            $num = count($r);
+
+//            dd($rulepower);
+            if (!in_array($rulepower->id, $r)) {
+                return redirect('/admin/layout')->with('error','权限不够');
+            }
+//
+        }
+//----------------------------权限管理-------------------------
+        // 判断rules有没有这个字段
+        $key = '';
+        foreach ($_POST as $k=>$v){
+            $key .= ','.$k;
+        }
+        $key = ltrim($key,',');
+        $key = explode(',',$key);
+        if(!in_array('rules',$key))
+        {
+            $rules = '';
+            $_POST['rules']= $rules;
+        }else{
+            $data = $_POST['rules'];
+            $rules = implode(",",$data);
+
+        }
+//        dd($_POST);
         $id = $_POST['id'];
-        $data = $_POST['rules'];
+        // 获取用户隐藏uid
+//        dd(apc_exists($_POST['rules']));
+//        if(apc_exists($_POST['rules'])){
+//            return back()->with('error','权限不能为空');
+//        }
 //        dd($id);die;
-        $rules = implode(",",$data);
 //        var_dump($rules);die;
         // 判断是否有更新值
         $result = DB::table('bbs_auth_group')->where('id',$id)->update(["rules"=>$rules]);
