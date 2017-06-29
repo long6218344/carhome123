@@ -12,8 +12,13 @@ class HomeIndexController extends Controller
         $thread = DB::table('forum')
             ->join('thread', 'forum.fid', '=', 'thread.fid')
             ->get();
+
+        $reply = DB::table('reply')->get();
+
+//        var_dump($thread);
+
         $forum = DB::table('forum')->get();
-        return view('/home/index',['forum'=>$forum,'thread'=>$thread]);
+        return view('home/newcard/index',['forum'=>$forum,'thread'=>$thread]);
     }
 
     public function getinfo()

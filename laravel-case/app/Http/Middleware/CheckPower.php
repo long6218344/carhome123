@@ -17,6 +17,7 @@ class CheckPower
      */
     public function handle($request, Closure $next)
     {
+
         $uid = $_SESSION['admin']['uid'];
         // 1.获取用户权限
         $result = DB::table('bbs_auth_group_access')
@@ -103,6 +104,7 @@ class CheckPower
 
            // dd($rulepower);
             if (!in_array($rulepower[0]->id, $r)) {
+
                 return redirect('/admin/layout')->with('error','权限不够');
             } else {
                 return $next($request);

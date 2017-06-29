@@ -17,6 +17,7 @@ class BlogPlateController extends Controller
             ->get();
 //        var_dump($result);
 //        $result->toArray();
-        return view('/home/BlogPlate',['result'=>$result,'forum'=>$forum]);
+
+        return view('/home/index2',['result'=>$result,'forum'=>$forum]);
     }
 }

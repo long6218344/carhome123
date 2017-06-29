@@ -65,14 +65,6 @@
                  </div>
              </div>
 
-
-
-
-
-
-
-
-
              <div class="form-group">
                  <label for="inputPassword3" class="col-sm-2 control-label">性别</label>
 
@@ -96,7 +88,6 @@
 
 
 
-
      </div>
 
  </div> {{--end sign--}}
@@ -106,12 +97,8 @@
 
  <script>
 
-
-
-
      $(function(){
          $('#user').focusout(function(){
-
 
              // 得到参数
               var user = $('#user').val();
@@ -139,11 +126,8 @@
                  }
 
              });
-
-
          })
      })
-
 
      function checkForm()
      {
@@ -179,12 +163,7 @@
              pwdb.innerHTML = '√ 通过';
          }
      }
-
-
-
  </script>
-
-
 </body>
 </html>
 

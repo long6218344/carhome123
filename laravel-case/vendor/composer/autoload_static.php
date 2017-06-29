@@ -328,6 +328,7 @@ class ComposerStaticInit1101875f167b88ede4cb3d99772f2511
         'App\\Http\\Controllers\\admin\\UserGroupController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/UserGroupController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\CheckPower' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckPower.php',
+
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\LoginMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/LoginMiddleware.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
@@ -339,6 +340,9 @@ class ComposerStaticInit1101875f167b88ede4cb3d99772f2511
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+
+        'App\\models\\Permission' => __DIR__ . '/../..' . '/app/models/Permission.php',
+        'App\\models\\Role' => __DIR__ . '/../..' . '/app/models/Role.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',

@@ -332,6 +332,7 @@ class UserController extends Controller
             }
             // 判断文件类型
             $ext = $request->file('icon')->getClientOriginalExtension();
+
             if (!in_array($ext, array('jpg', 'png', 'jpeg'))) {
 //                ('不合法的文件类型');
                 return back()->with('error','不合法的文件类型');
@@ -398,6 +399,7 @@ class UserController extends Controller
     {
         //显示所有用户
         $user = DB::select('select * from `bbs_user_info` where uid = ?', [$uid]);
+
         return view('/admin.user.update', ['user' => $user]);
 
     }
@@ -468,6 +470,7 @@ class UserController extends Controller
         //控制器和路由
         $d = strchr(strstr($action, 'Controllers'), '\\');
         $e = trim($d, '\\');
+
         // 3. 获取规则组权限id
         $rulepower = DB::table('bbs_auth_rule')
             ->select('id')
@@ -489,11 +492,13 @@ class UserController extends Controller
         if(!$result1){
             return redirect('/admin/layout')->with('error','权限不够');
         }
+//        dd($rulepower);
         foreach ($result as $v) {
             $rules = $v->rules;
             $r = explode(',', $rules);
 //            $num = count($r);
 
+//            dd($rulepower);
             if (!in_array($rulepower->id, $r)) {
                 return redirect('/admin/layout')->with('error','权限不够');
             }
@@ -517,6 +522,7 @@ class UserController extends Controller
         }else{
            $result = DB::table('bbs_auth_group_access')->where('uid', $uid)->delete();
         }
+//            dd($result);die;
 
         return back()->with('error', '修改成功');
     }

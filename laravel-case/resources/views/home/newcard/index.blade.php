@@ -31,27 +31,34 @@
                         <div class="thread_posts_list">
                             <table id="J_posts_list" summary="帖子列表" width="100%">
 
-                                <foreach >
+
+{{--                                {{$thread}}--}}
+                            @foreach( $thread as $k => $v )
                                     <tr>
                                         <td class="author"><a class="J_user_card_show" href="#"><img src="" onerror="this.src=''" height="45" width="45"></a></td>
                                         <td class="subject">
                                             <p class="title">
-                                                <a href="#" target="_blank"><span class="posts_icon"><i class="icon_headtopic_3" title="置顶3  新窗口打开"></i></span></a>
+
+                                                @if ($v->top == 1)  <a href="#" target="_blank"><span class="posts_icon"><i class="icon_headtopic_3" title="置顶3  新窗口打开"></i></span></a>顶 @endif
                                                 <a href="#" class="st">[<font color="red">站长交流</font>]</a>
-                                                <a href="" class="st" style="color:#FF0000;font-weight:bold" title="">1</a>
+                                                <a href="{{url('/home/post/'.$v->tid)}}" class="st" style="color:#FF0000;font-weight:bold" title="">{{$v->title}}</a>
                                                 <!-- <span class="posts_icon"><i class="icon_img" title="图片帖"></i></span>	 -->
+                                                <a href="{{url('/home/blog/'.$v->fid)}}" class="st">[<font>{{$v->name}}</font>]</a>
+                                                <a href="#" class="st"><font color="red">@if ($v->best == 1) [精品]  @endif</font></a>
                                             </p>
                                             <p class="info">
-                                                楼主：<a class="J_user_card_show" style='color:blue' href="">21</a><span>createtime</span>
-                                                最后回复：<a class="J_user_card_show" href="">username</a><span><a href="#" rel="nofollow" aria-label="最后回复时间">time</a></span>
+                                                楼主：<a class="J_user_card_show" style='color:blue' href="">{{$v->tauthor}}</a><span>{{$v->tdateline}}</span>
+                                                最后回复：
+                                                {{--<a class="J_user_card_show" href="">@if (!empty($v->rauthor)) {{$v->rauthor}} @else {{$v->rauthor}} @endif </a>--}}
+                                                <span><a href="#" rel="nofollow" aria-label="最后回复时间">@if (!empty($v->replies)) {{$v->replies}} @else {{$v->rdateline}} @endif </a></span>
                                             </p>
                                         </td>
                                         <td class="num">
-                                            <span>回复<em style='color:red'>num</em></span>
-                                            <span>浏览<em style='color:red'>clicknum</em></span>
+                                            <span>回复<em style='color:red'>{{$v->renumber}}</em></span>
+                                            <span>浏览<em style='color:red'>{{$v->clicknumber}}</em></span>
                                         </td>
                                     </tr>
-                                </foreach>
+                                @endforeach
 
                             </table>
                         </div>

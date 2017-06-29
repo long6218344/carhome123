@@ -1,4 +1,3 @@
-{{--@extends('home.public.layout')--}}
 
 <!DOCTYPE html>
 <html lang="en">

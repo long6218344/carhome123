@@ -5,11 +5,10 @@
 <div style="width: 80%;margin: auto;;">
 
     <div class="read_pages_wrap cc" style="margin: 20px 20px 20px 20px;">
-        <a rel="nofollow" href="http://www.phpwind.net/index.php?c=post&amp;a=reply&amp;tid=3709782" data-referer="true" class="btn_replay J_qlogin_trigger">回 复</a>
+        <a rel="nofollow" href="{{url('/home/reply/'.$post[0]->tid)}}" data-referer="true" class="btn_replay J_qlogin_trigger">回 复</a>
         <div class="pages" style="margin-right:3px;"><a href="http://www.phpwind.net/thread/163/1" class="pages_pre" rel="nofollow">« 返回列表</a></div>
 
     </div>
-
     <div class="floor cc J_read_floor" id="read_0">
         <table width="100%" style="table-layout:fixed;" class="floor_table">
             <tbody><tr>
@@ -21,7 +20,8 @@
                         </div>
                         <!--用户名-->
                         <div class="name">
-                            <span class="man_unol" title="离线"></span><a href="http://www.phpwind.net/u/658925" class="J_user_card_show mr5" data-uid="658925">phpwind</a>
+
+                            <span class="man_unol" title="离线"></span><a href="http://www.phpwind.net/u/658925" class="J_user_card_show mr5" data-uid="658925">{{$post[0]->pauthor}}</a>
                         </div>
                         <!--等级-->
                         <div class="level">
@@ -58,9 +58,10 @@
                     <div class="fl"><div class="floor_arrow"><em></em><span></span></div></div>
                     <div class="floor_title cc">
                         <div class="post_num">
-                            <span class="hits">阅读：<em>44795</em></span><span class="replies">回复：<em id="topicRepliesNum">83</em></span>
+
+                            <span class="hits">阅读：<em>{{$post[0]->clicknumber}}</em></span><span class="replies">回复：<em id="topicRepliesNum">{{$post[0]->renumber}}</em></span>
                         </div>
-                        <h1 id="J_post_title">这儿是标题</h1>
+                        <h1 id="J_post_title">{{$post[0]->title}}</h1>
                         <span class="floor_honor posts_icon">
 					<i class="icon_headtopic_1" title="置顶"></i><i class="icon_topichot" title="热门"></i>				</span>
                     </div>
@@ -68,7 +69,8 @@
                     <div class="floor_top_tips cc">
                         <div style="position:relative;"><span class="lou J_floor_copy" title="复制此楼地址"></span>
 
-                        <span class="fl">发布于：2016-06-18 13:48	</span>
+
+                        <span class="fl">{{$post[0]->tdateline}}	</span>
                     </div>
                     <div id="J_read_main">
                         <div id="J_read_tag_wrap" class="read_tag_list">
@@ -91,13 +93,8 @@
                         <div class="editor_content">
 
 
-                            <p>这里便利文章</p>
-
-
-
+                            <p>{{$post[0]->pmessage}}</p>
                     </div>
-
-
             <tr>
                 <td class="box_wrap floor_bottom" valign="bottom">
 
@@ -261,7 +258,8 @@
 									</span>
                         <a rel="nofollow" href="#floor_reply" data-hash="floor_reply" class="a_reply" id="J_readreply_main">回复</a>
                     </div>
-                    <div style="display:none;" class="J_reply_wrap" id="J_reply_wrap_0"><div class="pop_loading"></div></div>
+
+                            <div style="display:none;" class="J_reply_wrap" id="J_reply_wrap_0"><div class="pop_loading"></div></div>
                 </td>
             </tr>
             </tbody></table>
@@ -270,22 +268,27 @@
 
 
 
+@foreach( $reply as $k => $v )
+
     <div class="design_layout_ct"><div class="design_layout_3_1_left J_layout_item"><div id="J_mod_190" style="" data-id="190" data-model="image" class="mod_box J_mod_box"><a href="http://click.aliyun.com/m/4095/" target="_blank"><img src="picture/tb1glvklvxxxxxpxvxxasup.pxx-900-90.jpg"></a></div></div><div class="design_layout_3_1_right J_layout_item"><div id="J_mod_191" style="" data-id="191" data-model="image" class="mod_box J_mod_box"><a href="http://market.aliyun.com/products/55586021/cmjz000388.html?spm=5176.9000004.0.0.ZQBEbS" target="_blank"><img src="picture/aaced9a54f1e9d0.jpg"></a></div></div></div>
 
 
 
     <div class="floor cc J_read_floor" id="read_20546433">
         <table width="100%" style="table-layout:fixed;" class="floor_table">
-            <tbody><tr>
-                <td rowspan="2" class="floor_left">
-                    <div class="floor_info">
-                        <!--头像-->
+
+            <tbody>
+                <tr>
+                    <td rowspan="2" class="floor_left">
+                        <div class="floor_info">
+                            <!--头像-->
                         <div class="face">
                             <a href="http://www.phpwind.net/u/1791908" class="J_user_card_show" data-uid="1791908" target="_blank"><img src="file:///D:/%E9%98%B2%E7%AB%99%E5%B0%8F%E5%B7%A5%E5%85%B7/www.phpwind.net/picture/1791908_middle.jpg" class="J_avatar" data-type="middle" alt="cbrook"></a>
                         </div>
                         <!--用户名-->
                         <div class="name">
-                            <span class="man_unol" title="离线"></span><a href="http://www.phpwind.net/u/1791908" class="J_user_card_show mr5" data-uid="1791908">cbrook</a>
+
+                            <span class="man_unol" title="离线"></span><a href="http://www.phpwind.net/u/1791908" class="J_user_card_show mr5" data-uid="1791908">{{$v->rauthor}}</a>
                         </div>
                         <!--等级-->
                         <div class="level">
@@ -300,6 +303,8 @@
                             <li><em>贡献</em><span title="689点">689点</span></li>
                             <li><em>注册日期</em><span>2008-12-27</span></li>
                             <li><em>最后登录</em><span>2016-06-18</span></li>
+
+                            <li><em>来自ip:</em><span>{{$v->rauthorip}}</span></li>
                         </ul>
                         <!--发私信加关注-->
                         <div class="operate cc">
@@ -325,8 +330,9 @@
                     <div class="fl"><div class="floor_arrow"><em></em><span></span></div></div>
                     <div class="c"></div>
                     <div class="floor_top_tips cc">
-                        <div style="position:relative;"><span class="lou J_floor_copy" title="复制此楼地址" data-hash="read_20546433">沙发<sup>#</sup></span></div>
-                        <span class="fl">发布于：2016-06-18 14:13				</span>
+
+                        <div style="position:relative;"><span class="lou J_floor_copy" title="复制此楼地址" data-hash="read_20546433">1<sup>#</sup></span></div>
+                        <span class="fl">发布于：{{$v->rdateline}}				</span>
                     </div>
                     <div id="J_read_main">
                         <div class="fr">
@@ -335,17 +341,20 @@
                             <!--结束右侧广告位-->
                         </div>
                         <div class="editor_content">
-                            谢谢，坚持更新，辛苦了				</div>
+
+                            {{$v->rmessage}}				</div>
                     </div>
                 </td>
-            </tr>
+                </tr>
             <tr>
                 <td class="box_wrap floor_bottom" valign="bottom">
                     <div id="app_read_floor_1"></div>
-                    <div class="signature" style="max-height:100px;maxHeight:100px;"><table width="100%"><tbody><tr><td><a href="http://www.uyulu.cn " target="_blank">情感语录</a><a href="http://www.740c.com " target="_blank">内涵笑话</a><br><a href="http://www.xghmzx.com " target="_blank">孝感华美整形</a><br><a href="http://www.xghmyy.com " target="_blank">孝感双眼皮</a></td></tr></tbody></table></div>
+                    <div class="signature" style="max-height:100px;maxHeight:100px;"><table width="100%"><tbody><tr><td><a href="http://www.uyulu.cn " target="_blank">情感语录</a><a href="http://www.740c.com " target="_blank">内涵笑话</a><br><a href="http://www.xghmzx.com " target="_blank">孝感华美整形</a><br><a href="http://www.xghmyy.com " target="_blank">孝感双眼皮</a></td></tr></tbody></table>
+
+                    </div>
 
                     <div class="floor_bottom_tips cc">
-								<span class="fr">
+                        <span class="fr">
 									</span>
                         <a rel="nofollow" href="http://www.phpwind.net/index.php?c=post&amp;a=fastreply&amp;tid=3709782&amp;pid=20546433" data-pid="20546433" class="a_reply J_read_reply" data-topped="false">回复<span style="display:none">(0)</span></a>
                         <a rel="nofollow" href="http://www.phpwind.net/index.php?m=like&amp;c=mylike&amp;a=doLike" data-tid="3709782" data-pid="20546433" data-fid="163" class="a_like J_like_btn J_qlogin_trigger" data-typeid="2" data-fromid="20546433">喜欢</a><span style="">(<a class="J_like_user_btn a_like_num" data-pid="20546433" href="http://www.phpwind.net/index.php?m=like&amp;c=like&amp;a=getLast&amp;typeid=2&amp;fromid=20546433">1</a>)</span>
@@ -353,9 +362,10 @@
 
                         &nbsp;&nbsp;&nbsp;&nbsp;<a role="button" rel="nofollow" href="#" data-pid="20546433" data-uri="http://www.phpwind.net/index.php?m=app&amp;a=mark&amp;tid=3709782&amp;pid=20546433&amp;app=mark" class="J_plugin_read_mark" id=""><span>评分</span></a>
                         <script>
-                            Wind.ready('global.js', function(){
-                                Wind.js('http://www.phpwind.net/themes/extres/mark/js/mark.min.js?v=' + GV.JS_VERSION);
-                            });
+
+                                Wind.ready('global.js', function(){
+                                        Wind.js('http://www.phpwind.net/themes/extres/mark/js/mark.min.js?v=' + GV.JS_VERSION);
+                                });
                         </script>
 
                     </div>
@@ -365,6 +375,8 @@
             </tbody></table>
     </div>
 
+
+    @endforeach
 
     <div class="read_pages_wrap cc" id="floor_reply">
         <a rel="nofollow" href="http://www.phpwind.net/index.php?c=post&amp;fid=163" id="J_read_post_btn" class="btn_post J_qlogin_trigger">发 帖</a>
@@ -378,5 +390,9 @@
     </div>
 
 
+
+    </div>
+
 </div>
+
 @endsection

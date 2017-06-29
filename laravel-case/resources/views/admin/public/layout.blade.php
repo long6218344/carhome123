@@ -730,6 +730,7 @@
                     <ul class="submenu">
                         <li>
                             <a href="{{url('/admin/blogroll')}}">
+
                                 <i class="icon-double-angle-right"></i>
                                 浏览链接
                             </a>
@@ -737,6 +738,7 @@
 
                         <li>
                             <a href="{{url('/admin/blogroll/addshow')}}">
+
                                 <i class="icon-double-angle-right"></i>
                                 添加链接
                             </a>
@@ -753,7 +755,7 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="{{url('/admin/notice')}}">
+                            <a href="{{url('/admin/notic')}}">
                                 <i class="icon-double-angle-right"></i>
                                 公告列表
                             </a>

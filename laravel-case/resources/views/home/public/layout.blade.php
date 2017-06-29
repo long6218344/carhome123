@@ -182,8 +182,7 @@
 
     @section('main-content')
 
-      @show
-
+    @show
     <div class="tac">
         <br />
     </div>

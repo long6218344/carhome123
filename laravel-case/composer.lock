@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "a68f8668eb3e268bf4cd07e89cd3a21c",
+=======
+    "content-hash": "2cfabd48a234f69c834b9286a63a28dc",
+>>>>>>> 5261b611b1d2667f02a30a212376a5cfdb4baff5
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -638,6 +642,7 @@
             "time": "2017-04-28T10:15:08+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "mews/captcha",
             "version": "v2.1.4",
             "source": {
@@ -695,6 +700,8 @@
             "time": "2016-07-19T09:01:51+00:00"
         },
         {
+=======
+>>>>>>> 5261b611b1d2667f02a30a212376a5cfdb4baff5
             "name": "monolog/monolog",
             "version": "1.23.0",
             "source": {

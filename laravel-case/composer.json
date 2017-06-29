@@ -9,7 +9,10 @@
         "intervention/image": "^2.3",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
+<<<<<<< HEAD
         "mews/captcha": "^2.1",
+=======
+>>>>>>> 5261b611b1d2667f02a30a212376a5cfdb4baff5
         "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {

@@ -26,15 +26,15 @@ class LoginController extends Controller
      */
     public function join(Request $request)
     {
+
         $name = $request->user;
         $pass = md5($request->pwd);
-
-
 
         $arr = "'$name'";
 
         $uname = DB::select('select * from `bbs_user_info` where `username` = '.$arr);
 
+        $uid = DB::select('select uid from `bbs_user_info` where `username` = '.$arr);
 
         if(empty($uname))
         {
@@ -42,24 +42,21 @@ class LoginController extends Controller
         }
 
         foreach ($uname as $user) {$pwd =  $user->pwd;}
-
+      
 //         dump($pass , $pwd);die;
 
          if ($pass !== $pwd){$this->notice('您的密码不正确');}
 
 
 
-         $_SESSION['username'] = $name;
+         $_SESSION['username'] = $uname;
 
 
-
-        $this->notice('登录成功','/home');
-
-
-
-
+        $_SESSION['uid'] = $uid;
+//        echo 123;die;
+//var_dump(session('username'));
+        $this->notice('登录成功','/');
     }
-
 
     /**
      * @param $msg

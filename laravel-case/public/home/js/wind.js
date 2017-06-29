@@ -646,10 +646,14 @@
  * @Copyright   : Copyright 2011, phpwind.com
  * @Descript    : PHPWind核心JS
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @Author      : chaoren1641@gmail.com
 =======
  * @Author      : 
 >>>>>>> 4af5c65052757a785ff34db1803c9f688a808c02
+=======
+ * @Author      : chaoren1641@gmail.com
+>>>>>>> 5261b611b1d2667f02a30a212376a5cfdb4baff5
  * @Thanks      : head.js (http://headjs.com)
  * $Id: wind.js 23158 2013-01-06 11:47:46Z hao.lin $            :
  */

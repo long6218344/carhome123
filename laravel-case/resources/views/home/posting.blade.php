@@ -52,7 +52,6 @@
             <hr>
 
 
-
         <div class="blog-user-reply">
             {{--<a href="" name="reply"></a>--}}
             <p style="font-size: 25px;margin-left: 10px">标题</p>
@@ -78,7 +77,6 @@
 
         <button onclick="gotoTop()" class="btn btn-primary btn-lg active" style="position:fixed;right: 20px;top:800px;"
         >返回顶部</button>
-
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

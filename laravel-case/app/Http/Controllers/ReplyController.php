@@ -14,22 +14,4 @@ class ReplyController extends Controller
 
 
 
-    public function delete(Request $request)
-    {
-        $rid = $request->rid;
-        $renumber = DB::table('thread')->value('renumber');
-        $renumber = ($renumber - 1);
-
-        DB::transaction(function() use ($rid, $renumber)
-        {
-            try {
-        DB::table('reply')->where('rid',$rid)->delete() ;
-        DB::table('thread')->update(['renumber'=>$renumber]);
-                 } catch (\Exception $e) {
-                var_dump('删除失败');
-                exit;
-            }
-        });
-        echo '删除成功';
-    }
 }

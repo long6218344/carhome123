@@ -37,6 +37,7 @@ class PostingController extends Controller
 //        var_dump($value[0]->posts);die;
         $posts = ($value[0]->posts+1);
         $todayposts = ($value[0]->todayposts+1);
+//        var_dump($tid, $title, $content, $fid, $now, $ip, $posts, $todayposts);die;
         DB::transaction(function() use ($tid, $title, $content, $fid, $now, $ip, $posts, $todayposts)
         {
             try {
@@ -46,7 +47,8 @@ class PostingController extends Controller
                     'posts'=>$posts,
                     'todayposts'=>$todayposts
                 ]);
-            $tid = DB::table('thread')->insertGetId([
+//                var_dump(session('username'));die;
+                $tid = DB::table('thread')->insertGetId([
                 'title'=>$title,
                 'fid'=>$fid,
                 'tauthor'=> session('username'),
@@ -54,7 +56,8 @@ class PostingController extends Controller
                 'tdateline'=>$now,
                 'replies'=>$now
             ]);
-            DB::table('post')->insert([
+//                var_dump($tid);die;
+                DB::table('post')->insert([
                 'ptitle'=>$title,
                 'pmessage'=>$content,
                 'fid'=>$fid,
@@ -65,10 +68,11 @@ class PostingController extends Controller
                 'pauthorip'=>$ip
             ]);
             } catch (\Exception $e) {
-                var_dump('发帖失败');
-                exit;
+//                var_dump('发帖失败',$e);
+                die;
+                return redirect('/home/blog/'.$fid);
             }
         });
-        echo '发帖成功';
+        return redirect('/home/blog/'.$fid);
     }
 }
