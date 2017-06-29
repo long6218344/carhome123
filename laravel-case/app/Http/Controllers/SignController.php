@@ -43,7 +43,6 @@ class SIgnController extends Controller
          $this->notice('两次输入的密码不正确');
 
         }
-
         $arr = "'$name'";
 
 
@@ -58,79 +57,20 @@ class SIgnController extends Controller
         $id = DB::table('bbs_user_info')->insertGetId(
         ['username' => $name, 'pwd' => $mdpwd, 'sex' => $sex]
     );
-
         if ($id)
         {
             $_SESSION['username'] = $name;
 
-            $this->notice('注册成功','/laravel-case/public');
+            $this->notice('注册成功','/');
+
         }
         else
         {
             $this->notice('注册失败');
         }
-
-
     }
-
-    /**
-     * @param $msg
-     * @param string $url
-     * @param float $time
-     */
-
-
-
-
-    public function notice($msg, $url = '' ,$time = 1)
-    {
-
-        echo '<body style="margin:0">';
-        echo '<div style="width: 100%;height: 100%;position: fixed;">
-
-     <h1 style="font-size: 200px;position: fixed;left: 200px;top:50px;">ovo </h1>
-     <div>
-        <p style="font-size: 35px;position: fixed;left: 200px;top:400px;
-
-        color: red;">['.$msg.']</p>
-        <p style="font-size: 20px;position: fixed;left: 300px;top:500px;">
-        
-        大概还需'.$time.'秒加载完成 
-        
-        </p>
-        
-     </div>
-     </div>';
-
-
-        // 如果没有传入url, 默认返回到上一页面
-
-        if( $url  == ''	){
-            $url = $_SERVER['HTTP_REFERER'];
-        }
-
-        echo '<meta http-equiv="refresh" content="'.$time.'; url='.$url.'">';
-        die;
-
-    }
-
-
-
-    public function selete($data)
-    {
-        $arr = "'$data'";
-        $uname = DB::select('select * from `bbs_user_info` where `username` = '.$arr);
-        if (empty($uname)){
-            echo '1';
-        }else{
-            echo '2';
-        }
-
-
-    }
-
-
 }
+
 
 
 

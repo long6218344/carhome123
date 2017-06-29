@@ -12,6 +12,4 @@ class ReplyController extends Controller
         return view('/admin/posts/reply',['result'=>$result]);
     }
 
-
-
 }

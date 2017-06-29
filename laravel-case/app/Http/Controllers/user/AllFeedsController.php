@@ -9,19 +9,21 @@ use Illuminate\Support\Facades\DB;
 class AllFeedsController extends Controller
 {
     public function show(){
+//        $id = $_SESSION['uid'];
+//        dd($id);die;
         // 全部好友动态
         $user = DB::table('bbs_user_info')->where('username', session('username'))->first();
         // 根据当前用户id查好友表 得到好友fid
-        $info = DB::select('select `fid` from `bbs_friend` where uid = '.session('id'));
+        $info = DB::select('select `fid` from `bbs_friend` where uid = '.$id);
         // 找fid 等于自身id的数据 就是粉丝
-        $list = DB::select('select `uid` from `bbs_friend` where fid = '.session('id'));
+        $list = DB::select('select `uid` from `bbs_friend` where fid = '.$id);
        
         // 把好友id变成数组 查帖子表
         foreach($info as $v){
             $r[] = $v->fid;
         }
         // 把自身id 加进去遍历查询 帖子表和用户表
-        array_push($r,session('id'));
+        array_push($r,$id);
         foreach($r as $v){
 
             $news[] = DB::table('bbs_user_info')
@@ -39,7 +41,7 @@ class AllFeedsController extends Controller
                 $arr[] = $v->fid;
             }
             // 感兴趣的人 排除已经关注过的  whereNotIn() 随机得到inRandomOrder()
-            $randomUser = DB::table('bbs_user_info')->where('uid','<>',session('id'))->whereNotIn('uid', $arr)->inRandomOrder()->get();
+            $randomUser = DB::table('bbs_user_info')->where('uid','<>',$id)->whereNotIn('uid', $arr)->inRandomOrder()->get();
                  
             // $friend = $friend->paginate(3); 分页?
             return view('user/user_allfeeds',[
@@ -51,7 +53,7 @@ class AllFeedsController extends Controller
             ]);
         }else{
             // 出自己id 外 随机出用户
-            $randomUser = DB::table('bbs_user_info')->where('uid','<>',session('id'))->inRandomOrder()->get();
+            $randomUser = DB::table('bbs_user_info')->where('uid','<>',$id)->inRandomOrder()->get();
             return view('user/user_allfeeds',[
                 'name'=>$user->username,
                 'icon'=>$user->icon,

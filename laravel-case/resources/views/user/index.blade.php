@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +23,6 @@
 
     @section('content')
     <!-- 左侧栏显示 -->
-
         <div class="leftside">
             <div class="left index-left" id="left">
                 <div class="userHead" id="userHead">
@@ -47,9 +45,10 @@
                     <h4>消息</h4>
                     <ul class="item">
                         <li class=""><a class="ico_xx01" href="{{url('/home/message-write/2/'.session('id'))}}">私信</a></li>
-                        <li class=""><a class="ico_xx02" href="#">评论</a></li>
+
+                        <li class=""><a class="ico_xx02" href="{{url('user/reply')}}">评论</a></li>
                         <li class=""><a class="ico_xx03" href="#">系统通知</a></li>
-                        <li class=""><a class="ico_xx04" href="#">订单</a></li>
+                        <!-- <li class=""><a class="ico_xx04" href="#">订单</a></li> -->
                         <li class=""><a class="ico_xx05" href="{{url('user/friend')}}">好友</a></li>
                     </ul>
                     <div class="divide">
@@ -59,11 +58,11 @@
                     <ul class="item">
                         <li class=""><a class="ico_lt01" href="{{url('user/myword')}}">
                                 我的主帖</a></li>
-                        <li class=""><a class="ico_lt02" href="">收到回复</a></li>
-                        <li class=""><a class="ico_lt03" href="">
+
+                        <li class=""><a class="ico_lt02" href="{{url('user/get')}}">收到回复</a></li>
+                        <li class=""><a class="ico_lt03" href="{{url('user/reply')}}">
                                 发出回复</a></li>
-                        <li class=""><a class="ico_lt04" href="">
-                                我的活动</a></li>
+                        <!-- <li class=""><a class="ico_lt04" href="">我的活动</a></li> -->
                     </ul>
                     <div class="divide">
                     </div>
@@ -71,11 +70,12 @@
                         应用</h4>
                     <ul class="item">
                         <li class=""><a href="#" class="ico_yy20">任务中心</a></li>
-                        <li class=""><a class="ico_yy15" href="{{url('user/newsfeed')}}">好友动态</a> </li>
-                        <li class=""><a class="ico_yy12" href="#">车主价格</a></li>
+
+                        <li class=""><a class="ico_yy15" href="{{url('user/allfeeds')}}">好友动态</a> </li>
+                        <!-- <li class=""><a class="ico_yy12" href="#">车主价格</a></li> -->
 
                         <li class=""><a class="ico_yy08" href="#">我的问答</a></li>
-                        <li class=""><a class="ico_yy01" href="#">口碑</a></li>
+                        <!-- <li class=""><a class="ico_yy01" href="#">口碑</a></li> -->
                         <li class="" style="z-index: 200;">
                             <a class="ico_yy03" href="#">
                                 收藏</a>

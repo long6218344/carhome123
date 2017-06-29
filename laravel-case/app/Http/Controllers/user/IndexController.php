@@ -9,11 +9,10 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends Controller
 {
     public function show(){
-    	session(['username'=>'admin']);
+
         $user = DB::table('bbs_user_info')->where('username', session('username'))->first();
-        session(['id'=>$user->uid]);
-        $num = DB::table('thread')->where('tauthorid',session('id'))->count();
-        $num1 = DB::table('thread')->where([['tauthorid',session('id')],['best',1]])->count();
+        $num = DB::table('thread')->where('tauthorid',session('uid'))->count();
+        $num1 = DB::table('thread')->where([['tauthorid',session('uid')],['best',1]])->count();
         return view('user/user_index',[
             'name'=>$user->username,
             'icon'=>$user->icon,

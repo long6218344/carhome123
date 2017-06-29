@@ -17,12 +17,14 @@ class PostDetailsController extends Controller
             ->where('thread.tid',$tid)
             ->join('post', 'thread.tid', '=', 'post.tid')
 //            ->join('reply', 'thread.tid', '=', 'reply.tid')
+
             ->get();
         $reply = DB::table('thread')
             ->join('reply', 'thread.tid', '=', 'reply.tid')
             ->get();
 
         $cn = DB::table('thread')->where('tid',$tid)
+
             ->value('clicknumber');
         $cn = ($cn + 1);
 //        var_dump($tid,$cn);die;
@@ -43,6 +45,7 @@ class PostDetailsController extends Controller
     public function submit(Request $request)
     {
 //        return 111;
+
         $rid = null;
         $content = $request->input('content');
         $tid = $request->input('tid');
@@ -67,6 +70,7 @@ class PostDetailsController extends Controller
                 ]);
 
                 DB::table('thread')->where('tid',$tid)->update([
+
                     'renumber'=>$renumber,
                     'replies'=>$now
                 ]);
@@ -77,7 +81,6 @@ class PostDetailsController extends Controller
                 exit;
             }
         });
-
         return redirect('/home/post/{tid}'.$tid);
     }
 }

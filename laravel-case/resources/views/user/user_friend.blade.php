@@ -93,7 +93,8 @@
                                 @if($user->icon == null)
                                 <a href=""><img src="{{asset('image/home/head_120X120.gif')}}" alt="" width="50px" height="50px"></a>
                                 @else
-                                <a href=""><img src="{{asset($user->icon)}}" alt="" width="120"></a>
+
+                                <a href=""><img src="{{asset($user->icon)}}" alt="" width="50px" height="50px"></a>
                                 @endif
                                 <!-- <a href=""><img src="{{url($user->icon)}}"></a> -->
                             </div>

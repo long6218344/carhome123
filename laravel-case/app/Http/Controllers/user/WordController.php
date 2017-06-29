@@ -11,11 +11,12 @@ class WordController extends Controller
 {
     // 我的帖子页面
     public function show(){
-        $id = session('id');
+        $id = session('uid');
         $user = DB::select('select `icon`, `username`, `regdate`,`sex` from `bbs_user_info` where `uid` = '.$id);
         // dump($user);
-        $info = DB::table('thread')->where('tauthorid',session('id'))->paginate(2);
-        $info1 = DB::table('thread')->where([['tauthorid',session('id')],['best',1]])->paginate(2);
+        $info = DB::table('thread')->where('tauthorid',session('uid'))->paginate(2);
+
+        $info1 = DB::table('thread')->where([['tauthorid',session('uid')],['best','1']])->paginate(2);
         $num = ($info->total());
         $num1 = ($info1->total());
         return view('user/user_myword',[
@@ -72,7 +73,7 @@ class WordController extends Controller
     }
     // 头像页面
     public function icon(){
-        $user = DB::select('select `icon`, `username`,`sex` from `bbs_user_info` where `uid` = '.session('id'));
+        $user = DB::select('select `icon`, `username`,`sex` from `bbs_user_info` where `uid` = '.session('uid'));
 
         return view('user/user_icon',['icon'=>$user[0]->icon,'sex'=>$user[0]->sex,'name'=>$user[0]->username]);
     }
@@ -94,7 +95,7 @@ class WordController extends Controller
 
         $icon = $path.'/'.$filename;
         $icon = ltrim($icon,'./');
-        $result = DB::update('update `bbs_user_info` set `icon` = "'.$icon.'" where `uid` = '.session('id'));
+        $result = DB::update('update `bbs_user_info` set `icon` = "'.$icon.'" where `uid` = '.session('uid'));
         if($result){
             return redirect('/user/notice')->with(['message'=>'修改头像成功','url' =>'/user/icon', 'jumpTime'=>3,'status'=>true]);
         }

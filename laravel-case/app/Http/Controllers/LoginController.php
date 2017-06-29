@@ -30,6 +30,7 @@ class LoginController extends Controller
         $name = $request->user;
         $pass = md5($request->pwd);
 
+
         $arr = "'$name'";
 
         $uname = DB::select('select * from `bbs_user_info` where `username` = '.$arr);
@@ -42,7 +43,7 @@ class LoginController extends Controller
         }
 
         foreach ($uname as $user) {$pwd =  $user->pwd;}
-      
+
 //         dump($pass , $pwd);die;
 
          if ($pass !== $pwd){$this->notice('您的密码不正确');}
@@ -57,6 +58,7 @@ class LoginController extends Controller
 //var_dump(session('username'));
         $this->notice('登录成功','/');
     }
+
 
     /**
      * @param $msg

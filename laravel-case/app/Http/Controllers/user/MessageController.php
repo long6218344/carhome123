@@ -21,7 +21,7 @@ class MessageController extends Controller
                	$list = DB::table('bbs_message')->where('reuid', '=', $id )->orWhere('seuid', '=', $id )->simplePaginate(10);
                	// dump($list);
            
-               	return view('user/message',['jd' => $jd, 'list' => $list,'name'=>$user->username,'icon'=>$user->icon,'sex'=>$user->sex,'id'=>session('id'),] );
+               	return view('user/message',['jd' => $jd, 'list' => $list,'name'=>$user->username,'icon'=>$user->icon,'sex'=>$user->sex,'id'=>session('uid'),] );
             }
             elseif ($jd == 1)
             {
@@ -75,7 +75,7 @@ class MessageController extends Controller
 			if ($add)
 			{
 			// $this->notice('发送成功');
-				return redirect('/user/notice')->with(['message'=>'发送成功','url' =>'/home/message-write/2/'.session('id'), 'jumpTime'=>2,'status'=>true]);
+				return redirect('/user/notice')->with(['message'=>'发送成功','url' =>'/home/message-write/2/'.session('uid'), 'jumpTime'=>2,'status'=>true]);
 			}
 
        }

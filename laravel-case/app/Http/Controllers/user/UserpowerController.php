@@ -14,8 +14,8 @@ class UserpowerController extends Controller
 
         // 传送头像
         //    $username = $_SESSION['username'];
-        $username = 'admin';
-        $uid = '2';
+        $username = $_SESSION['username'];
+        $uid =  $_SESSION['uid'];
         $icon = DB::table('bbs_user_info')->where('username', $username)->select('icon','credits')->first();
 //        dd($icon);
 

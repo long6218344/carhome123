@@ -156,8 +156,6 @@
         @endforeach
 
 
-            {{--{{session(['uid' => '7','username' => 'zty'])}}--}}
-
         <div class="blog-user-reply">
             <a href="" name="reply"></a>
             <p style="font-size: 25px;margin-left: 10px">撰写回复</p>

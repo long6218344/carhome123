@@ -27,6 +27,7 @@
                         <strong>你有{{count($arr3)}}位相互关注的好友</strong></p>
                     <div id="dynamicList">
                         <ul class="duList2" id="ulList">
+                            @if($friend != null)
                             @foreach($friend as $k)
                             <li id="{{$k->uid}}">
                                 <div class="userHead2">
@@ -61,6 +62,8 @@
                                 </div>
                             </li>
                             @endforeach
+
+                            @endif
                             
                         </ul>
                        

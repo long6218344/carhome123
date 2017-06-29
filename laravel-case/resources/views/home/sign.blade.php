@@ -31,7 +31,6 @@
          <img src="{{asset('img/login-img/carhome-login-logo.jpg')}}" width="200px"
               alt="">
          <span style="color: black;font-size: 30px">CarHome123</span>
-
          <a href="/home/login" style="float: right; right:20px; margin-top:20px;"><span>已有帐号立即登陆</span></a>
      </div>
      
@@ -86,17 +85,12 @@
 
          <span style="margin-left:230px">CarHome用户协议</span>
 
-
-
      </div>
 
  </div> {{--end sign--}}
 
-
  <script src="{{asset('/js/jquery-1.8.3.min.js')}}"></script>
-
  <script>
-
      $(function(){
          $('#user').focusout(function(){
 

@@ -14,23 +14,17 @@ class FriendController extends Controller
         // 查用户表
         $user = DB::table('bbs_user_info')->where('username', session('username'))->first();
         // 根据当前用户id查好友表 得到好友fid
-        $info = DB::select('select `fid` from `bbs_friend` where uid = '.session('id'));
+        $info = DB::select('select `fid` from `bbs_friend` where uid = '.session('uid'));
         // 如果好友表里有好友
         if($info != null){
-            // 把$info变成数组
-            function object_array($array) {  
-                if(is_object($array)) {  
-                    $array = (array)$array;  
-                 } if(is_array($array)) {  
-                     foreach($array as $key=>$value) {  
-                         $array[$key] = object_array($value);  
-                         }  
-                 }  
-                 return $array;  
-            } 
-            $arr = object_array($info);
+
+            
+            foreach($info as $v){
+                $arr[] = $v->fid;
+            }
+            // $arr = object_array($info);
             // 感兴趣的人 排除已经关注过的  whereNotIn() 随机得到inRandomOrder()
-            $randomUser = DB::table('bbs_user_info')->where('uid','<>',session('id'))->whereNotIn('uid', $arr)->inRandomOrder()->get();
+            $randomUser = DB::table('bbs_user_info')->where('uid','<>',session('uid'))->whereNotIn('uid', $arr)->inRandomOrder()->get();
                  
             // 遍历出对应的好友id再查好友表
             foreach($info as $k){
@@ -47,7 +41,7 @@ class FriendController extends Controller
             ]);
         }else{
             // 出自己id 外 随机出用户
-            $randomUser = DB::table('bbs_user_info')->where('uid','<>',session('id'))->inRandomOrder()->get();
+            $randomUser = DB::table('bbs_user_info')->where('uid','<>',session('uid'))->inRandomOrder()->get();
             return view('user/user_friend',[
                 'name'=>$user->username,
                 'icon'=>$user->icon,
@@ -63,9 +57,9 @@ class FriendController extends Controller
     // 取消关注
     public function fans($id){
         //取消关注 删除 $id是好友fid
-        $info = DB::table('bbs_friend')->where([['uid', session('id')],['fid',$id]])->delete();
+        $info = DB::table('bbs_friend')->where([['uid', session('uid')],['fid',$id]])->delete();
         // 数据库对应 关注 粉丝 自减1
-        $info1 = DB::table('bbs_user_info')->where('uid', session('id'))->decrement('views');
+        $info1 = DB::table('bbs_user_info')->where('uid', session('uid'))->decrement('views');
         $info2 = DB::table('bbs_user_info')->where('uid', $id)->decrement('fans');
 
         return $id;
@@ -74,11 +68,11 @@ class FriendController extends Controller
     public function addfans($uid){
         // 关注 插入好友表
         $info = DB::table('bbs_friend')->insert(
-            ['uid' => session('id'), 'fid' => $uid,'time'=>time()]
+            ['uid' => session('uid'), 'fid' => $uid,'time'=>time()]
         );
 
         // 关注 粉丝 自加
-        $user = DB::table('bbs_user_info')->where('uid', session('id'))->increment('views');
+        $user = DB::table('bbs_user_info')->where('uid', session('uid'))->increment('views');
         $info = DB::table('bbs_user_info')->where('uid', $uid)->increment('fans');
         return $uid;
     }

@@ -105,6 +105,7 @@ class CheckPower
            // dd($rulepower);
             if (!in_array($rulepower[0]->id, $r)) {
 
+
                 return redirect('/admin/layout')->with('error','权限不够');
             } else {
                 return $next($request);

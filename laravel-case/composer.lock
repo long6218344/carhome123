@@ -5,10 +5,14 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "content-hash": "a68f8668eb3e268bf4cd07e89cd3a21c",
 =======
     "content-hash": "2cfabd48a234f69c834b9286a63a28dc",
 >>>>>>> 5261b611b1d2667f02a30a212376a5cfdb4baff5
+=======
+    "content-hash": "2cfabd48a234f69c834b9286a63a28dc",
+>>>>>>> 3e1251a09ea19e5b87b6adb756efcdc0460558f5
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -643,6 +647,7 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "name": "mews/captcha",
             "version": "v2.1.4",
             "source": {
@@ -702,6 +707,8 @@
         {
 =======
 >>>>>>> 5261b611b1d2667f02a30a212376a5cfdb4baff5
+=======
+>>>>>>> 3e1251a09ea19e5b87b6adb756efcdc0460558f5
             "name": "monolog/monolog",
             "version": "1.23.0",
             "source": {

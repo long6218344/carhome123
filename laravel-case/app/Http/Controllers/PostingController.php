@@ -49,6 +49,7 @@ class PostingController extends Controller
                 ]);
 //                var_dump(session('username'));die;
                 $tid = DB::table('thread')->insertGetId([
+
                 'title'=>$title,
                 'fid'=>$fid,
                 'tauthor'=> session('username'),
@@ -58,6 +59,7 @@ class PostingController extends Controller
             ]);
 //                var_dump($tid);die;
                 DB::table('post')->insert([
+
                 'ptitle'=>$title,
                 'pmessage'=>$content,
                 'fid'=>$fid,
@@ -74,5 +76,6 @@ class PostingController extends Controller
             }
         });
         return redirect('/home/blog/'.$fid);
+
     }
 }

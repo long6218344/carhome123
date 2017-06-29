@@ -470,7 +470,7 @@ class UserController extends Controller
         //控制器和路由
         $d = strchr(strstr($action, 'Controllers'), '\\');
         $e = trim($d, '\\');
-
+        
         // 3. 获取规则组权限id
         $rulepower = DB::table('bbs_auth_rule')
             ->select('id')

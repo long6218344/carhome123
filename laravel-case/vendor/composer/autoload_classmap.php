@@ -8,14 +8,18 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+<<<<<<< HEAD
     'App\\Http\\Controllers\\AdminAdverController' => $baseDir . '/app/Http/Controllers/AdminAdverController.php',
     'App\\Http\\Controllers\\AdminClassController' => $baseDir . '/app/Http/Controllers/AdminClassController.php',
     'App\\Http\\Controllers\\AdminLoginController' => $baseDir . '/app/Http/Controllers/AdminLoginController.php',
     'App\\Http\\Controllers\\AdminNoticeController' => $baseDir . '/app/Http/Controllers/AdminNoticeController.php',
+=======
+>>>>>>> 3e1251a09ea19e5b87b6adb756efcdc0460558f5
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
+<<<<<<< HEAD
     'App\\Http\\Controllers\\BlogrollController' => $baseDir . '/app/Http/Controllers/BlogrollController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DetailsController' => $baseDir . '/app/Http/Controllers/DetailsController.php',
@@ -30,6 +34,11 @@ return array(
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\CheckPower' => $baseDir . '/app/Http/Middleware/CheckPower.php',
 
+=======
+    'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\admin\\UserController' => $baseDir . '/app/Http/Controllers/admin/UserController.php',
+    'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
+>>>>>>> 3e1251a09ea19e5b87b6adb756efcdc0460558f5
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\LoginMiddleware' => $baseDir . '/app/Http/Middleware/LoginMiddleware.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
@@ -41,7 +50,10 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\User' => $baseDir . '/app/User.php',
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3e1251a09ea19e5b87b6adb756efcdc0460558f5
     'App\\models\\Permission' => $baseDir . '/app/models/Permission.php',
     'App\\models\\Role' => $baseDir . '/app/models/Role.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
@@ -1471,11 +1483,14 @@ return array(
     'League\\Flysystem\\Util\\ContentListingFormatter' => $vendorDir . '/league/flysystem/src/Util/ContentListingFormatter.php',
     'League\\Flysystem\\Util\\MimeType' => $vendorDir . '/league/flysystem/src/Util/MimeType.php',
     'League\\Flysystem\\Util\\StreamHasher' => $vendorDir . '/league/flysystem/src/Util/StreamHasher.php',
+<<<<<<< HEAD
     'Mews\\Captcha\\Captcha' => $vendorDir . '/mews/captcha/src/Captcha.php',
     'Mews\\Captcha\\CaptchaController' => $vendorDir . '/mews/captcha/src/CaptchaController.php',
     'Mews\\Captcha\\CaptchaServiceProvider' => $vendorDir . '/mews/captcha/src/CaptchaServiceProvider.php',
     'Mews\\Captcha\\Facades\\Captcha' => $vendorDir . '/mews/captcha/src/Facades/Captcha.php',
     'Mews\\Captcha\\LumenCaptchaController' => $vendorDir . '/mews/captcha/src/LumenCaptchaController.php',
+=======
+>>>>>>> 3e1251a09ea19e5b87b6adb756efcdc0460558f5
     'Mockery' => $vendorDir . '/mockery/mockery/library/Mockery.php',
     'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => $vendorDir . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
     'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => $vendorDir . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',

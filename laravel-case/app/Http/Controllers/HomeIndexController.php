@@ -19,6 +19,7 @@ class HomeIndexController extends Controller
 
         $forum = DB::table('forum')->get();
         return view('home/newcard/index',['forum'=>$forum,'thread'=>$thread]);
+
     }
 
     public function getinfo()
