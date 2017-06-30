@@ -122,7 +122,7 @@
                         <div class="punch_widget punch_widget_disabled" id="J_punch_widget">
                             <div class="date">06.28<span>周三</span></div>
 
-                            <!--------打卡签到--------->
+                            ------打卡签到--------->
                             <div id="J_credittxt_pop" class="pop_credittxt_tips" style="position: fixed; top: 186.5px; left: 570.5px; display: none;">
                                 <strong>打卡签到</strong>
                                 <span>
@@ -130,7 +130,7 @@
 					<em>+10</em>
 					</span>
                             </div>
-                            <!---------打卡签到--------->
+                          <!--   <!---------打卡签到--------->
                             <div class="cont">
                                 <a href="javascript:void(0);" id="J_punch_over" tabindex="-1" disabled="">已经打卡</a>
                             </div>
@@ -174,7 +174,7 @@
         <div id="cloudwind_forum_bottom">
 
         </div>
-    </div>
+    </div> -->
 
 @endsection
-                
+

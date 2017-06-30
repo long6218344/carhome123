@@ -11,12 +11,13 @@ class WordController extends Controller
 {
     // 我的帖子页面
     public function show(){
-        $id = session('uid');
+
+        $id = $_SESSION['uid'];
         $user = DB::select('select `icon`, `username`, `regdate`,`sex` from `bbs_user_info` where `uid` = '.$id);
         // dump($user);
-        $info = DB::table('thread')->where('tauthorid',session('uid'))->paginate(2);
+        $info = DB::table('thread')->where('tauthorid',$id)->paginate(2);
 
-        $info1 = DB::table('thread')->where([['tauthorid',session('uid')],['best','1']])->paginate(2);
+        $info1 = DB::table('thread')->where([['tauthorid',$id],['best','1']])->paginate(2);
         $num = ($info->total());
         $num1 = ($info1->total());
         return view('user/user_myword',[
@@ -33,7 +34,7 @@ class WordController extends Controller
     }
     // 密码页面
     public function password(){
-    	$user = DB::select('select `icon`,`sex`, `username` from `bbs_user_info` where `uid` = 2');
+    	$user = DB::select('select `icon`,`sex`, `username` from `bbs_user_info` where `uid` = '.$_SESSION['uid']);
 
     	return view('user/user_password',['icon'=>$user[0]->icon,'sex'=>$user[0]->sex,'name'=>$user[0]->username]);
     }
@@ -41,7 +42,7 @@ class WordController extends Controller
     // 密码编辑
     public function edit(request $request){
         $oldpwd = $request->input('oldpwd');
-        $user = DB::select('select `pwd` from `bbs_user_info` where `uid` = 2');
+        $user = DB::select('select `pwd` from `bbs_user_info` where `uid` = '.$_SESSION['uid']);
         $pwd = $user[0]->pwd;
         // 原密码不对直接reuturn
         if(md5($oldpwd) != $pwd){
@@ -59,7 +60,7 @@ class WordController extends Controller
         $newpwd = $request->input('newpwd');
         $prepwd = $request->input('prepwd');
         
-        $result = DB::update('update `bbs_user_info` set `pwd` = ? where `uid` = 2',[md5($newpwd)]);
+        $result = DB::update('update `bbs_user_info` set `pwd` = ? where `uid` = '.$_SESSION['uid'],[md5($newpwd)]);
         if($result){
             return redirect('user/show');
         }else{
@@ -73,7 +74,8 @@ class WordController extends Controller
     }
     // 头像页面
     public function icon(){
-        $user = DB::select('select `icon`, `username`,`sex` from `bbs_user_info` where `uid` = '.session('uid'));
+
+        $user = DB::select('select `icon`, `username`,`sex` from `bbs_user_info` where `uid` = '.$_SESSION['uid']);
 
         return view('user/user_icon',['icon'=>$user[0]->icon,'sex'=>$user[0]->sex,'name'=>$user[0]->username]);
     }
@@ -95,7 +97,8 @@ class WordController extends Controller
 
         $icon = $path.'/'.$filename;
         $icon = ltrim($icon,'./');
-        $result = DB::update('update `bbs_user_info` set `icon` = "'.$icon.'" where `uid` = '.session('uid'));
+
+        $result = DB::update('update `bbs_user_info` set `icon` = "'.$icon.'" where `uid` = '.$_SESSION['uid']);
         if($result){
             return redirect('/user/notice')->with(['message'=>'修改头像成功','url' =>'/user/icon', 'jumpTime'=>3,'status'=>true]);
         }

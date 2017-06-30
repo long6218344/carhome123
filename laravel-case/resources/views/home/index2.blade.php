@@ -9,6 +9,7 @@
 
         <div class="bread_crumb" id="bread_crumb">
             <a href="{{url('/')}}" class="home" title="carhome123官方论坛">首页</a><a href="{{url('/home/blog/'.$forum[0]->fid)}}" class="home" title="版块详情">版块详情</a>
+
         </div>
 
         <div id="cloudwind_forum_top"></div>
@@ -23,6 +24,7 @@
                                 <div class="content_filter"><a href="" class="">最新发帖</a><span>|</span><a href="" class=" current">最后回复</a>                                 <a href="{{url('home/'.$forum[0]->fid).'/posting'}}" class="content_filter">我要发帖</a></div>
                                 <ul>
                                     <li class="current"><a href="{{url('/')}}">返回首页</a></li>
+
                                 </ul>
                             </div>
                         </nav>
@@ -39,6 +41,7 @@
                                                 <p class="title">
                                                     @if ($v->top == 1)  <a href="#" target="_blank"><span class="posts_icon"><i class="icon_headtopic_3" title="置顶3  新窗口打开"></i></span></a>顶 @endif
                                                     <a href="" class="st">[<font color="red">站长交流</font>]</a>
+
                                                     <a href="{{url('/home/post/'.$v->tid)}}" class="st" style="color:#FF0000;font-weight:bold" title="">{{$v->title}}</a>
                                                     <!-- <span class="posts_icon"><i class="icon_img" title="图片帖"></i></span>	 -->
                                                     <a href="{{url('/home/blog/'.$v->fid)}}" class="st">[<font>{{$v->name}}</font>]</a>

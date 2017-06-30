@@ -62,7 +62,7 @@
                 </tr>
                 @foreach ($info as $word)
                     <tr>
-                        <td style="text-align: left;width:40%;white-space:nowrap;overflow:hide;">
+                        <td style="text-align: left;width:38%;white-space:nowrap;overflow:hide;">
                             <div style="margin-left: 50px">
                             <p>
                                 <a href="">{{$word->rauthor}}</a>&nbsp;&nbsp;在:&nbsp;&nbsp;

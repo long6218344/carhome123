@@ -96,13 +96,13 @@ class SIgnController extends Controller
                 ->update(['credits'=>$credits]);
             dd($result);
             $this->notice('注册成功','/');
+
         }
         else
         {
             $this->notice('注册失败');
         }
     }
-
 
     public function notice($msg, $url = '' ,$time = 1)
     {

@@ -36,6 +36,7 @@ class LoginController extends Controller
         $uname = DB::select('select * from `bbs_user_info` where `username` = '.$arr);
 
         $uid = DB::select('select uid from `bbs_user_info` where `username` = '.$arr);
+
         if(empty($uname))
         {
             $this->notice('您输入的帐号不存在');
@@ -80,6 +81,7 @@ class LoginController extends Controller
             ->update(['credits'=>$credits]);
 
         $this->notice('登录成功',url('/'));
+
 
     }
 

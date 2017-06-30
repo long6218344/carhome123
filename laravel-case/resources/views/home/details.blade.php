@@ -254,7 +254,6 @@
                                 </script>
                                 <script type="text/javascript" src="{{asset('/home/js/jia.js&#10;')}}" charset="utf-8"></script>
 
-
                                 <div class="floor_bottom_tips cc">
 								<span class="fr">
 									</span>
@@ -378,14 +377,8 @@
             <div class="J_page_wrap" data-key="true">
                 <div class="pages" style="margin-right:3px;"><a href="{{url('/home/blog/'.$post[0]->fid)}}" class="pages_pre" rel="nofollow">« 返回版块页</a></div>
 
-
             </div>
         </div>
-
-
-
-
-
     </div>
-
+</div>
 @endsection

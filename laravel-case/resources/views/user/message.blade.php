@@ -9,7 +9,7 @@
 
             <p style="margin-bottom:10px">私信</p>
 
-            <span> <a href="{{url('/home/message-write/2/'.session('id'))}}" class="btn-sm btn-primary">我的私信</a> |
+            <span> <a href="{{url('/home/message-write/2/'.$_SESSION['uid'])}}" class="btn-sm btn-primary">我的私信</a> |
                 <a href="{{url('/home/message-write/1')}}" class="btn-sm btn-primary">写私信</a> </span> 
                 <span><button onclick="shuaxin()" style="width:56px;height:24px;border:none;border-radius: 3px;background-color: #337ab7;color:#fff;margin-left: 50px" >刷新</button></span>
 
@@ -38,7 +38,7 @@
                      </div>
 
 
-                     <input type="hidden" value="{{session('id')}}" name="id">
+                     <input type="hidden" value="{{$_SESSION['uid']}}" name="id">
 
 
                      <button type="submit" class="btn-sm btn-primary btn-lg" style="border:none">发送</button>
@@ -48,6 +48,10 @@
 
                      <table id="sample-table-1"  style="margin-top: 30px;width: 90%;">
                          <thead>
+                         @if(count($list) == 0)
+                         <p style="padding:10px">你还没有发送或接收过私信,快和好友互动吧...</p>
+                         @else
+                         
                          <tr style="text-align: center;border-bottom: 1px solid #ccc">
 
                              <th>发送人</th>
@@ -63,13 +67,13 @@
                            
                             <tbody>
                             <tr style="text-align: center; vertical-align: middle;border-bottom: 1px solid #ccc" >
-                            @if($a->seperson == 'admin')
+                            @if($a->seperson == $_SESSION['username'])
                                 <td>我</td>
                             @else
                                 <td>{{$a->seperson}}</td>
                             @endif
                             
-                            @if($a->reperson == 'admin')
+                            @if($a->reperson == $_SESSION['username'])
                                 <td>我</td>
                             @else
                                 <td>{{$a->reperson}}</td>
@@ -84,7 +88,7 @@
                             </tbody>
 
                          @endforeach
-
+                        @endif
                      </table>
                      {{ $list->links() }}
 

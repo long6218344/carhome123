@@ -17,9 +17,18 @@
 //
 //});
 
-//Route::get('/admin/login',function(){
-//    return view('/admin.public.login');
-//});
+
+
+//前台 登录
+Route::get('/home/login','LoginController@index');
+Route::post('/home/login/join','LoginController@join');
+
+
+//前台注册
+Route::get('/home/sign','SignController@index');
+Route::post('/home/sign/create','SignController@create');
+Route::get('/home/sign/selete/{data?}','SignController@selete');
+
 
 Route::get('/admin/layout',function(){
     // 中间件操作用户界面,用户头像
@@ -60,14 +69,12 @@ Route::group(['middleware'=>['checkpower']],function() {
 //
 //Route::resource('/admin/user/{uid}','admin\UserController');
 
-
 // 密码修改
     Route::post('/admin/user/pwd', 'admin\UserController@pwd');
 
 
 // 管理员组第二步
     Route::post('/amdin/user/updategroup', 'admin\UserController@updategroup');
-
 
 // 1.权限普通用户管理组内容
     Route::get('/admin/powergroup', 'admin\UserGroupController@member');
@@ -106,7 +113,6 @@ Route::group(['middleware'=>['checkpower']],function() {
 // 管理组删除
     Route::get('/admin/authgroup/delete/{id}', 'admin\AuthGroupController@delete');
 
-
 // 1.管理组添加 第一步,显示
 
 
@@ -139,11 +145,17 @@ Route::get('/admin/user/repwd/{id}', function ($id) {
     return view('/admin.user.repwd')->with('uid', $id);
 });
 
-
 // -----------------------权限判断-----------------------------------------
 
 
 // 张伟康---------------------------------------------------------
+
+//进入notice控制器
+Route::get('/admin/notice','NoticeController@index');
+
+
+//后天天气APL接口
+Route::get('/admin/calendar','CalendarController@index');
 
 
 //后台分类路由
@@ -196,7 +208,9 @@ Route::get('/admin/user/repwd/{id}', function ($id) {
 
 
 //后台公告管理
-    Route::get('/admin/notice','AdminNoticeController@index');
+    Route::get('/admin/notic','AdminNoticeController@index');
+
+//Route::get('/admin/notic','AdminNoticeController@index');
 
 //后台公告删除
     Route::get('/admin/notice/delete/{id}','AdminNoticeController@delete');
@@ -363,8 +377,13 @@ Route::get('/home/message/delete/{id}','user\MessageController@delete');
 Route::get('user/newsfeed', 'user\NewsFeedController@show');
 Route::get('user/allfeeds', 'user\AllFeedsController@show');
 
-// -----------------------刘超超----------------------------------
 
+Route::get('user/reply', 'user\ReplyController@reply');
+Route::get('user/get', 'user\GetReplyController@get');
+Route::get('user/store', 'user\StoreController@show');
+Route::get('user/notstore/{id?}', 'user\StoreController@del');
+Route::get('user/forum', 'user\StoreController@showforum');
+Route::get('user/cancelbbs/{id?}', 'user\StoreController@cancel');
 
 // -----------------------周天野----------------------------
 
@@ -379,6 +398,16 @@ Route::post('/home/sign/create','SignController@create')->middleware('sign');
 Route::get('/home/sign/selete/{data?}','SignController@selete');
 
 
+
+Route::get('/home/{fid}/posting','PostingController@index');
+Route::post('/home/posting/submit','PostingController@submit');
+Route::post('/home/post/submit','PostDetailsController@submit');
+Route::get('/home/reply/{tid}','HomereplyController@index');
+
+
+//Route::get('/admin/login',function(){
+//    return view('/admin.public.login');
+//});
 
 Route::get('/admin/layout',function(){
     return view('/admin.public.layout');
@@ -430,6 +459,68 @@ Route::post('/home/login/join','LoginController@join');
 //前台注册
 Route::get('/home/sign','SignController@index');
 
+
+
+// --------------------周天野--------------------------
+
+
+// ---------------前台帖子页面----------------------------
+
+// 页面头部
+
+
+
+
+// 本站新帖
+
+// 张伟康---------------------------------------------------------
+
+//后台相册
+Route::get('/admin/photo','PhotoController@index');
+//展示相册增加页面
+Route::get('/admin/photo/addshow','PhotoController@addshow');
+//增加功能
+Route::post('/admin/photo/add','PhotoController@add');
+//删除ajax
+Route::get('/admin/photo/delete/{id}','PhotoController@delete');
+//展示相册编辑页面
+Route::get('/admin/photo/editshow/{id}','PhotoController@editshow');
+//编辑功能
+Route::post('/admin/photo/edit','PhotoController@edit');
+//前台展示
+Route::get('/home/photo/{jd?}','PhotoController@homeshow');
+
+
+
+
+//后台连接
+Route::get('/admin/blogroll','BlogrollController@index');
+//添加连接页面
+Route::get('/admin/blogroll/addshow','BlogrollController@addshow');
+//添加
+Route::post('/admin/blogroll/add','BlogrollController@add');
+//删除
+Route::get('/admin/blogroll/delete/{id}','BlogrollController@delete');
+//编辑页面
+Route::get('/admin/blogroll/editshow/{id}','BlogrollController@editshow');
+//编辑
+Route::post('/admin/blogroll/edit','BlogrollController@edit');
+
+
+
+// ----------------龙淼gai个人中心-------------
+// 积分
+Route::get('/user/user_point','user\PointController@index');
+
+// 权限
+Route::get('/user/user_power','user\UserpowerController@index');
+
+
+// --------------------周天野--------------------------
+
+Route::get('/','HomeIndexController@index');
+Route::get('/home/blog/{fid}','BlogPlateController@index');
+Route::get('/home/post/{tid}','PostDetailsController@index');
 
 // --------------------周天野--------------------------
 

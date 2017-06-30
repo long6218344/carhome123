@@ -25,6 +25,7 @@ class PostDetailsController extends Controller
             ->get();
 
         $cn = DB::table('thread')->where('tid',$tid)
+
             ->value('clicknumber');
         $cn = ($cn + 1);
         DB::table('thread')
@@ -44,7 +45,7 @@ class PostDetailsController extends Controller
     public function submit(Request $request)
     {
 //        return 111;
-//        var_dump(11111);die;
+
         $rid = null;
         $content = $request->input('content');
         $tid = $request->input('tid');
@@ -74,7 +75,6 @@ class PostDetailsController extends Controller
                     'replies'=>$now
                 ]);
             } catch (\Exception $e) {
-//                var_dump('回复失败',session(),$e);;die;
 
                 return redirect('/home/post/'.$tid);
                 exit;
@@ -110,6 +110,7 @@ class PostDetailsController extends Controller
             ->where('uid',$uid)
             ->update(['credits'=>$credits]);
         return redirect('/home/post/'.$tid);
+
     }
 }
 

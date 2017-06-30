@@ -18,9 +18,6 @@ class PostingController extends Controller
         return view('/home/posting', ['forum' => $forum]);
     }
 
-
-
-
     public function submit(Request $request)
     {
 
@@ -71,7 +68,6 @@ class PostingController extends Controller
             ]);
             } catch (\Exception $e) {
 //                var_dump('发帖失败',$e);
-//                die;
                 return redirect('/home/blog/'.$fid);
             }
         });
@@ -99,11 +95,12 @@ class PostingController extends Controller
             ->first();
         $credits = $credits->credits;
         $credits = $credits + $point;
-        dd($credits);
+//        dd($credits);
         // 更新user数据
         $result =  DB::table('bbs_user_info')
             ->where('uid',$uid)
             ->update(['credits'=>$credits]);
+
 
         return redirect('/home/blog/'.$fid);
 

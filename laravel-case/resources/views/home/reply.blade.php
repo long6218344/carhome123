@@ -1,4 +1,3 @@
-
 @extends('/home.public.layout')
 @section('imcss')
     <style>
@@ -10,6 +9,7 @@
     <h2>输入回复的内容：</h2>
 {{--{{session(['uid' => '18','username' => 'zty'])}}--}}
         <form action="{{url('/home/post/submit')}}" method="post" class="" style="margin-left: 10px;width: 70%">
+
             {{ csrf_field() }}
             <input type="hidden" value="{{$post[0]->tid}}" name="tid">
             <input type="hidden" value="{{$post[0]->fid}}" name="fid">
@@ -20,6 +20,5 @@
                     style="width: 150px;margin-left: 10px; float: right; margin-top: 10px;margin-bottom: 20px">回帖</button>
         </form>
 
-
-
 @endsection
+

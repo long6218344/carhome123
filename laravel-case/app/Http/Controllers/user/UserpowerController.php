@@ -17,6 +17,7 @@ class UserpowerController extends Controller
         $username = $_SESSION['username'];
         $uid =  $_SESSION['uid'];
         $icon = DB::table('bbs_user_info')->where('uid', $uid)->select('icon','credits')->first();
+
 //        dd($icon);
 
         // 从数据库获取权限
@@ -106,9 +107,6 @@ class UserpowerController extends Controller
                     ->first();
             }
         }
-//        dd($result);
-
-
         return view('/user.user_power')->with('icon',$icon->icon)->with('power',$result)->with('credits',$icon->credits)->with('level',$level)->with('groupname',$groupname);
     }
 

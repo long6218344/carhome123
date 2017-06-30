@@ -129,6 +129,7 @@
                     <else />
                     <div class="header_login">
                         <a rel="nofollow" href="{{url('/home/login')}}" class="mr15">登录</a><a rel="nofollow" href="/home/sign">注册</a>
+
                     </div>
                 </if>
 

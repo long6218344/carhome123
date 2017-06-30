@@ -12,16 +12,17 @@ class MessageController extends Controller
        public function index($jd, $id = '')
        {
 
-    		// session(['username'=>'admin']);
+    		// dump(session('username'));die;
        		
-   		    $user = DB::table('bbs_user_info')->where('username', session('username'))->first();
+   		    $user = DB::table('bbs_user_info')->where('username', $_SESSION['username'])->first();
 
             if($jd == 2){
 
                	$list = DB::table('bbs_message')->where('reuid', '=', $id )->orWhere('seuid', '=', $id )->simplePaginate(10);
-               	// dump($list);
+//               	dump($list);
            
-               	return view('user/message',['jd' => $jd, 'list' => $list,'name'=>$user->username,'icon'=>$user->icon,'sex'=>$user->sex,'id'=>session('uid'),] );
+
+               	return view('user/message',['jd' => $jd, 'list' => $list,'name'=>$user->username,'icon'=>$user->icon,'sex'=>$user->sex,'id'=>$_SESSION['uid'],] );
             }
             elseif ($jd == 1)
             {
@@ -33,7 +34,6 @@ class MessageController extends Controller
             		return view('user/message', ['jd' => $jd,'name'=>$user->username,'icon'=>$user->icon,'sex'=>$user->sex,'toname'=>'',] );
             	}
             }
-
 
        }
 
@@ -68,14 +68,15 @@ class MessageController extends Controller
 			$reid   = "'$reid'";
 			
 			
-			$sql  = 'insert into `bbs_message` (`head`, `details`, `reuid`, `seuid`,`time`, `seperson`,`reperson`) value ('.$head.','.$details.','.$reid.','.$seid.','.$time.',"'.session('username').'",'.$username.')';
+			$sql  = 'insert into `bbs_message` (`head`, `details`, `reuid`, `seuid`,`time`, `seperson`,`reperson`) value ('.$head.','.$details.','.$reid.','.$seid.','.$time.',"'.$_SESSION['username'].'",'.$username.')';
 			
 			$add = DB::insert($sql);
 			
 			if ($add)
 			{
 			// $this->notice('发送成功');
-				return redirect('/user/notice')->with(['message'=>'发送成功','url' =>'/home/message-write/2/'.session('uid'), 'jumpTime'=>2,'status'=>true]);
+
+				return redirect('/user/notice')->with(['message'=>'发送成功','url' =>'/home/message-write/2/'.$_SESSION['uid'], 'jumpTime'=>2,'status'=>true]);
 			}
 
        }

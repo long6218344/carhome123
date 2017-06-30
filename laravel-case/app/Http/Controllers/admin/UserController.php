@@ -506,7 +506,7 @@ class UserController extends Controller
             $r = explode(',', $rules);
 //            $num = count($r);
 
-//            dd($rulepower);
+//            dd($rulepower->id);
             if (!in_array($rulepower->id, $r)) {
                 return redirect('/admin/layout')->with('error','权限不够');
             }

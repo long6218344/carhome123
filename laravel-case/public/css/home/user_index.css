@@ -1036,4 +1036,73 @@ a.confirmDelete {
 }
 >>>>>>> 3e1251a09ea19e5b87b6adb756efcdc0460558f5
 
+#userstore .coll-list-box {
+    margin-bottom: 20px;
+}
 
+#userstore .coll-list-box ul {
+    overflow: hidden;
+    clear: both;
+}
+#userstore .coll-list-box li {
+    width: 242px;
+    float: left;
+    margin: 0 10px 5px;
+    border-bottom: 0;
+    padding: 0;
+    overflow: hidden;
+    zoom: 1;
+    position: relative;
+}
+#userstore .coll-list-box .coll-list-con {
+    overflow: hidden;
+    zoom: 1;
+    clear: both;
+}
+
+#userstore .coll-list-box .coll-list-pic {
+    display: block;
+    width: 240px;
+    height: 30px;
+    text-align: center;
+    background: #eaeaea;
+    border: 1px solid #d6d6d6;
+    overflow: hidden;
+}
+
+#userstore .p-height {
+    height: 48px;
+    white-space: normal;
+}
+
+#userstore .coll-list-box p {
+    width: 223px;
+    line-height: 24px;
+    padding: 10px 7px 10px 10px;
+    font-size: 18px;
+    color: #666;
+    font-weight: 500;
+    border: 1px solid #d6d6d6;
+    border-top: 0;
+    background: #fff;
+    overflow: hidden;
+}
+
+#userstore .coll-list-box .coll-list-btn a {
+    margin: 0 5px;
+}
+
+#userstore .coll-btn{
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 10px;
+    color: #666;
+    border: 1px solid #ccd3e4;
+    background: #fafbfc;
+}
+
+#userstore .coll-list-box .coll-list-btn {
+    margin: 15px 0;
+    text-align: center;
+}
