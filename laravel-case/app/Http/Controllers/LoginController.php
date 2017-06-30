@@ -56,7 +56,7 @@ class LoginController extends Controller
         $_SESSION['uid'] = $uid;
 //        echo 123;die;
 //var_dump(session('username'));
-        $this->notice('登录成功','/');
+        $this->notice('登录成功','/carhome123/carhome123/laravel-case/public/');
     }
 
 

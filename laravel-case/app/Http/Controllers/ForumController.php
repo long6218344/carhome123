@@ -17,15 +17,15 @@ class ForumController extends Controller
 
     public function add(Request $request)
     {
-        $forum_name = $request->input('forum_name');
-        $status = $request->input('fstatus');
+        $name = $request->input('name');
+        $status = $request->input('status');
         if(DB::table('forum')->insert([
-            'name'=>$forum_name,
+            'name'=>$name,
             'fstatus'=>$status
         ])) {
-            echo 'ok';
+            return redirect(url('/user/notice'))->with(['message'=>'成功','url' =>url('/admin/forum'), 'jumpTime'=>3,'status'=>true]);
              } else {
-            echo 'no';
+            return redirect(url('/user/notice'))->with(['message'=>'失败','url' =>url('/admin/forum'), 'jumpTime'=>3,'status'=>true]);
             }
     }
 
@@ -37,11 +37,11 @@ class ForumController extends Controller
         if(DB::table('forum')
             ->where('fid',$fid)
             ->update([
-                'status'=>$status
+                'fstatus'=>$status
             ])) {
-            echo 'ok';
+            return redirect(url('/user/notice'))->with(['message'=>'成功','url' =>url('/admin/forum'), 'jumpTime'=>3,'status'=>true]);
         } else {
-            echo 'no';
+            return redirect(url('/user/notice'))->with(['message'=>'失败','url' =>url('/admin/forum'), 'jumpTime'=>3,'status'=>true]);
         }
     }
 
@@ -49,9 +49,9 @@ class ForumController extends Controller
     {
         $fid = $request->fid;
         if(DB::table('forum')->where('fid',$fid)->delete()) {
-            echo 'ok';
+            return redirect(url('/user/notice'))->with(['message'=>'成功','url' =>url('/admin/forum'), 'jumpTime'=>3,'status'=>true]);
         } else {
-            echo 'no';
+            return redirect(url('/user/notice'))->with(['message'=>'失败','url' =>url('/admin/forum'), 'jumpTime'=>3,'status'=>true]);
         }
     }
 }

@@ -71,7 +71,7 @@ class PostingController extends Controller
             ]);
             } catch (\Exception $e) {
 //                var_dump('发帖失败',$e);
-                die;
+//                die;
                 return redirect('/home/blog/'.$fid);
             }
         });

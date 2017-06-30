@@ -21,13 +21,12 @@ class PostDetailsController extends Controller
             ->get();
         $reply = DB::table('thread')
             ->join('reply', 'thread.tid', '=', 'reply.tid')
+            ->where('reply.tid',$tid)
             ->get();
 
         $cn = DB::table('thread')->where('tid',$tid)
-
             ->value('clicknumber');
         $cn = ($cn + 1);
-//        var_dump($tid,$cn);die;
         DB::table('thread')
             ->where('tid',$tid)
             ->update([
@@ -77,10 +76,10 @@ class PostDetailsController extends Controller
             } catch (\Exception $e) {
                 var_dump('回复失败');
 
-                return redirect('/home/post/{tid}'.$tid);
+                return redirect('/home/post/'.$tid);
                 exit;
             }
         });
-        return redirect('/home/post/{tid}'.$tid);
+        return redirect('/home/post/'.$tid);
     }
 }

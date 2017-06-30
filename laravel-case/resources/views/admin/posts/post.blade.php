@@ -1,5 +1,5 @@
 @extends('admin/public/layout')
-@section('content')
+@section('main-content')
     <script src="../js/jquery-1.8.3.min.js"></script>
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
@@ -31,10 +31,10 @@
         <div class="page-content">
             <div class="page-header">
                 <h1>
-                    用户管理
+                    帖子管理
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        用户列表
+                        内容概览
                     </small>
                 </h1>
             </div><!-- /.page-header -->
@@ -56,7 +56,7 @@
                                             </label>
                                         </th>
                                         <th>PID</th>
-                                        <th>FID</th>
+                                        <th>所属版块(FID)</th>
                                         <th>TID</th>
                                         <th>作者</th>
                                         <th>作者id</th>
@@ -83,7 +83,7 @@
 
 
                                             <td>{{$v->pid}}</td>
-                                            <td>{{$v->fid}}</td>
+                                            <td>{{$v->name}}({{$v->fid}})</td>
                                             <td>{{$v->tid}}</td>
                                             <td>{{$v->pauthor}}</td>
                                             <td>{{$v->pauthorid}}</td>
@@ -124,10 +124,10 @@
                     type: 'get',
                     url: path,
                     success: function (){
-                        alert('AJAX请求成功!');
+                        alert('成功!');
                     },
                     error: function (){
-                        alert('AJAX请求出现错误!');
+                        alert('失败!');
                     }
                 });
             })

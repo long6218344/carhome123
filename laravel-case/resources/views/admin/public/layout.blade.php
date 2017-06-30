@@ -510,14 +510,14 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/Type/index">
+                            <a href="{{url('/admin/forum')}}">
                                 <i class="icon-double-angle-right"></i>
                                 浏览所有版块
                             </a>
                         </li>
 
                         <li>
-                            <a href="__APP__/Type/add1">
+                            <a href="{{url('/admin/addforum')}}">
                                 <i class="icon-double-angle-right"></i>
                                 添加根版块
                             </a>
@@ -556,9 +556,16 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/Card/index">
+                            <a href="{{url('/admin/thread')}}">
                                 <i class="icon-double-angle-right"></i>
-                                浏览帖子
+                                所有帖子
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{url('/admin/post')}}">
+                                <i class="icon-double-angle-right"></i>
+                                内容概览
                             </a>
                         </li>
 
@@ -575,9 +582,9 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/Comment/index">
+                            <a href="{{url('/admin/reply')}}">
                                 <i class="icon-double-angle-right"></i>
-                                浏览回复信息
+                                评论管理
                             </a>
                         </li>
                     </ul>

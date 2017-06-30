@@ -4,18 +4,34 @@
         .pagination li{float:left;}
     </style>
 @endsection
-    @section('main-content')
+@section('main-content')
     <div class="main_wrap">
 
         <div class="bread_crumb" id="bread_crumb">
-            <a href="__APP__/Index/index" class="home" title="phpwind 官方论坛">首页</a><em>&gt;</em><a href="#">本站新帖</a>
+            <a href="{{url('/')}}" class="home" title="carhome123官方论坛">首页</a>
         </div>
 
         <div id="cloudwind_forum_top"></div>
         <div class="main cc">
             <div class="main_body">
                 <div class="main_content cc">
-
+                    <h2><b>所有版块</b></h2>
+                    <div class="thread_posts_list">
+                        <table id="J_posts_list" summary="帖子列表" width="100%">
+                    @foreach( $forum as $k => $v )
+                        <tr>
+                            <td class="subject">
+                                <p class="title">
+                                    <b><a href="{{url('/home/blog/'.$v->fid)}}" class="st">[<font>{{$v->name}}</font>]</a></b>
+                                    <i><span>[<font>版块精品贴：{{$v->posts}}</font>]</span></i>
+                                    <i><span>[<font>总帖数：{{$v->posts}}</font>]</span></i>
+                                    <i><span>[<font>今日帖子：{{$v->todayposts}}</font>]</span></i>
+                                </p>
+                            </td>
+                        </tr>
+                    @endforeach
+                        </table>
+                    </div>
 
                     <div class="box_wrap thread_page J_check_wrap">
                         <nav>
@@ -31,16 +47,14 @@
                         <div class="thread_posts_list">
                             <table id="J_posts_list" summary="帖子列表" width="100%">
 
-
-{{--                                {{$thread}}--}}
-                            @foreach( $thread as $k => $v )
+                                {{--                                {{$thread}}--}}
+                                @foreach( $thread as $k => $v )
                                     <tr>
                                         <td class="author"><a class="J_user_card_show" href="#"><img src="" onerror="this.src=''" height="45" width="45"></a></td>
                                         <td class="subject">
                                             <p class="title">
-
                                                 @if ($v->top == 1)  <a href="#" target="_blank"><span class="posts_icon"><i class="icon_headtopic_3" title="置顶3  新窗口打开"></i></span></a>顶 @endif
-                                                <a href="#" class="st">[<font color="red">站长交流</font>]</a>
+                                                <a href="" class="st">[<font color="red">站长交流</font>]</a>
                                                 <a href="{{url('/home/post/'.$v->tid)}}" class="st" style="color:#FF0000;font-weight:bold" title="">{{$v->title}}</a>
                                                 <!-- <span class="posts_icon"><i class="icon_img" title="图片帖"></i></span>	 -->
                                                 <a href="{{url('/home/blog/'.$v->fid)}}" class="st">[<font>{{$v->name}}</font>]</a>
@@ -126,22 +140,34 @@
 
                 <pw-drag id="sidebar_1">
                     {{--<div class="linkforum">--}}
-                        {{--<div class="box_wrap">--}}
-                            {{--<h2 class="box_title J_sidebar_box_toggle">我的应用</h2>--}}
-                            {{--<div class="my_app_list">--}}
-                                {{--<ul>--}}
-                                    {{--<li><a href="#"><span class="icon_vote"></span>投票</a></li>--}}
-                                    {{--<li><a href="#"><span class="icon_like"></span>喜欢</a></li>--}}
-                                    {{--<li><a href="#"><span class="icon_medal"></span>勋章</a></li>--}}
-                                    {{--<li><a href="#"><span class="icon_task"></span>任务</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+                    {{--<div class="box_wrap">--}}
+                    {{--<h2 class="box_title J_sidebar_box_toggle">我的应用</h2>--}}
+                    {{--<div class="my_app_list">--}}
+                    {{--<ul>--}}
+                    {{--<li><a href="#"><span class="icon_vote"></span>投票</a></li>--}}
+                    {{--<li><a href="#"><span class="icon_like"></span>喜欢</a></li>--}}
+                    {{--<li><a href="#"><span class="icon_medal"></span>勋章</a></li>--}}
+                    {{--<li><a href="#"><span class="icon_task"></span>任务</a></li>--}}
+                    {{--</ul>--}}
+                    {{--</div>--}}
+                    {{--</div>--}}
                     {{--</div>--}}
                     <pw-drag id="sidebar_thread">
 
                     </pw-drag></pw-drag></div>
             {{--右边详情结束--}}
+
+            <div class="main_sidebar">
+                {{--<p>城市：{{$weather->city}}</p>--}}
+                {{--<p>日期：{{$weather->date}}</p>--}}
+                {{--<p>星期：{{$weather->week}}</p>--}}
+                {{--<p>天气：{{$weather->weather}}</p>--}}
+                {{--<p>温度：{{$weather->templow}}~{{$weather->temphigh}}</p>--}}
+                {{--<p>风向：{{$weather->winddirect}}</p>--}}
+                {{--<p>风力：{{$weather->windpower}}</p>--}}
+            </div>
+            {{--右边详情结束--}}
+
 
             页数
         </div>
@@ -151,3 +177,4 @@
     </div>
 
 @endsection
+                

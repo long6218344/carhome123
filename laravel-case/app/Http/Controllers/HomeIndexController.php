@@ -14,7 +14,7 @@ class HomeIndexController extends Controller
             ->get();
 
         $reply = DB::table('reply')->get();
-
+//        $weather = $this->getinfo();
 //        var_dump($thread);
 
         $forum = DB::table('forum')->get();
@@ -30,7 +30,7 @@ class HomeIndexController extends Controller
         $appcode = "434cdcf95bca4ebe830053f9151ecd67";
         $headers = array();
         array_push($headers, "Authorization:APPCODE " . $appcode);
-        $word = urlencode('北京');
+        $word = urlencode('上海');
         $querys = "city=$word&citycode=citycode&cityid=cityid&ip=ip&location=location";
         $bodys = "";
         $url = $host . $path . "?" . $querys;
@@ -58,6 +58,7 @@ class HomeIndexController extends Controller
 // var_dump($jsonObj);
 // 提取文章列表
         $newslist = $jsonObj->result;
- var_dump($newslist);
+// var_dump($newslist);
+        return $newslist;
     }
 }
