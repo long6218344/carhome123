@@ -24,6 +24,7 @@
             </h1>
             <!--左侧-->
 
+
             <!--end左侧-->
             <!--搜索-->
             <div class="t_search">
@@ -39,8 +40,10 @@
 
             <!--登录 注册-->
             <ul class="t_right t_login">
-                <li>登录</li>
-                <li>注册</li>
+
+                <li><a href="{{url('/home/login')}}">登录</a></li>
+                <li><a href="{{url('/home/sign')}}">注册</a></li>
+
             </ul>
             <!--end登录 注册-->
             <!--左侧-->

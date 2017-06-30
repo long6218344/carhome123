@@ -58,11 +58,11 @@
                     <th >点击次数</th>
                     <th >回复次数</th>
                     <th >操作</th>
-                    <th >回复时间</th>
+                    <th>回复时间</th>
                 </tr>
                 @foreach ($info as $word)
                     <tr>
-                        <td style="text-align: left;width:40%;white-space:nowrap;overflow:hide;">
+                        <td style="text-align: left;width:38%;white-space:nowrap;overflow:hide;">
                             <div style="margin-left: 50px">
                             <p>在:
                             <a href="{{$word->tid}}">{{$word->title}}</a></p>

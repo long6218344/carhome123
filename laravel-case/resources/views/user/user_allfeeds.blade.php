@@ -15,7 +15,9 @@
                 <div class="dynD">
                 </div>
                 <div id="dynamicList">
-                    
+                    @if($news == null)
+                    <p style="padding:10px">没有好动动态</p>
+                    @else
                     <ul class="duList" id="duList">
                         @foreach($news as $n)
                             @if ($n == null)
@@ -50,6 +52,7 @@
                         @endforeach
                         @endforeach
                     </ul>
+                    @endif
                 </div>
             </div>
         </div>

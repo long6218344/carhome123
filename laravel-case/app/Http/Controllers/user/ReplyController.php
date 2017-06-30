@@ -10,14 +10,14 @@ use Illuminate\Contracts\Validation\Validator;
 class ReplyController extends Controller
 {
 	public function reply(){
-		$id = session('id');
-        $user = DB::select('select `icon`, `username`, `regdate`,`sex` from `bbs_user_info` where `uid` = '.$id);
-        $info1 = DB::table('thread')->where('tauthorid',session('id'))->get();
-        $info2 = DB::table('thread')->where([['tauthorid',session('id')],['best',1]])->get();
+    
+        $user = DB::select('select `icon`, `username`, `regdate`,`sex` from `bbs_user_info` where `uid` = '.$_SESSION['uid']);
+        $info1 = DB::table('thread')->where('tauthorid',$_SESSION['uid'])->get();
+        $info2 = DB::table('thread')->where([['tauthorid',$_SESSION['uid']],['best',1]])->get();
         // 回复表 和 帖子表联合查询
         $info = DB::table('reply')
                         ->join('thread', 'reply.tid', '=', 'thread.tid')
-                        ->where('reply.rauthorid', '=' ,session('id'))->orderBy('rdateline', 'desc')
+                        ->where('reply.rauthorid', '=' ,$_SESSION['uid'])->orderBy('rdateline', 'desc')
                         ->paginate(5);
         // 回复数量 帖子 精华帖数量
         // dump($info);die;

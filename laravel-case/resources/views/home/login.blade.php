@@ -1,181 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8" />
-    <title>登录页面 - BBS后台管理系统</title>
-    <meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
-    <meta name="description" content="站长素材提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Carhome-bbs-login</title>
 
-    <!-- basic styles -->
+    <!-- Bootstrap -->
 
-    <link href="{{asset('/css/app.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{asset('/css/admin/font-awesome.min.css')}}" />
 
-    <!--[if IE 7]>
-    <link rel="stylesheet" href="{{asset('/css/admin/font-awesome-ie7.min.css')}}" />
-    <![endif]-->
+    <link href="{{asset('css/bootstrap/bootstrap.min.css')}}" rel="stylesheet" >
 
-    <!-- page specific plugin styles -->
-
-    <!-- fonts -->
-
-    <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />-->
-
-    <!-- ace styles -->
-
-    <link rel="stylesheet" href="{{asset('css/admin/ace.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/admin/ace-rtl.min.css')}}" />
-
-    <!--[if lte IE 8]>
-
-    <link rel="stylesheet" href="{{asset('css/admin/ace-ie.min.css')}}" />
-    <![endif]-->
-
-    <!-- inline styles related to this page -->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="{{asset('/js/admin/html5shiv.js') }}"></script>
-    <script src="{{asset('/js/admin/respond.min.js') }}"></script>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <link href="{{ asset('css/home/home-login&sign.css') }}" rel="stylesheet">
+    <link href="{{asset('fonts/iconfont/iconfont.css')}}" rel="stylesheet" >
+
+
 </head>
+<body>
 
-<body class="login-layout">
-<div class="main-container">
-    <div class="main-content">
-        <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-                <div class="login-container">
-                    <div class="center">
-                        <h1>
-                            <i class="icon-leaf green"></i>
-                            <span class="red">BBS</span>
-                            <span class="white">后台管理系统</span>
-                        </h1>
-                        <h4 class="blue">&copy; 黑夜帝国</h4>
+<!--
+
+
+
+                                   .. .vr
+                                 qBMBBBMBMY
+                                8BBBBBOBMBMv
+                              iMBMM5vOY:BMBBv
+              .r,             OBM;   .: rBBBBBY
+              vUL             7BB   .;7. LBMMBBM.
+             .@Wwz.           :uvir .i:.iLMOMOBM..
+              vv::r;             iY. ...rv,@arqiao.
+               Li. i:             v:.::::7vOBBMBL..
+               ,i7: vSUi,         :M7.:.,:u08OP. .
+                 .N2k5u1ju7,..     BMGiiL7   ,i,i.
+                  :rLjFYjvjLY7r::.  ;v  vr... rE8q;.:,,
+                 751jSLXPFu5uU@guohezou.,1vjY2E8@Yizero.
+                 BB:FMu rkM8Eq0PFjF15FZ0Xu15F25uuLuu25Gi.
+               ivSvvXL    :v58ZOGZXF2UUkFSFkU1u125uUJUUZ,
+             :@kevensun.      ,iY20GOXSUXkSuS2F5XXkUX5SEv.
+         .:i0BMBMBBOOBMUi;,        ,;8PkFP5NkPXkFqPEqqkZu.
+       .rqMqBBMOMMBMBBBM .           @kexianli.S11kFSU5q5
+     .7BBOi1L1MM8BBBOMBB..,          8kqS52XkkU1Uqkk1kUEJ
+     .;MBZ;iiMBMBMMOBBBu ,           1OkS1F1X5kPP112F51kU
+       .rPY  OMBMBBBMBB2 ,.          rME5SSSFk1XPqFNkSUPZ,.
+              ;;JuBML::r:.:.,,        SZPX0SXSP5kXGNP15UBr.
+                  L,    :@sanshao.      :MNZqNXqSqXk2E0PSXPE .
+              viLBX.,,v8Bj. i:r7:,     2Zkqq0XXSNN0NOXXSXOU
+            :r2. rMBGBMGi .7Y, 1i::i   vO0PMNNSXXEqP@Secbone.
+            .i1r. .jkY,    vE. iY....  20Fq0q5X5F1S2F22uuv1M;
+
+
+    又看源码,看你妹妹呀!
+
+
+-->
+
+
+<div class="container-fluid login">
+
+  <div class="row">
+
+    <div class=" login-top ">
+
+        <img src="{{asset('img/login-img/carhome-login-logo.jpg')}}" alt="carhome-logo"
+             class="carhome-logo-login" width="200">
+
+        <span class="iconfont back-home-login"><a href="" class="back-home-font">&#xe633;返回首页</a></span>
+
+    </div> {{--end login-top--}}
+
+
+    <div class="login-center clearfix">
+        
+        <div style="margin:30px 0px 0px 100px">
+            <img src="{{asset('img/login-img/carhome-login-bgc.jpg')}}" alt="">
+        </div>
+
+        <div class="login-form">
+                    <p style="font-size:25px;margin-top:37px;margin-left:15px">用户登录</p>
+            <form class="form-horizontal login-form-form" action="{{url('/home/login/join')}}" method="post">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-4 control-label">用户名</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="user" class="form-control" id="inputEmail3" placeholder="Phone">
                     </div>
-
-                    <div class="space-6"></div>
-
-                    <div class="position-relative">
-                        <div id="login-box" class="login-box visible widget-box no-border">
-                            <div class="widget-body">
-                                <div class="widget-main">
-                                    <h4 class="header blue lighter bigger">
-                                        <i class="icon-coffee green"></i>
-                                        Please Enter Your Information
-                                    </h4>
-
-                                    <div class="space-6"></div>
-
-                                    <form action="{{url('/admin/login/join')}}" method="post">
-                                        {{ csrf_field() }}
-                                        <fieldset>
-                                            <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="text" name="username" class="form-control" />
-															<i class="icon-user"></i>
-														</span>
-                                            </label>
-
-                                            <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="password" name="pwd" class="form-control" />
-															<i class="icon-lock"></i>
-														</span>
-                                            </label>
-
-                                            <div class="space"></div>
-
-                                            <div class="clearfix">
-                                                <label class="inline">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"> 记住我 </span>
-                                                </label>
-
-                                                <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
-                                                    <i class="icon-key"></i>
-                                                    Login
-                                                </button>
-                                            </div>
-                                            <p>
-                                                <label>&nbsp;</label>
-                                                {{--<span style="color:red">{{$errorinfo}}</span>--}}
-                                            </p>
-                                            <div class="space-4"></div>
-                                        </fieldset>
-                                    </form>
-
-                                    <div class="social-or-login center">
-                                        <span class="bigger-110">Or Login Using</span>
-                                    </div>
-
-                                    <div class="social-login center">
-                                        <a class="btn btn-primary">
-                                            <i class="icon-facebook"></i>
-                                        </a>
-
-                                        <a class="btn btn-info">
-                                            <i class="icon-twitter"></i>
-                                        </a>
-
-                                        <a class="btn btn-danger">
-                                            <i class="icon-google-plus"></i>
-                                        </a>
-                                    </div>
-                                </div><!-- /widget-main -->
-
-
-                            </div><!-- /widget-body -->
-                        </div><!-- /login-box -->
-
-                    </div><!-- /position-relative -->
                 </div>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div>
-</div><!-- /.main-container -->
+                <div class="form-group">
+                    <label for="inputPassword3" name="" class="col-sm-4 control-label">密码</label>
+                    <div class="col-sm-8">
+                        <input type="password" name="pwd" class="form-control" id="inputPassword3" placeholder="Password">
+                    </div>
+                </div>
 
-<!-- basic scripts -->
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8 clearfix">
+                        <button type="submit" style="margin-left:45px" class="btn btn-info btn-lg btn-block">登录</button>
+                        <a href="/home/sign" style="float:right;right:5px;top: 10px;">立即注册</a>
+                    </div>
+                </div>
+            </form>
 
-<!--[if !IE]> -->
+            <hr>
 
-<script src="{{asset('js/admin/jquery-2.0.3.min.js')}}"></script>
 
-<!-- <![endif]-->
+        </div> {{--login-form--}}
 
-<!--[if IE]>
-<script src="{{asset('js/admin/jquery.min.js')}}"></script>
-<![endif]-->
+    </div> {{--end login-center--}}
 
-<!--[if !IE]> -->
 
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='{{asset('js/admin/jquery-2.0.3.min.js')}}'>"+"<"+"/script>");
-</script>
+    <div class="login-footer">
+             <p style="text-align: center;line-height: 60px">Copyright © 2004-2017 www.carhome.com All Rights Reserved. carhome 版权所有</p>
+    </div> {{--end login-footer--}}
 
-<!-- <![endif]-->
+  </div> {{--end row--}}
+</div> {{--<--End login-->--}}
 
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='{{asset('js/admin/jquery-1.10.2.min.js')}}'>"+"<"+"/script>");
-</script>
-<![endif]-->
+    <script>
 
-<script type="text/javascript">
-    if("ontouchend" in document) document.write("<script src='{{asset('js/admin/jquery.mobile.custom.min.js')}}}'>"+"<"+"/script>");
-</script>
-
-<!-- inline scripts related to this page -->
-
-<script type="text/javascript">
-    function show_box(id) {
-        jQuery('.widget-box.visible').removeClass('visible');
-        jQuery('#'+id).addClass('visible');
-    }
-</script>
-<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+    </script>
 </body>
 </html>

@@ -5,18 +5,26 @@ date_default_timezone_set('Asia/Shanghai');
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DB;
+use Redirect;
 class PostDetailsController extends Controller
 {
     public function index(Request $request)
     {
+
+        $tid = $request->tid;
+//        var_dump(mt_rand());die;
         $post = DB::table('thread')
+            ->where('thread.tid',$tid)
             ->join('post', 'thread.tid', '=', 'post.tid')
+//            ->join('reply', 'thread.tid', '=', 'reply.tid')
+
             ->get();
         $reply = DB::table('thread')
             ->join('reply', 'thread.tid', '=', 'reply.tid')
             ->get();
-        $tid = $request->tid;
-        $cn = DB::table('thread')
+
+        $cn = DB::table('thread')->where('tid',$tid)
+
             ->value('clicknumber');
         $cn = ($cn + 1);
 //        var_dump($tid,$cn);die;
@@ -25,11 +33,18 @@ class PostDetailsController extends Controller
             ->update([
                 'clicknumber'=>$cn
             ]);
-        return view('/home/PostDetails',['reply'=>$reply,'post'=>$post]);
+
+        return view('/home.details',['reply'=>$reply,'post'=>$post]);
     }
+
+//    public function xxx()
+//{
+//    return 111;
+//}
 
     public function submit(Request $request)
     {
+//        return 111;
 
         $rid = null;
         $content = $request->input('content');
@@ -53,15 +68,19 @@ class PostDetailsController extends Controller
                     'rauthorip'=>$ip,
                     'rdateline'=>$now
                 ]);
-                DB::table('thread')->update([
+
+                DB::table('thread')->where('tid',$tid)->update([
+
                     'renumber'=>$renumber,
                     'replies'=>$now
                 ]);
             } catch (\Exception $e) {
                 var_dump('回复失败');
+
+                return redirect('/home/post/{tid}'.$tid);
                 exit;
             }
         });
-        echo '回复成功';
+        return redirect('/home/post/{tid}'.$tid);
     }
 }

@@ -17,9 +17,18 @@
 //
 //});
 
-//Route::get('/admin/login',function(){
-//    return view('/admin.public.login');
-//});
+
+
+//前台 登录
+Route::get('/home/login','LoginController@index');
+Route::post('/home/login/join','LoginController@join');
+
+
+//前台注册
+Route::get('/home/sign','SignController@index');
+Route::post('/home/sign/create','SignController@create');
+Route::get('/home/sign/selete/{data?}','SignController@selete');
+
 
 Route::get('/admin/layout',function(){
     // 中间件操作用户界面,用户头像
@@ -42,63 +51,64 @@ Route::get('/admin/group',function(){
 
 // -----------------------权限判断-----------------------------------------
 // 中间件 权限登录验证
-Route::group(['middleware'=>['checkpower']],function(){
+Route::group(['middleware'=>['checkpower']],function() {
 
 // 用户列表显示
-    Route::get('/admin/index','admin\UserController@index');
+    Route::get('/admin/index', 'admin\UserController@index');
 
 // 用户列表更新第一步,读取信息
-Route::get('/admin/update/{uid}','admin\UserController@userUpdate');
+    Route::get('/admin/update/{uid}', 'admin\UserController@userUpdate');
 // 用户列表更新第二步
-Route::post('/admin/user/newdate/{uid}','admin\UserController@update');
+    Route::post('/admin/user/newdate/{uid}', 'admin\UserController@update');
 
 
 // 资源控制器
-Route::resource('/admin/user','admin\UserController');
+    Route::resource('/admin/user', 'admin\UserController');
 // 用户删除
-Route::get('/admin/delete/{uid}','admin\UserController@destroy');
+    Route::get('/admin/delete/{uid}', 'admin\UserController@destroy');
+
 //
 //Route::resource('/admin/user/{uid}','admin\UserController');
 
 // 密码传入
-Route::get('/admin/user/repwd/{id}',function($id){
-    return view('/admin.user.repwd')->with('uid', $id);
-});
+    Route::get('/admin/user/repwd/{id}', function ($id) {
+        return view('/admin.user.repwd')->with('uid', $id);
+    });
 
 // 密码修改
-Route::post('/admin/user/pwd','admin\UserController@pwd');
+    Route::post('/admin/user/pwd', 'admin\UserController@pwd');
 
 
 // 管理员组第二步
-Route::post('/amdin/user/updategroup','admin\UserController@updategroup');
-
-
+    Route::post('/amdin/user/updategroup', 'admin\UserController@updategroup');
 
 
 // 权限管理 ,用户组
-Route::get('/admin/usergroup',function(){
-    return view('/admin.usergroup.member');
-});
+    Route::get('/admin/usergroup', function () {
+        return view('/admin.usergroup.member');
+    });
 
 // 规则管理
-Route::get('/admin/authrule/index',function(){
-    return view('/admin.authrule.index');
-});
+    Route::get('/admin/authrule/index', function () {
+        return view('/admin.authrule.index');
+    });
 
 // 1.权限普通用户管理组内容
-Route::get('/admin/powergroup','admin\UserGroupController@member');
+    Route::get('/admin/powergroup', 'admin\UserGroupController@member');
 
 // 2.权限普通用户管理组内容增加
-Route::post('/admin/powergroupadd','admin\UserGroupController@insert');
+    Route::post('/admin/powergroupadd', 'admin\UserGroupController@insert');
+
 
 // 2.1 权限普通用户管理组内容显示
 
 
 // 2.2 修改
-Route::post('/admin/powergroupupdate','admin\UserGroupController@update');
+    Route::post('/admin/powergroupupdate', 'admin\UserGroupController@update');
 
 // 3.权限默认用户管理组内容显示第一步
-Route::get('/admin/usermember','admin\UserGroupController@defaults');
+    Route::get('/admin/usermember', 'admin\UserGroupController@defaults');
+
 
 // 第二步
 //Route::get('/admin/usermember',function(){
@@ -106,42 +116,52 @@ Route::get('/admin/usermember','admin\UserGroupController@defaults');
 //});
 
 // 普通用户权限删除
-Route::get('/admin/powergroupdelete/{gid}','admin\UserGroupController@delete');
+    Route::get('/admin/powergroupdelete/{gid}', 'admin\UserGroupController@delete');
 
 // 权限管理组内容遍历
-Route::get('/admin/usergroupsystem','admin\UserGroupController@system');
+    Route::get('/admin/usergroupsystem', 'admin\UserGroupController@system');
+
 
 // 后台管理组
 
 // 浏览管理组
-Route::get('/admin/authgroup/index','admin\AuthGroupController@index');
+    Route::get('/admin/authgroup/index', 'admin\AuthGroupController@index');
+
 
 
 // 管理组修改第一步
 
 // 管理组修改第二步,修改
-Route::post('/admin/authgroup/update','admin\AuthGroupController@update'
-
-);
+    Route::post('/admin/authgroup/update', 'admin\AuthGroupController@update');
 // 管理组删除
-Route::get('/admin/authgroup/delete/{id}','admin\AuthGroupController@delete');
+    Route::get('/admin/authgroup/delete/{id}', 'admin\AuthGroupController@delete');
+
 
 
 // 1.管理组添加 第一步,显示
 
 
 // 2. 管理组添加第二步
-Route::post('/admin/authgroup/insert','admin\AuthGroupController@insert');
+    Route::post('/admin/authgroup/insert', 'admin\AuthGroupController@insert');
 
 // 添加规则列表页面
-Route::get('/admin/authrule/index','admin\AuthRuleController@index');
+    Route::get('/admin/authrule/index', 'admin\AuthRuleController@index');
 
 
 // 执行规则添加页面
-Route::post('/admin/authrule/insert','admin\AuthRuleController@insert');
+    Route::post('/admin/authrule/insert', 'admin\AuthRuleController@insert');
+
+});
 
 
 // 张伟康---------------------------------------------------------
+
+//进入notice控制器
+Route::get('/admin/notice','NoticeController@index');
+
+
+//后天天气APL接口
+Route::get('/admin/calendar','CalendarController@index');
 
 
 //后台分类路由
@@ -200,7 +220,8 @@ Route::get('/admin/adver/addshow/check/{data}','AdminAdverController@check');
 
 
 //后台公告管理
-Route::get('/admin/notice','AdminNoticeController@index');
+Route::get('/admin/notic','AdminNoticeController@index');
+
 
 //后台公告删除
 Route::get('/admin/notice/delete/{id}','AdminNoticeController@delete');
@@ -221,7 +242,6 @@ Route::get('/admin/notice/disnone/{id}','AdminNoticeController@disnone');
 Route::get('/admin/notice/disblock/{id}','AdminNoticeController@disblock');
 
 
-});
 //--------------------------------------------------------------------------
 // -----------------------权限判断-----------------------------------------
 
@@ -364,21 +384,13 @@ Route::get('/home/message/delete/{id}','user\MessageController@delete');
 // 好友动态
 Route::get('user/newsfeed', 'user\NewsFeedController@show');
 Route::get('user/allfeeds', 'user\AllFeedsController@show');
+
 Route::get('user/reply', 'user\ReplyController@reply');
 Route::get('user/get', 'user\GetReplyController@get');
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::get('user/store', 'user\StoreController@show');
+Route::get('user/notstore/{id?}', 'user\StoreController@del');
+Route::get('user/forum', 'user\StoreController@showforum');
+Route::get('user/cancelbbs/{id?}', 'user\StoreController@cancel');
 
 
 
@@ -388,12 +400,11 @@ Route::get('user/get', 'user\GetReplyController@get');
 
 // -----------------------周天野----------------------------
 
-Route::get('/','HomeIndexController@index');
-Route::get('/home/post/{tid}','PostDetailsController@index');
-Route::get('/home/blog/{fid}','BlogPlateController@index');
 Route::get('/home/{fid}/posting','PostingController@index');
 Route::post('/home/posting/submit','PostingController@submit');
 Route::post('/home/post/submit','PostDetailsController@submit');
+Route::get('/home/reply/{tid}','HomereplyController@index');
+
 
 //Route::get('/admin/login',function(){
 //    return view('/admin.public.login');
@@ -440,8 +451,72 @@ Route::post('/home/login/join','LoginController@join');
 
 //前台注册
 Route::get('/home/sign','SignController@index');
-Route::post('/home/sign/create','SignController@create')->middleware(SignMiddleware::class);
-Route::get('/home/sign/selete/{data?}','SignController@selete');
+
+
+// --------------------周天野--------------------------
+
+
+// ---------------前台帖子页面----------------------------
+
+// 页面头部
+
+
+
+
+// 本站新帖
+
+// 张伟康---------------------------------------------------------
+
+//后台相册
+Route::get('/admin/photo','PhotoController@index');
+//展示相册增加页面
+Route::get('/admin/photo/addshow','PhotoController@addshow');
+//增加功能
+Route::post('/admin/photo/add','PhotoController@add');
+//删除ajax
+Route::get('/admin/photo/delete/{id}','PhotoController@delete');
+//展示相册编辑页面
+Route::get('/admin/photo/editshow/{id}','PhotoController@editshow');
+//编辑功能
+Route::post('/admin/photo/edit','PhotoController@edit');
+//前台展示
+Route::get('/home/photo/{jd?}','PhotoController@homeshow');
+
+
+
+
+//后台连接
+Route::get('/admin/blogroll','BlogrollController@index');
+//添加连接页面
+Route::get('/admin/blogroll/addshow','BlogrollController@addshow');
+//添加
+Route::post('/admin/blogroll/add','BlogrollController@add');
+//删除
+Route::get('/admin/blogroll/delete/{id}','BlogrollController@delete');
+//编辑页面
+Route::get('/admin/blogroll/editshow/{id}','BlogrollController@editshow');
+//编辑
+Route::post('/admin/blogroll/edit','BlogrollController@edit');
+
+
+
+
+
+// ----------------龙淼gai个人中心-------------
+// 积分
+Route::get('/user/user_point','user\PointController@index');
+
+// 权限
+Route::get('/user/user_power','user\UserpowerController@index');
+
+
+
+
+// --------------------周天野--------------------------
+
+Route::get('/','HomeIndexController@index');
+Route::get('/home/blog/{fid}','BlogPlateController@index');
+Route::get('/home/post/{tid}','PostDetailsController@index');
 
 
 // --------------------周天野--------------------------

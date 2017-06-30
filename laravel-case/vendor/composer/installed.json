@@ -3719,5 +3719,70 @@
             "permission",
             "roles"
         ]
+<<<<<<< HEAD
+<<<<<<< HEAD
+    },
+    {
+        "name": "mews/captcha",
+        "version": "v2.1.4",
+        "version_normalized": "2.1.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mewebstudio/captcha.git",
+            "reference": "ada76309e55fcbd3bb5604f4fd0dd357dec35823"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/mewebstudio/captcha/ada76309e55fcbd3bb5604f4fd0dd357dec35823.zip",
+            "reference": "ada76309e55fcbd3bb5604f4fd0dd357dec35823",
+            "shasum": ""
+        },
+        "require": {
+            "ext-gd": "*",
+            "illuminate/config": "~5.0",
+            "illuminate/filesystem": "~5.0",
+            "illuminate/hashing": "~5.0",
+            "illuminate/support": "~5.0",
+            "intervention/image": "~2.2",
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "mockery/mockery": "0.9.*",
+            "phpunit/phpunit": "~4.1"
+        },
+        "time": "2016-07-19T09:01:51+00:00",
+        "type": "package",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Mews\\Captcha\\": "src/"
+            },
+            "files": [
+                "src/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Muharrem ERİN",
+                "email": "me@mewebstudio.com",
+                "homepage": "https://github.com/mewebstudio",
+                "role": "Developer"
+            }
+        ],
+        "description": "Laravel 5 Captcha Package",
+        "homepage": "https://github.com/mewebstudio/captcha",
+        "keywords": [
+            "captcha",
+            "laravel5 Captcha",
+            "laravel5 Security"
+        ]
+=======
+>>>>>>> 5261b611b1d2667f02a30a212376a5cfdb4baff5
+=======
+>>>>>>> 3e1251a09ea19e5b87b6adb756efcdc0460558f5
     }
 ]

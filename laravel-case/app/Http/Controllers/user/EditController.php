@@ -10,7 +10,7 @@ use Illuminate\Contracts\Validation\Validator;
 class EditController extends Controller
 {
     public function show(){
-        $user = DB::table('bbs_user_info')->where('uid', session('id'))->first();
+        $user = DB::table('bbs_user_info')->where('uid', $_SESSION['uid'])->first();
         return view('user/user_show',[
             'name'=>$user->username,
             'icon'=>$user->icon,
@@ -24,7 +24,7 @@ class EditController extends Controller
     }
 
     public function show_edit(){
-        $user = DB::table('bbs_user_info')->where('uid', session('id'))->first();
+        $user = DB::table('bbs_user_info')->where('uid', $_SESSION['uid'])->first();
         return view('user/user_edit',[
             'name'=>$user->username,
             'icon'=>$user->icon,
@@ -51,7 +51,7 @@ class EditController extends Controller
         $province = $request->input('s_province');
         $address = $request->input('address');
         $sign = $request->input('textSign');
-        $result = DB::update('update `bbs_user_info` set `username` = ?, `sex` = ?, `email` = ?, `birthday` = ?, `address` = ?, `userdetails` = ? where `uid` = ?', [$name,$sex,$email,$birthday,$address,$sign,session('id')]);
+        $result = DB::update('update `bbs_user_info` set `username` = ?, `sex` = ?, `email` = ?, `birthday` = ?, `address` = ?, `userdetails` = ? where `uid` = ?', [$name,$sex,$email,$birthday,$address,$sign,$_SESSION['uid']]);
         if($result){
             return redirect('/user/notice')->with(['message'=>'修改成功','url' =>'/user/show', 'jumpTime'=>3,'status'=>true]);
         }else{

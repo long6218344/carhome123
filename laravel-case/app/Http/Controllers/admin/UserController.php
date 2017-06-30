@@ -332,7 +332,7 @@ class UserController extends Controller
             }
             // 判断文件类型
             $ext = $request->file('icon')->getClientOriginalExtension();
-//            dd($ext);die;
+
             if (!in_array($ext, array('jpg', 'png', 'jpeg'))) {
 //                ('不合法的文件类型');
                 return back()->with('error','不合法的文件类型');
@@ -399,7 +399,7 @@ class UserController extends Controller
     {
         //显示所有用户
         $user = DB::select('select * from `bbs_user_info` where uid = ?', [$uid]);
-//        dd($user);die;
+
         return view('/admin.user.update', ['user' => $user]);
 
     }
@@ -470,7 +470,7 @@ class UserController extends Controller
         //控制器和路由
         $d = strchr(strstr($action, 'Controllers'), '\\');
         $e = trim($d, '\\');
-//        dd($action);
+        
         // 3. 获取规则组权限id
         $rulepower = DB::table('bbs_auth_rule')
             ->select('id')

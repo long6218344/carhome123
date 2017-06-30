@@ -101,7 +101,7 @@
                                 <div class="header_menu my_menu cc">
                                     <div class="core_arrow_top" id="selected" style="left:77px;"><em></em><span></span></div>
                                     <ul class="ct cc">
-                                        <li><a href="__APP__/Zone/index"><em class="icon_space"></em>我的空间</a></li>
+                                        <li><a href="/user/index"><em class="icon_space"></em>我的空间</a></li>
                                         <li><a href="__APP__/FriendList/index"><em class="icon_fresh"></em>我的好友</a></li>
                                         <li><a href="__APP__/Messagetext/index"><em class="icon_task"></em>站内信息</a></li>
                                         <li><a href="__APP__/Message/index"><em class="icon_article"></em>我的信息</a></li>
@@ -118,7 +118,7 @@
 
                     <else />
                     <div class="header_login">
-                        <a rel="nofollow" href="__APP__/Login/index" class="mr15">登录</a><a rel="nofollow" href="__APP__/Register/index">注册</a>
+                        <a rel="nofollow" href="/home/login" class="mr15">登录</a><a rel="nofollow" href="/home/sign">注册</a>
                     </div>
                 </if>
 
@@ -179,6 +179,7 @@
     </header>
     <div class="tac"></div>
     <!----------主题内容---------->
+
     @section('main-content')
 
     @show

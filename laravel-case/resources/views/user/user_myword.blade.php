@@ -17,6 +17,7 @@
                         <strong>最后登录时间:</strong>
                         <span>222</span>
                     </li>
+
                     <li>
                         <strong>积分:</strong>
                         <span>222</span>
@@ -30,6 +31,7 @@
                     <a href="">{{$num}}篇帖子</a>
                 </li>
                 <li>
+
                     <strong>勋章:</strong>
                     <span>222</span>
                     <!-- <a href="">000</a> -->
@@ -41,6 +43,7 @@
             </div>
         </div>
         <div class="dynNav2" id="dynNav2">
+
             <li class="current"><a href="{{url('user/myword')}}" target="_top">我的主帖</a></li>
             <li ><a href="{{url('user/get')}}" target="_top">收到的回复</a></li>
             <li ><a href="{{url('user/reply')}}" target="_top">发出的回复</a></li>
@@ -50,12 +53,15 @@
         <div class='subdyn2'>
             <strong id="allword" style="cursor:pointer">全部帖子</strong>
             <strong id="niceword" style="cursor:pointer;color:#3b5998">精华帖</strong>
+            <!-- <a href="#">问答帖</a> -->
+
         </div>
         <div class='showmyword' id='showmyword'>
         @if($num == 0)
             <p style="margin-left:50px">您还没有发表过帖子</p>
         @else
             <table>
+
                 <tr style="background-color: #F2F5F8;">
                     <th>标题</th>
                     <th>点击次数</th>
@@ -68,6 +74,7 @@
                         <td><a href="#">{{$word->title}}</a></td>
                         <td>{{$word->clicknumber}}</td>
                         <td>{{$word->renumber}}</td>
+
                         <td><a href="">编辑</a></td>
                         <td>{{$word->tdateline}}</td>
                     </tr>
@@ -83,6 +90,7 @@
             <p style="margin-left:50px">您还没有发表过精华帖</p>
         @else
             <table>
+
                 <tr style="background-color: #F2F5F8;">
                     <th>精华帖标题</th>
                     <th>点击次数</th>
@@ -95,12 +103,14 @@
                         <td><a href="#">{{$word1->title}}</a></td>
                         <td>{{$word1->clicknumber}}</td>
                         <td>{{$word1->renumber}}</td>
+
                         <td><a href="">编辑</a></td>
                         <td>{{$word1->tdateline}}</td>
                     </tr>
                 @endforeach
                 
             </table>
+
             {{ $info1->links() }}
         @endif
         </div>
@@ -115,6 +125,7 @@
         });
         // 帖子选项卡
         $('#niceword').click(function(){
+
             $("#showmyword").hide();
             $("#nicewords").show();
             $(this).css('color','');

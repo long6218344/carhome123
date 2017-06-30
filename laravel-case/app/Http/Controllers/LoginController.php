@@ -26,15 +26,16 @@ class LoginController extends Controller
      */
     public function join(Request $request)
     {
+
         $name = $request->user;
         $pass = md5($request->pwd);
-
 
 
         $arr = "'$name'";
 
         $uname = DB::select('select * from `bbs_user_info` where `username` = '.$arr);
 
+        $uid = DB::select('select uid from `bbs_user_info` where `username` = '.$arr);
 
         if(empty($uname))
         {
@@ -52,12 +53,10 @@ class LoginController extends Controller
          $_SESSION['username'] = $name;
 
 
-
-        $this->notice('登录成功','/home');
-
-
-
-
+        $_SESSION['uid'] = $uid[0]->uid;
+//        echo 123;die;
+//var_dump(session('username'));
+        $this->notice('登录成功','/');
     }
 
 
