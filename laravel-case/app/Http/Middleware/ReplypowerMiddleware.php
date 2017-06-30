@@ -63,7 +63,6 @@ class ReplypowerMiddleware
                 if($replypower == 1){
                     return $next($request);
                 }else{
-//                  dd(1);
                     return  redirect('/user/notice')->with(['message'=>'权限不够','url' =>'/', 'jumpTime'=>3,'status'=>false]);
                 }
 
@@ -80,7 +79,6 @@ class ReplypowerMiddleware
                 if($replypower == 1){
                     return $next($request);
                 }else{
-//                  dd(1);
                     return  redirect('/user/notice')->with(['message'=>'权限不够','url' =>'/', 'jumpTime'=>3,'status'=>false]);
                 }
 

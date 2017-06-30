@@ -79,7 +79,8 @@ class LoginController extends Controller
             ->where('uid',$uid)
             ->update(['credits'=>$credits]);
 
-        $this->notice('登录成功','/');
+        $this->notice('登录成功',url('/'));
+
     }
 
 

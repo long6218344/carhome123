@@ -52,8 +52,8 @@ class PostingController extends Controller
 
                 'title'=>$title,
                 'fid'=>$fid,
-                'tauthor'=> session('username'),
-                'tauthorid'=> session('uid'),
+                'tauthor'=> $_SESSION['username'],
+                'tauthorid'=> $_SESSION['uid'],
                 'tdateline'=>$now,
                 'replies'=>$now
             ]);
@@ -64,14 +64,14 @@ class PostingController extends Controller
                 'pmessage'=>$content,
                 'fid'=>$fid,
                 'tid'=>$tid,
-                'pauthor'=> session('username'),
-                'pauthorid'=> session('uid'),
+                'pauthor'=> $_SESSION['username'],
+                'pauthorid'=> $_SESSION['uid'],
                 'pdateline'=>$now,
                 'pauthorip'=>$ip
             ]);
             } catch (\Exception $e) {
 //                var_dump('发帖失败',$e);
-                die;
+//                die;
                 return redirect('/home/blog/'.$fid);
             }
         });

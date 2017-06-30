@@ -1,5 +1,5 @@
 @extends('admin/public/layout')
-@section('content')
+@section('main-content')
     <script src="../js/jquery-1.8.3.min.js"></script>
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
@@ -11,16 +11,16 @@
                 </li>
 
                 <li>
-                    <a href="#">用户管理</a>
+                    <a href="#">帖子管理</a>
                 </li>
-                <li class="active">用户列表</li>
+                <li class="active">所有帖子</li>
             </ul><!-- .breadcrumb -->
 
             <div class="nav-search" id="nav-search">
-                <form class="form-search">
+                <form class="form-search" method="">
 								<span class="input-icon">
 									<input type="text" placeholder="Search ..." class="nav-search-input"
-                                           id="nav-search-input" autocomplete="off"/>
+                                           id="nav-search-input" autocomplete="off" />
 									<i class="icon-search nav-search-icon"></i>
 									<button class="btn btn-xs btn-info">搜索</button>
 								</span>
@@ -31,10 +31,10 @@
         <div class="page-content">
             <div class="page-header">
                 <h1>
-                    用户管理
+                    帖子管理
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        用户列表
+                        所有帖子
                     </small>
                 </h1>
             </div><!-- /.page-header -->
@@ -56,7 +56,7 @@
                                             </label>
                                         </th>
                                         <th>TID</th>
-                                        <th>FID</th>
+                                        <th>所属版块(FID)</th>
                                         <th>作者</th>
                                         <th>作者id</th>
                                         <th>帖子标题</th>
@@ -82,7 +82,7 @@
 
 
                                             <td>{{$v->tid}}</td>
-                                            <td>{{$v->fid}}</td>
+                                            <td>{{$v->name}}({{$v->fid}})</td>
                                             <td>{{$v->tauthor}}</td>
                                             <td>{{$v->tauthorid}}</td>
                                             <td>{{$v->title}}</td>
@@ -133,7 +133,6 @@
 
     <script>
 
-        //        var tid = document.getElementById("btn").getAttribute("name");
 
         $(function(){
             $('.btnclick').click(function(){

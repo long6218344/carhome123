@@ -8,7 +8,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $result = DB::table('post')->get();
+        $result = DB::table('forum')->join('post', 'forum.fid', '=', 'post.fid')->get();
         return view('/admin/posts/post',['result'=>$result]);
     }
 

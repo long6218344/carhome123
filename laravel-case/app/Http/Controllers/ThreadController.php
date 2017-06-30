@@ -8,7 +8,7 @@ class ThreadController extends Controller
 {
     public function index()
     {
-        $result = DB::table('thread')->get();
+        $result = DB::table('forum')->join('thread', 'forum.fid', '=', 'thread.fid')->get();
         return view('/admin/posts/thread',['result'=>$result]);
     }
 
@@ -50,20 +50,20 @@ class ThreadController extends Controller
                             'boutique'=>$b
                         ]);
                 } catch (\Exception $e) {
-                    var_dump('操作失败',$e);
+                    return redirect(url('/user/notice'))->with(['message'=>'失败','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
                     exit;
                 }
             });
-            echo '操作成功';
+            return redirect(url('/user/notice'))->with(['message'=>'成功','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
         } elseif ($type == 'top') {
             if(DB::table('thread')
                 ->where('tid',$tid)
                 ->update([
                     'top'=>$num
                 ])) {
-                echo 'ok';
+                return redirect(url('/user/notice'))->with(['message'=>'成功','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
             } else {
-                echo 'no';
+                return redirect(url('/user/notice'))->with(['message'=>'失败','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
             }
         } elseif($type == 'tstatus') {
             if(DB::table('thread')
@@ -71,9 +71,9 @@ class ThreadController extends Controller
                 ->update([
                     'tstatus'=>$num
                 ])) {
-                echo 'ok';
+                return redirect(url('/user/notice'))->with(['message'=>'成功','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
             } else {
-                echo 'no';
+                return redirect(url('/user/notice'))->with(['message'=>'失败','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
             }
         }
 
@@ -92,10 +92,11 @@ class ThreadController extends Controller
         DB::table('thread')->where('tid',$tid)->delete() ;
         DB::table('forum')->where('fid',$fid)->update(['posts'=>$posts]);
         } catch (\Exception $e) {
-                    var_dump('删除失败');
+                return redirect(url('/user/notice'))->with(['message'=>'失败','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
                     exit;
                 }
         });
-        echo '删除成功';
+//        return redirect(url(url('/admin/thread')));
+        return redirect(url('/user/notice'))->with(['message'=>'成功','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
     }
 }

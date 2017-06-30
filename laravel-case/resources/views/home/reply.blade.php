@@ -1,8 +1,15 @@
-<html>
 
+@extends('/home.public.layout')
+@section('imcss')
+    <style>
+        .pagination li{float:left;}
+    </style>
+@endsection
+@section('main-content')
 
+    <h2>输入回复的内容：</h2>
 {{--{{session(['uid' => '18','username' => 'zty'])}}--}}
-        <form action="{{url('/home/post/submit')}}" method="post" class="clearfix " style="margin-left: 10px;width: 70%">
+        <form action="{{url('/home/post/submit')}}" method="post" class="" style="margin-left: 10px;width: 70%">
             {{ csrf_field() }}
             <input type="hidden" value="{{$post[0]->tid}}" name="tid">
             <input type="hidden" value="{{$post[0]->fid}}" name="fid">
@@ -14,4 +21,5 @@
         </form>
 
 
-</html>
+
+@endsection

@@ -1,6 +1,6 @@
 @extends('admin/public/layout')
 
-@section('content')
+@section('main-content')
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
 
@@ -8,11 +8,11 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="icon-home home-icon"></i>
-                    <a href="#">用户管理</a>
+                    <a href="#">版块管理</a>
                 </li>
 
 
-                <li class="active">添加用户</li>
+                <li class="active">添加版块</li>
             </ul><!-- .breadcrumb -->
 
             <div class="nav-search" id="nav-search">
@@ -37,7 +37,7 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 版块名 </label>
 
                             <div class="col-sm-9">
-                                <input type="text" name="forum_name">
+                                <input type="text" name="name">
                                 <div id="regusername"> </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             </label>
 
                             <div class="col-sm-9">
-                                <input type="radio" name="status" value="1"/>　开放　　　
+                                <input type="radio" name="status" value="1" checked />　开放　　　
                                 <input type="radio" name="status" value="0"/>　停用
                             </div>
                         </div>

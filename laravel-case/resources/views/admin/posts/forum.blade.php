@@ -1,5 +1,6 @@
 @extends('admin/public/layout')
-@section('content')
+@section('main-content')
+    <script src="../js/jquery-1.8.3.min.js"></script>
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
 
@@ -10,9 +11,9 @@
                 </li>
 
                 <li>
-                    <a href="#">用户管理</a>
+                    <a href="#">版块管理</a>
                 </li>
-                <li class="active">用户列表</li>
+                <li class="active">所有版块</li>
             </ul><!-- .breadcrumb -->
 
             <div class="nav-search" id="nav-search">
@@ -30,10 +31,10 @@
         <div class="page-content">
             <div class="page-header">
                 <h1>
-                    用户管理
+                    版块管理
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        用户列表
+                        所有版块
                     </small>
                 </h1>
             </div><!-- /.page-header -->
@@ -86,7 +87,8 @@
                                             <td>{{$v->posts}}</td>
                                             <td>{{$v->boutique}}</td>
                                             <td>{{$v->todayposts}}</td>
-                                            <td><a href="{{url('/admin/forum/delete')}}/{{$v->fid}}">删</a>&nbsp;&nbsp;</td>
+                                            {{--<td><a href="{{url('/admin/forum/delete')}}/{{$v->fid}}">删</a>&nbsp;&nbsp;</td>--}}
+                                            <td><button class="btnclick" name={{$v->fid}} >删</button></td>
                                         </tr>
                                     @endforeach
 
@@ -106,5 +108,33 @@
             </div><!-- /.row -->
         </div><!-- /.page-content -->
     </div><!-- /.main-content -->
+
+
+    <script>
+
+
+
+
+        $(function(){
+            $('.btnclick').click(function(){
+                var fid = $(this).attr("name");
+                var path = '{{url('/admin/forum/delete')}}/'+fid;
+//                console.log(666);
+                $.ajax({
+                    type: 'get',
+                    url: path,
+                    success: function (){
+                        alert('删除成功!');
+//                        console.log(111);
+                    },
+                    error: function (){
+                        alert('删除出现错误!');
+//                        console.log(222);
+                    }
+                });
+            })
+        })
+
+    </script>
 
 @endsection

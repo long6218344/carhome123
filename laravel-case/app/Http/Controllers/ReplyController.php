@@ -8,7 +8,7 @@ class ReplyController extends Controller
 {
     public function index()
     {
-        $result = DB::table('reply')->get();
+        $result = DB::table('forum')->join('thread', 'forum.fid', '=', 'thread.fid')->join('reply', 'forum.fid', '=', 'reply.fid')->get();
         return view('/admin/posts/reply',['result'=>$result]);
     }
 
