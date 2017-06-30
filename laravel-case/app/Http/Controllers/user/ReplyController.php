@@ -12,7 +12,7 @@ class ReplyController extends Controller
 	public function reply(){
         $id = session('uid');
 //        dd($_SESSION['uid']);
-    
+
         $user = DB::select('select `icon`, `username`, `regdate`,`sex` from `bbs_user_info` where `uid` = '.$id);
         $info1 = DB::table('thread')->where('tauthorid',$id)->get();
         $info2 = DB::table('thread')->where([['tauthorid',$id],['best',1]])->get();

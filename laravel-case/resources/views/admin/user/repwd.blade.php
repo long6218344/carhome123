@@ -1,6 +1,5 @@
 @extends('admin.public.layout')
 @section('main-content')
-
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
             <script type="text/javascript">

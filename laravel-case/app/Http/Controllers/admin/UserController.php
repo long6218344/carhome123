@@ -231,7 +231,9 @@ class UserController extends Controller
     public function update(Request $request, $uid)
     {
         //编辑用户
-        //判断文件是否存在,存在则删除
+        // 判断是否上传图片
+
+
         // 获取数据,判断
         $username = $request->input('username');
         //处理图片
@@ -259,7 +261,6 @@ class UserController extends Controller
         } elseif (!preg_match('/^[1][34578]/', $phone)) {
             // 手机号不合法
             return back()->with('error', '手机号不合法');
-        } else {
         }
 
         // 邮箱
@@ -376,8 +377,11 @@ class UserController extends Controller
 
         $str = rtrim($str, ',');
         $result = DB::update('update `bbs_user_info` set ' . $str . ' where uid = ?', [$uid]);
+
         if ($result) {
             return back()->with('error','更新成功');
+        }else{
+            return back()->with('error','更新失败');
         }
     }
 
@@ -410,6 +414,8 @@ class UserController extends Controller
         $data = $_POST;
         $pwd = $data['pwd'];
         $repwd = $data['repwd'];
+
+//        dd($repwd);
 //         判断两次密码是否一致
         if ($pwd != $repwd) {
             return back()->with('error','两次密码不一致');
@@ -436,6 +442,8 @@ class UserController extends Controller
         $result = DB::update('update `bbs_user_info` set `pwd`= "' . $pwd . '"  where uid = ?', [$data['uid']]);
         if ($result) {
             return back()->with('error','修改成功');
+        }else{
+            return back()->with('error','修改失败');
         }
     }
 

@@ -70,11 +70,6 @@ Route::group(['middleware'=>['checkpower']],function() {
 //
 //Route::resource('/admin/user/{uid}','admin\UserController');
 
-// 密码传入
-    Route::get('/admin/user/repwd/{id}', function ($id) {
-        return view('/admin.user.repwd')->with('uid', $id);
-    });
-
 // 密码修改
     Route::post('/admin/user/pwd', 'admin\UserController@pwd');
 
@@ -83,15 +78,7 @@ Route::group(['middleware'=>['checkpower']],function() {
     Route::post('/amdin/user/updategroup', 'admin\UserController@updategroup');
 
 
-// 权限管理 ,用户组
-    Route::get('/admin/usergroup', function () {
-        return view('/admin.usergroup.member');
-    });
 
-// 规则管理
-    Route::get('/admin/authrule/index', function () {
-        return view('/admin.authrule.index');
-    });
 
 // 1.权限普通用户管理组内容
     Route::get('/admin/powergroup', 'admin\UserGroupController@member');
@@ -152,6 +139,27 @@ Route::group(['middleware'=>['checkpower']],function() {
     Route::post('/admin/authrule/insert', 'admin\AuthRuleController@insert');
 
 });
+
+// --------------------------中间件规则判断结束------------------------------
+
+// 权限管理 ,用户组
+Route::get('/admin/usergroup', function () {
+    return view('/admin.usergroup.member');
+});
+
+// 规则管理
+Route::get('/admin/authrule/index', function () {
+    return view('/admin.authrule.index');
+});
+
+
+// 密码传入
+Route::get('/admin/user/repwd/{id}', function ($id) {
+    return view('/admin.user.repwd')->with('uid', $id);
+});
+
+
+// -----------------------权限判断-----------------------------------------
 
 
 // 张伟康---------------------------------------------------------
@@ -243,7 +251,6 @@ Route::get('/admin/notice/disblock/{id}','AdminNoticeController@disblock');
 
 
 //--------------------------------------------------------------------------
-// -----------------------权限判断-----------------------------------------
 
 // ------龙淼
 // 登录
@@ -346,6 +353,10 @@ Route::post('/admin/point/add','admin\PointController@add');
 Route::get('/admin/point/delete/{typeid}','admin\PointController@delete');
 
 
+
+// ----------------------龙淼模块end------------------------
+
+
 // ------------------------刘超超-----------------------------
 
 // Route::group(['prefix'=>'user'],function(){
@@ -394,34 +405,16 @@ Route::get('user/get', 'user\GetReplyController@get');
 
 // -----------------------周天野----------------------------
 
-Route::get('/home/{fid}/posting','PostingController@index');
+// 发帖页 +权限
+Route::get('/home/{fid}/posting','PostingController@index')->middleware('post');
+
 Route::post('/home/posting/submit','PostingController@submit');
 Route::post('/home/post/submit','PostDetailsController@submit');
-Route::get('/home/reply/{tid}','HomereplyController@index');
+// 回复加权限
+Route::get('/home/reply/{tid}','HomereplyController@index')->middleware('reply');
 
 
-//Route::get('/admin/login',function(){
-//    return view('/admin.public.login');
-//});
-
-Route::get('/admin/layout',function(){
-    return view('/admin.public.layout');
-
-});
-
-
-
-Route::get('/admin/store',function(){
-    return view('/admin.user.store');
-});
-
-Route::get('/admin/repwd',function(){
-    return view('/admin.user.repwd');
-});
-Route::get('/admin/group',function(){
-    return view('/admin.user.setgroup');
-});
-
+// ------周天野 -----
 Route::get('/admin/addforum',function(){
     return view('/admin.posts.addforum');
 });
@@ -505,11 +498,16 @@ Route::get('/user/user_power','user\UserpowerController@index');
 
 
 
+// -----------------龙淼end---------------
+
+
 
 // --------------------周天野--------------------------
 
 Route::get('/','HomeIndexController@index');
+// 板块页
 Route::get('/home/blog/{fid}','BlogPlateController@index');
+// 帖子详情页
 Route::get('/home/post/{tid}','PostDetailsController@index');
 
 

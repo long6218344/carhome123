@@ -81,15 +81,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>站点访问</td>
-                                            <td><input type="radio" name="allow_visit" value="1" {{$info->allow_visit ? 'checked' : ''}} />开启　　
-                                                　　　　　　　
-                                                <input type="radio" name="allow_visit" value="0" {{$info->allow_visit ? '' : 'checked'}} />关闭
-                                                　　　　　　　　　　　
-                                                <span style="color:#ddd;font-size:12px;">关闭后，用户将不能访问站点的任何页面</span>
-                                            </td>
-                                        </tr>
+                                        {{--<tr>--}}
+                                            {{--<td>站点访问</td>--}}
+                                            {{--<td><input type="radio" name="allow_visit" value="1" {{$info->allow_visit ? 'checked' : ''}} />开启　　--}}
+                                                {{--　　　　　　　--}}
+                                                {{--<input type="radio" name="allow_visit" value="0" {{$info->allow_visit ? '' : 'checked'}} />关闭--}}
+                                                {{--　　　　　　　　　　　--}}
+                                                {{--<span style="color:#ddd;font-size:12px;">关闭后，用户将不能访问站点的任何页面</span>--}}
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
                                         <tr>
                                             <td>使用举报</td>
                                             <td><input type="radio" name="use_inform" value="1" {{$info->use_inform ? 'checked' : ''}} />开启　　
@@ -149,19 +149,19 @@
                                             </td>
                                         </tr>
                                         </tbody>
-                                        <thead>
-                                        <tr>
-                                            <th colspan="2" align="left">提醒设置</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>提醒功能</td>
-                                            <td><input type="radio" name="remind_open" value="1" {{$info->remind_open ? 'checked' : ''}} />开启　　
-                                                　　　　　　　
-                                                <input type="radio" name="remind_open" value="0" {{$info->remind_open ? '' : 'checked'}} />关闭
-                                        </tr>
-                                        </tbody>
+                                        {{--<thead>--}}
+                                        {{--<tr>--}}
+                                            {{--<th colspan="2" align="left">提醒设置</th>--}}
+                                        {{--</tr>--}}
+                                        {{--</thead>--}}
+                                        {{--<tbody>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>提醒功能</td>--}}
+                                            {{--<td><input type="radio" name="remind_open" value="1" {{$info->remind_open ? 'checked' : ''}} />开启　　--}}
+                                                {{--　　　　　　　--}}
+                                                {{--<input type="radio" name="remind_open" value="0" {{$info->remind_open ? '' : 'checked'}} />关闭--}}
+                                        {{--</tr>--}}
+                                        {{--</tbody>--}}
                                         <thead>
                                         <tr>
                                             <th colspan="2" align="left">论坛权限</th>
@@ -214,31 +214,31 @@
                                             </td>
                                         </tr>
                                         </tbody>
-                                        <thead>
-                                        <tr>
-                                            <th colspan="2" align="left">投票设置</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>发布投票</td>
-                                            <td><input type="radio" name="allow_add_vote" value="1" {{$info->allow_add_vote ? 'checked' : ''}} />开启　　
-                                                　　　　　　　
-                                                <input type="radio" name="allow_add_vote" value="0" {{$info->allow_add_vote ? '' : 'checked'}} />关闭
-                                        </tr>
-                                        <tr>
-                                            <td>参与投票</td>
-                                            <td><input type="radio" name="allow_participate_vote" value="1" {{$info->allow_participate_vote ? 'checked' : ''}} />开启　　
-                                                　　　　　　　
-                                                <input type="radio" name="allow_participate_vote" value="0" {{$info->allow_participate_vote ? '' : 'checked'}} />关闭
-                                        </tr>
-                                        <tr>
-                                            <td>查看投票人员</td>
-                                            <td><input type="radio" name="look_user_ip" value="1" {{$info->look_user_ip ? 'checked' : ''}} />开启　　
-                                                　　　　　　　
-                                                <input type="radio" name="look_user_ip" value="0" {{$info->look_user_ip ? '' : 'checked'}} />关闭
-                                        </tr>
-                                        </tbody>
+                                        {{--<thead>--}}
+                                        {{--<tr>--}}
+                                            {{--<th colspan="2" align="left">投票设置</th>--}}
+                                        {{--</tr>--}}
+                                        {{--</thead>--}}
+                                        {{--<tbody>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>发布投票</td>--}}
+                                            {{--<td><input type="radio" name="allow_add_vote" value="1" {{$info->allow_add_vote ? 'checked' : ''}} />开启　　--}}
+                                                {{--　　　　　　　--}}
+                                                {{--<input type="radio" name="allow_add_vote" value="0" {{$info->allow_add_vote ? '' : 'checked'}} />关闭--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>参与投票</td>--}}
+                                            {{--<td><input type="radio" name="allow_participate_vote" value="1" {{$info->allow_participate_vote ? 'checked' : ''}} />开启　　--}}
+                                                {{--　　　　　　　--}}
+                                                {{--<input type="radio" name="allow_participate_vote" value="0" {{$info->allow_participate_vote ? '' : 'checked'}} />关闭--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>查看投票人员</td>--}}
+                                            {{--<td><input type="radio" name="look_user_ip" value="1" {{$info->look_user_ip ? 'checked' : ''}} />开启　　--}}
+                                                {{--　　　　　　　--}}
+                                                {{--<input type="radio" name="look_user_ip" value="0" {{$info->look_user_ip ? '' : 'checked'}} />关闭--}}
+                                        {{--</tr>--}}
+                                        {{--</tbody>--}}
                                         <div style="position:fixed;top:700px;width:100%;height:40px;background-color:#ddd;line-height:40px;padding-left:30px;">
                                             <button type="submit" class="btn btn-xs btn-info">提交</button>
                                         </div>

@@ -21,13 +21,12 @@ class PostDetailsController extends Controller
             ->get();
         $reply = DB::table('thread')
             ->join('reply', 'thread.tid', '=', 'reply.tid')
+            ->where('reply.tid',$tid)
             ->get();
 
         $cn = DB::table('thread')->where('tid',$tid)
-
             ->value('clicknumber');
         $cn = ($cn + 1);
-//        var_dump($tid,$cn);die;
         DB::table('thread')
             ->where('tid',$tid)
             ->update([
@@ -77,10 +76,45 @@ class PostDetailsController extends Controller
             } catch (\Exception $e) {
                 var_dump('回复失败');
 
-                return redirect('/home/post/{tid}'.$tid);
+                return redirect('/home/post/'.$tid);
                 exit;
             }
         });
-        return redirect('/home/post/{tid}'.$tid);
+
+        // ---------------回复得分---------------------
+        $uid = $_SESSION['uid'];
+        // 1. 选出积分
+        $point = DB::table('bbs_pointrule')
+            ->where('typeid',2)
+            ->select('value')
+            ->first();
+//        dd($point);
+        $point = $point->value;
+        // 2. 加入数据库积分
+        $result = DB::table('bbs_point')
+            ->insert([
+                ['point'=>$point, 'uid'=>$uid, 'typeid'=>2],
+            ]);
+        // 3. 存入用户表
+
+        // 3.1 存入前先从用户表中选出积分,在相加
+        $credits = DB::table('bbs_user_info')
+            ->where('uid',$uid)
+            ->select('credits')
+            ->first();
+        $credits = $credits->credits;
+        $credits = $credits + $point;
+//        dd($credits);
+        // 更新user数据
+        $result =  DB::table('bbs_user_info')
+            ->where('uid',$uid)
+            ->update(['credits'=>$credits]);
+
+
+        return redirect('/home/post/'.$tid);
     }
 }
+
+
+
+
