@@ -11,8 +11,9 @@ class WordController extends Controller
 {
     // 我的帖子页面
     public function show(){
+
         $id = $_SESSION['uid'];
-        $user = DB::select('select `icon`, `username`, `regdate`,`sex` from `bbs_user_info` where `uid` = '.$id);
+        $user = DB::select('select `icon`, `username`, `regdate`,`sex`,`credits` from `bbs_user_info` where `uid` = '.$id);
         // dump($user);
         $info = DB::table('thread')->where('tauthorid',$id)->paginate(2);
 
@@ -24,6 +25,7 @@ class WordController extends Controller
             'name'=>$user[0]->username,
         	'sex'=>$user[0]->sex,
         	'regdate'=>$user[0]->regdate,
+            'credits'=>$user[0]->credits,
             'num'=>$num,
         	'num1'=>$num1,
             'info'=>$info,
@@ -31,6 +33,46 @@ class WordController extends Controller
         	]);
 
     }
+    // 精华帖
+    public function niceshow(){
+        $id = $_SESSION['uid'];
+        $user = DB::select('select `icon`, `username`, `regdate`,`sex`,`credits` from `bbs_user_info` where `uid` = '.$id);
+        // dump($user);
+        $info = DB::table('thread')->where('tauthorid',$id)->paginate(2);
+
+        $info1 = DB::table('thread')->where([['tauthorid',$id],['best','1']])->paginate(2);
+        $num = ($info->total());
+        $num1 = ($info1->total());
+        return view('user/user_niceword',[
+            'icon'=>$user[0]->icon,
+            'name'=>$user[0]->username,
+            'sex'=>$user[0]->sex,
+            'regdate'=>$user[0]->regdate,
+            'credits'=>$user[0]->credits,
+            'num'=>$num,
+            'num1'=>$num1,
+            'info'=>$info,
+            'info1'=>$info1,
+            ]);
+    }
+
+    // 隐私设置页面
+    public function secret(){
+        $id = $_SESSION['uid'];
+        $user = DB::select('select `icon`,`secret` from `bbs_user_info` where `uid` = '.$id);
+        return view('user/user_secret',['icon'=>$user[0]->icon,'secret'=>$user[0]->secret]);
+    }
+    // 隐私设置修改
+    public function set($m){
+        $r = DB::update('update `bbs_user_info` set `secret` = ? where `uid` = '.$_SESSION['uid'],[$m]);
+        if($r){
+            return '1';
+        }else{
+            return false;
+        }
+    }
+
+
     // 密码页面
     public function password(){
     	$user = DB::select('select `icon`,`sex`, `username` from `bbs_user_info` where `uid` = '.$_SESSION['uid']);
@@ -73,6 +115,7 @@ class WordController extends Controller
     }
     // 头像页面
     public function icon(){
+
         $user = DB::select('select `icon`, `username`,`sex` from `bbs_user_info` where `uid` = '.$_SESSION['uid']);
 
         return view('user/user_icon',['icon'=>$user[0]->icon,'sex'=>$user[0]->sex,'name'=>$user[0]->username]);
@@ -95,6 +138,7 @@ class WordController extends Controller
 
         $icon = $path.'/'.$filename;
         $icon = ltrim($icon,'./');
+
         $result = DB::update('update `bbs_user_info` set `icon` = "'.$icon.'" where `uid` = '.$_SESSION['uid']);
         if($result){
             return redirect('/user/notice')->with(['message'=>'修改头像成功','url' =>'/user/icon', 'jumpTime'=>3,'status'=>true]);

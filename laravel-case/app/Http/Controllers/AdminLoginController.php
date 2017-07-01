@@ -57,7 +57,7 @@ class AdminLoginController extends Controller
 //        dd(session()->get('uid')[0]->uid);
 //        dd($_SESSION['admin']['uid'] = $uid);
 //        return view('/admin.public.layout',['name'=>$name]);
-        $this->notice('登录成功','/admin/user');
+        $this->notice('登录成功',url('/admin/user'));
     }
 
 

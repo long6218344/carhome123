@@ -18,9 +18,6 @@ class PostingController extends Controller
         return view('/home/posting', ['forum' => $forum]);
     }
 
-
-
-
     public function submit(Request $request)
     {
 
@@ -52,8 +49,8 @@ class PostingController extends Controller
 
                 'title'=>$title,
                 'fid'=>$fid,
-                'tauthor'=> session('username'),
-                'tauthorid'=> session('uid'),
+                'tauthor'=> $_SESSION['username'],
+                'tauthorid'=> $_SESSION['uid'],
                 'tdateline'=>$now,
                 'replies'=>$now
             ]);
@@ -64,17 +61,47 @@ class PostingController extends Controller
                 'pmessage'=>$content,
                 'fid'=>$fid,
                 'tid'=>$tid,
-                'pauthor'=> session('username'),
-                'pauthorid'=> session('uid'),
+                'pauthor'=> $_SESSION['username'],
+                'pauthorid'=> $_SESSION['uid'],
                 'pdateline'=>$now,
                 'pauthorip'=>$ip
             ]);
             } catch (\Exception $e) {
 //                var_dump('发帖失败',$e);
-                die;
                 return redirect('/home/blog/'.$fid);
             }
         });
+
+        // 发帖得分
+        $uid = $_SESSION['uid'];
+        // 1. 选出积分
+        $point = DB::table('bbs_pointrule')
+            ->where('typeid',3)
+            ->select('value')
+            ->first();
+//        dd($point);
+        $point = $point->value;
+        // 2. 加入数据库积分
+        $result = DB::table('bbs_point')
+            ->insert([
+                ['point'=>$point, 'uid'=>$uid, 'typeid'=>3],
+            ]);
+        // 3. 存入用户表
+
+        // 3.1 存入前先从用户表中选出积分,在相加
+        $credits = DB::table('bbs_user_info')
+            ->where('uid',$uid)
+            ->select('credits')
+            ->first();
+        $credits = $credits->credits;
+        $credits = $credits + $point;
+//        dd($credits);
+        // 更新user数据
+        $result =  DB::table('bbs_user_info')
+            ->where('uid',$uid)
+            ->update(['credits'=>$credits]);
+
+
         return redirect('/home/blog/'.$fid);
 
     }

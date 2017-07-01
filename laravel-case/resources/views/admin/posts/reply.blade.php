@@ -1,5 +1,5 @@
 @extends('admin/public/layout')
-@section('content')
+@section('main-content')
     <script src="../js/jquery-1.8.3.min.js"></script>
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
@@ -7,13 +7,13 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="icon-home home-icon"></i>
-                    <a href="#">后台主页</a>
+                    <a href="">评论管理</a>
                 </li>
 
                 <li>
-                    <a href="#">用户管理</a>
+                    <a href="">评论管理</a>
                 </li>
-                <li class="active">用户列表</li>
+                <li class="active">评论管理</li>
             </ul><!-- .breadcrumb -->
 
             <div class="nav-search" id="nav-search">
@@ -31,10 +31,10 @@
         <div class="page-content">
             <div class="page-header">
                 <h1>
-                    用户管理
+                    评论管理
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        用户列表
+                        评论管理
                     </small>
                 </h1>
             </div><!-- /.page-header -->
@@ -56,8 +56,8 @@
                                             </label>
                                         </th>
                                         <th>PID</th>
-                                        <th>FID</th>
-                                        <th>TID</th>
+                                        <th>所属版块(FID)</th>
+                                        <th>所属帖子(TID)</th>
                                         <th>RID</th>
                                         <th>作者</th>
                                         <th>作者id</th>
@@ -84,8 +84,8 @@
 
 
                                             <td>{{$v->pid}}</td>
-                                            <td>{{$v->fid}}</td>
-                                            <td>{{$v->tid}}</td>
+                                            <td>{{$v->name}}({{$v->fid}})</td>
+                                            <td>{{$v->title}}({{$v->tid}})</td>
                                             <td>{{$v->rid}}</td>
                                             <td>{{$v->rauthor}}</td>
                                             <td>{{$v->rauthorid}}</td>

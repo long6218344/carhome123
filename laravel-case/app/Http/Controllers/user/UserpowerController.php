@@ -16,7 +16,8 @@ class UserpowerController extends Controller
         //    $username = $_SESSION['username'];
         $username = $_SESSION['username'];
         $uid =  $_SESSION['uid'];
-        $icon = DB::table('bbs_user_info')->where('username', $username)->select('icon','credits')->first();
+        $icon = DB::table('bbs_user_info')->where('uid', $uid)->select('icon','credits')->first();
+
 //        dd($icon);
 
         // 从数据库获取权限
@@ -29,9 +30,9 @@ class UserpowerController extends Controller
             ->first();
 //        dd($result);
         $groupname = $result->groupname;
-
         // 如果用户为会员,判断他的等级,不同等级对应不同权限
         if($result->grouppower == 1){
+
             if($result->credits >= 100 && $result->credits < 200){
 //                $groupname = $result->groupname;
                 $level = 200 - $result->credits;
@@ -87,6 +88,15 @@ class UserpowerController extends Controller
                     ->select()
                     ->first();
 //                dd($result);
+            }elseif($result->credits >= 0 && $result->credits < 100){
+//                dd($result->credits);
+                $level = 100 - $result->credits;
+                $result = DB::table('bbs_user_group')
+                    ->where([
+                        ['bbs_user_group.gid','=',1]
+                    ])
+                    ->select()
+                    ->first();
             }else{
                 $level = 0;
                 $result = DB::table('bbs_user_group')
@@ -97,8 +107,6 @@ class UserpowerController extends Controller
                     ->first();
             }
         }
-//        dd($result);
-
         return view('/user.user_power')->with('icon',$icon->icon)->with('power',$result)->with('credits',$icon->credits)->with('level',$level)->with('groupname',$groupname);
     }
 

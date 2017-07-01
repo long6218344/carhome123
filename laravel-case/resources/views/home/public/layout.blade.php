@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8" />
+    {{--<meta http-equiv="X-UA-Compatible" content="IE=edge">--}}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>phpwind 官方论坛 - Powered by phpwind</title>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="generator" content="phpwind v9.0.1" />
@@ -14,9 +16,17 @@
     <link rel="stylesheet" href="{{asset('home/css/forum.css')}}" />
     <link rel="stylesheet" href="{{asset('home/css/editor_content.css')}}" />
     <script src="{{asset('home/js/plugin.client.js')}}"></script>
+
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap -->
+    <link href="{{asset('/home/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="./public/js/html5shiv.min.js"></script>
+    <script src="./public/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="./public/my.css">
     <!--  -->
     @section('imcss')
-
     @show
     <!--  -->
     <style>.main .thread_posts_list .st{font-size:14px;}</style><script>
@@ -72,15 +82,15 @@
     <header class="header_wrap">
         <div class="head">
             <div id="J_header" class="cc header">
-                <div class="logo">
-                    <a href="__APP__/Index/index">
-                        <!--后台logo上传-->
-                        <img src="{{asset('home/picture/4439b6b579ac496.png')}}" alt="phpwind 官方论坛">
-                    </a>
-                </div>
+                {{--<div class="logo">--}}
+                    {{--<a href="{{url('/')}}">--}}
+                        {{--<!--后台logo上传-->--}}
+                        {{--<h1>carhome123官方论坛</h1>--}}
+                    {{--</a>--}}
+                {{--</div>--}}
                 <!-------调用显示导航------------->
-                <a rel="nofollow" href="__APP__/Login/index" class="login" >首页</a>
-                <a rel="nofollow" href="__APP__/Register/index" class="login">新帖</a>
+                <b><a rel="nofollow" href="{{url('/')}}" class="login" >carhome123官方论坛</a></b>
+                {{--<a rel="nofollow" href="__APP__/Register/index" class="login">新帖</a>--}}
 
                 <if condition="$Think.session.webuser != ''" >
                     <!--  用户信息头像那一部分  -->
@@ -102,14 +112,14 @@
                                     <div class="core_arrow_top" id="selected" style="left:77px;"><em></em><span></span></div>
                                     <ul class="ct cc">
                                         <li><a href="/user/index"><em class="icon_space"></em>我的空间</a></li>
-                                        <li><a href="__APP__/FriendList/index"><em class="icon_fresh"></em>我的好友</a></li>
+                                        <li><a href="/user/friend"><em class="icon_fresh"></em>我的好友</a></li>
                                         <li><a href="__APP__/Messagetext/index"><em class="icon_task"></em>站内信息</a></li>
-                                        <li><a href="__APP__/Message/index"><em class="icon_article"></em>我的信息</a></li>
+                                        <li><a href="/home/message-write/2"><em class="icon_article"></em>我的信息</a></li>
                                         <li><a href="__APP__/Medal/index"><em class="icon_medal"></em>我的勋章</a></li>
                                     </ul>
                                     <ul class="ft cc">
-                                        <li><a href="__APP__/Personinfo/index"><em class="icon_profile"></em>个人设置</a></li>
-                                        <li><a href="__APP__/Login/logout" rel="nofollow"><em class="icon_quit"></em>退出</a></li>
+                                        <li><a href="/user/show"><em class="icon_profile"></em>个人设置</a></li>
+                                        <li><a href="#" rel="nofollow"><em class="icon_quit"></em>退出</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -118,7 +128,8 @@
 
                     <else />
                     <div class="header_login">
-                        <a rel="nofollow" href="/home/login" class="mr15">登录</a><a rel="nofollow" href="/home/sign">注册</a>
+                        <a rel="nofollow" href="{{url('/home/login')}}" class="mr15">登录</a><a rel="nofollow" href="/home/sign">注册</a>
+
                     </div>
                 </if>
 
@@ -203,6 +214,11 @@
 
 </div>
 @section('imjs')
+    <!-- jQuery  -->
+    <script src="./public/js/jquery.min.js"></script>
+    <!-- Bootstrap的JS文件需要在JQ之后引入 -->
+    <script src="./public/js/bootstrap.min.js"></script>
 @endsection
+
 </body>
 </html>

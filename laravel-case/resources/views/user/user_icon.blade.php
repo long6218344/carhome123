@@ -13,7 +13,7 @@
 
                 <!-- <li><a href="#">修改头像</a></li> -->
 
-                <li><a href="#">隐私设置</a></li>
+                <li><a href="{{url('user/secret')}}">隐私设置</a></li>
                 <li><a href="#">消息设置</a></li>
             </ul>
             <div class="dynD">

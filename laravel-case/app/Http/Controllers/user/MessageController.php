@@ -19,8 +19,9 @@ class MessageController extends Controller
             if($jd == 2){
 
                	$list = DB::table('bbs_message')->where('reuid', '=', $id )->orWhere('seuid', '=', $id )->simplePaginate(10);
-               	dump($list);
+//               	dump($list);
            
+
                	return view('user/message',['jd' => $jd, 'list' => $list,'name'=>$user->username,'icon'=>$user->icon,'sex'=>$user->sex,'id'=>$_SESSION['uid'],] );
             }
             elseif ($jd == 1)
@@ -33,7 +34,6 @@ class MessageController extends Controller
             		return view('user/message', ['jd' => $jd,'name'=>$user->username,'icon'=>$user->icon,'sex'=>$user->sex,'toname'=>'',] );
             	}
             }
-
 
        }
 
@@ -51,16 +51,21 @@ class MessageController extends Controller
 			$time     = "'$time'";
 			$sql      = 'select * from `bbs_user_info` where username='.$username;
 			$result   = DB::select($sql);
-			
 			if (!$result){
 				return redirect('/user/notice')->withInput()->with(['message'=>'你输入的用户名并不存在','url' =>'/home/message-write/1', 'jumpTime'=>2,'status'=>false]);
 				// $this->notice('都和你讲了这个用户名不存在 你这人真的是');
 			}
-       		$this->validate($a, [
-       		    'user' => 'required',
-       		    'head' => 'required',
-       		    'details' => 'required',
-       		]);
+
+      if($result[0]->secret == 2){
+        return redirect('/user/notice')->withInput()->with(['message'=>'对方只接收互为好友的私信','url' =>'/home/message-write/1', 'jumpTime'=>2,'status'=>false]);
+      }
+
+
+   		$this->validate($a, [
+   		    'user' => 'required',
+   		    'head' => 'required',
+   		    'details' => 'required',
+   		]);
 			
 			foreach($result as $v){
 				$reid     = $v->uid;
@@ -75,6 +80,7 @@ class MessageController extends Controller
 			if ($add)
 			{
 			// $this->notice('发送成功');
+
 				return redirect('/user/notice')->with(['message'=>'发送成功','url' =>'/home/message-write/2/'.$_SESSION['uid'], 'jumpTime'=>2,'status'=>true]);
 			}
 

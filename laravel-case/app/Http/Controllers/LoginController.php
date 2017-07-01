@@ -39,24 +39,50 @@ class LoginController extends Controller
 
         if(empty($uname))
         {
-         $this->notice('您输入的帐号不存在');
+            $this->notice('您输入的帐号不存在');
         }
 
-        foreach ($uname as $user) {$pwd =  $user->pwd;}
+        foreach ($uname as $user) {
+            $pwd =  $user->pwd;
+            $uname = $user->username;
+            $uid = $user->uid;
+        }
 
-//         dump($pass , $pwd);die;
+        if ($pass !== $pwd){$this->notice('您的密码不正确');}
 
-         if ($pass !== $pwd){$this->notice('您的密码不正确');}
+        $_SESSION['username'] = $uname;
+
+        $_SESSION['uid'] = $uid;
+
+        // 登录得分
+        // 1. 选出积分
+        $point = DB::table('bbs_pointrule')
+            ->where('typeid',1)
+            ->select('value')
+            ->first();
+        $point = $point->value;
+        // 2. 加入数据库积分
+        $result = DB::table('bbs_point')
+            ->insert([
+                ['point'=>$point, 'uid'=>$uid, 'typeid'=>1],
+            ]);
+        // 3. 存入用户表
+
+        // 3.1 存入前先从用户表中选出积分,在相加
+        $credits = DB::table('bbs_user_info')
+            ->where('uid',$uid)
+            ->select('credits')
+            ->first();
+        $credits = $credits->credits;
+        $credits = $credits + $point;
+        // 更新user数据
+        $result =  DB::table('bbs_user_info')
+            ->where('uid',$uid)
+            ->update(['credits'=>$credits]);
+
+        $this->notice('登录成功',url('/'));
 
 
-
-         $_SESSION['username'] = $name;
-
-
-        $_SESSION['uid'] = $uid[0]->uid;
-//        echo 123;die;
-//var_dump(session('username'));
-        $this->notice('登录成功','/');
     }
 
 

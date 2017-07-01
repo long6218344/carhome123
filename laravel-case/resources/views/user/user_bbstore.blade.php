@@ -14,11 +14,10 @@
             </div>
             <div class="dynD"></div>
             <div id="userstore">
-            @if($list == null)
-                <p>你还没有收藏的</p>
+            <p style='padding:10px'>收藏论坛功能尚未开放.请绕行....谢谢</p>
+            <!-- @if($list == null)
+                <p>你还没有收藏的论坛</p>
             @else
-                <!-- <div class="dynD"></div> -->
-
                 <div class="coll-list-box" style="margin-top: 10px;">
                         @foreach($list as $k)
                             @foreach($k as $n)
@@ -31,9 +30,9 @@
                             @endforeach
                             @endforeach
                             
-                    </div>
-                    @endif
-            </div>
+                </div>
+            @endif
+            </div> -->
 
         </div>
    

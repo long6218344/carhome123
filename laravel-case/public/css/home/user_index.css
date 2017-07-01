@@ -1022,6 +1022,8 @@ a.confirmDelete {
     font-size: 14px;
     
 }
+<<<<<<< HEAD
+=======
 #reply{
     width: 800px;
 }
@@ -1032,6 +1034,7 @@ a.confirmDelete {
 #reply td{
     padding: 10px 0;
 }
+>>>>>>> 3e1251a09ea19e5b87b6adb756efcdc0460558f5
 
 #userstore .coll-list-box {
     margin-bottom: 20px;

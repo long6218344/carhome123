@@ -3,12 +3,12 @@
 	<div class="rightside">
 
 	    <div class="user-center">
-	        <h1 class="user-name"><b>{{$name}}</b>
+	        <h1 class="user-name"><b>{{$user->username}}</b>
 	            <i class="icon16 icon16-vorange" style="display:none;"></i>
 	            <a href="" data-toggle="help" class="i-card card-common" data-target="53144230">
 	                <img src="{{asset('./image/home/card_1_26X16.png')}}"></a>
 	            <em>|</em>
-	            @if($sex == 1)
+	            @if($user->sex == 1)
 	            <span class="man"></span>
 	            @else
 	            <span class="woman"></span>
@@ -20,13 +20,14 @@
 	            <span class="user-id" id="levelName" style="display: none;"></span>
 	            <a href="" class="moderator-jifen" id="moderatorPoints" style="display: none;"></a>
 
-	            <a href="{{url('user/friend')}}" class="state-mes">关注&nbsp;&nbsp;<span>{{$views}}</span></a>
-	            <a href="{{url('user/follow')}}" class="state-mes">粉丝&nbsp;&nbsp;<span>{{$fans}}</span></a>
+	            <a href="{{url('user/friend')}}" class="state-mes">关注&nbsp;&nbsp;<span>{{$user->views}}</span></a>
+	            <a href="{{url('user/follow')}}" class="state-mes">粉丝&nbsp;&nbsp;<span>{{$user->fans}}</span></a>
+	            <a href="{{url('user/user_point')}}" class="state-mes">积分&nbsp;&nbsp;<span>{{$user->credits}}</span></a>
 	        </div>
 	        <div class="user-state">
 	            <div class="user-con">
 
-	                <a href="{{url('user/myword')}}">精华帖 <span id="jhtopicCount">{{$num1}}</span></a><a href="{{url('user/myword')}}" class="last-span">主帖 <span id="topicCount">{{$num}}</span></a>
+	                <a href="{{url('user/word')}}">精华帖 <span id="jhtopicCount">{{$num1}}</span></a><a href="{{url('user/myword')}}" class="last-span">主帖 <span id="topicCount">{{$num}}</span></a>
 
 	            </div>
 	        </div>
@@ -130,8 +131,8 @@
 	                <div class="tab-nav">
 	                    <h3 class="tab-title">消息阅读</h3>
 	                    <ul>
-	                        <li class="current" tabid="7"><a href="javascript:void(0);" data-target="#tab-7" data-toggle="tab">论坛回复 <em></em></a></li>
-	                        <li class="" tabid="8"><a href="javascript:void(0);" data-target="#tab-8" data-toggle="tab">评论回复 <em></em></a></li>
+	                       <!--  <li class="current" tabid="7"><a href="javascript:void(0);" data-target="#tab-7" data-toggle="tab">论坛回复 <em></em></a></li> -->
+	                        <li class="current" tabid="8"><a href="javascript:void(0);" data-target="#tab-8" data-toggle="tab">评论回复 <em></em></a></li>
 	                        <li class="" tabid="9"><a href="javascript:void(0);" data-target="#tab-9" data-toggle="tab">粉丝关注 <em></em></a></li>
 	                        <li class="" tabid="10"><a href="javascript:void(0);" data-target="#tab-10" data-toggle="tab">系统消息<em></em></a></li>
 	                        <li class="" tabid="11"><a href="javascript:void(0);" data-target="#tab-11" data-toggle="tab">私信 <em></em></a></li>
@@ -141,12 +142,31 @@
 
 
 	                <div class="tab-content mes-remind-content" id="ureply">
-	                    <!-- 论坛回复内容 -->
-	                    <div id="tab-7" class="tab-content-item current mes-club-con" appisload="false"><p class="no-mes">您暂时还未收到论坛回复~</p></div>
 	                    <!-- 评论回复内容 -->
-	                    <div id="tab-8" class="tab-content-item mes-review-con" appisload="false"><p class="no-mes">还没有人针对您的评论进行回复~</p></div>
+	                    @if($user1 == null)
+	                    <div id="tab-8" class="tab-content-item mes-review-con current" appisload="false"><p class="no-mes">还没有人针对您的评论进行回复~</p></div>
+	                    @else
+	                    <div id="tab-8" class="tab-content-item mes-review-con current" appisload="false" >
+	                    	<p>最近的一条回复消息是:</p>
+	                    	<p class="no-mes" >
+	                    		<a href="" style="font-size: 18px">{{$user1->rauthor}}</a>&nbsp;在:&nbsp;<a href="{{url('home/post/'.$user1->tid)}}">《{{$user1->title}}</a>》中给你回复:<i><a href="{{url('home/post/'.$user1->tid)}}" style="color:#666"><b>{{str_limit($user1->rmessage, $limit = 35, $end='....')}}</b></a></i>
+	                    	</p>
+	                    	<span><i>{{$user1->rdateline}}</i></span>
+	                    </div>
+	                    @endif
 	                    <!-- 粉丝信息内容 -->
+	                    @if($info == null)
 	                    <div id="tab-9" class="tab-content-item mes-fans-con" appisload="false"><p class="no-mes">最近没有新的粉丝~</p></div>
+	                    @else
+	                    <div id="tab-9" class="tab-content-item mes-fans-con" appisload="false">
+	                    	<p>最近一条好友关注消息:</p>
+	                    	<p class="no-mes">
+	                    		<a href="" style="font-size: 18px">{{$user2->username}}</a>&nbsp;&nbsp; 在<span><i>{{date('Y-m-d H:m',$info->time)}}</i></span>&nbsp;&nbsp;关注了你
+	                    	</p>
+	                    	
+	                    </div>
+
+	                    @endif
 	                    <!--系统消息-->
 	                    <div id="tab-10" class="tab-content-item mes-system-con" appisload="true">
 	                        <ul>
@@ -154,7 +174,16 @@
 	                        <div class="more"><a href="">查看全部系统消息&gt;&gt;</a></div>
 	                    </div>
 	                    <!-- 私信内容 -->
+	                    @if($user3 == null)
 	                    <div class="tab-content-item mes-letter-con"> <p class="no-mes">您还未收到他人发送的私信~</p></div>
+	                    @else
+	                    <div class="tab-content-item mes-letter-con">
+	                    	<p>最近的一条好友私信消息:</p> 
+	                    	<p class="no-mes">
+	                    		<a href="" style="font-size: 18px">{{$user3->seperson}}</a>&nbsp;&nbsp; 在<span><i>{{date('Y-m-d H:m',$user3->time)}}</i></span>&nbsp;&nbsp;给你发了一封标题为《<a href="{{url('/home/message-write/2/'.$_SESSION['uid'])}}" style="font-size: 18px">{{$user3->head}}</a>》的私信
+	                    	</p>
+	                    </div>
+	                    @endif
 	                    <!-- <div id="tab-11" class="tab-content-item mes-letter-con " appisload="false"><p class="no-mes">您还未收到他人发送的私信~</p></div> -->
 	                </div>
 	            </div>
@@ -167,8 +196,7 @@
 	                    <ul id="favoritesOnClick">
 	                        <li class="current"><a href="javascript:void(0);" data-target="#tab-13" id="clubTab" appisload="true" data-toggle="tab" tabid="8">收藏的论坛</a></li>
 	                        <li><a href="javascript:void(0);" data-target="#tab-15" data-toggle="tab" id="topicTab" appisload="true" tabid="1">收藏的帖子</a></li>
-	                        <li><a href="javascript:void(0);" data-target="#tab-14" data-toggle="tab" id="jxTab" appisload="true" tabid="6">收藏的精选</a></li>
-	                        <li><a href="javascript:void(0);" data-target="#tab-16" data-toggle="tab" id="articleTab" appisload="true" tabid="5">收藏的文章</a></li>
+	                        
 	                    </ul>
 	                </div>
 	                <div class="tab-content" id='ustore'>
@@ -176,7 +204,7 @@
 	                        <!-- start 无收藏论坛 -->
 	                        <div class="find-club" defaultfavorites="club" >
 	                            <span>您还没有收藏论坛，去找论坛进行收藏~</span>
-	                            <a href="" target="_blank">找论坛</a>
+	                            <a href="{{url('/')}}" target="_blank">找论坛</a>
 	                        </div>
 	                        <!-- end 无收藏论坛 -->
 	                        <!-- start 有收藏论坛 -->
@@ -187,7 +215,7 @@
 	                                        <img src="{{asset('image/home/120_200042.jpg')}}" width="120" height="90" defaultimg="image">
 	                                    </a>
 	                                </dt>
-	                                <dd><a href="" target="_blank">自驾游论坛</a>
+	                                <dd><a href="{{url('home/blog/9')}}" target="_blank">宝马论坛</a>
 	                                </dd>
 	                            </dl>
 	                            <dl>
@@ -195,7 +223,7 @@
 	                                        <img src="{{asset('image/home/s_201302251823083624136.jpg')}}" width="120" height="90" defaultimg="image">
 	                                    </a>
 	                                </dt>
-	                                <dd><a href="" target="_blank">福克斯论坛</a>
+	                                <dd><a href="{{url('home/blog/2')}}" target="_blank">奥迪论坛</a>
 	                                </dd>
 	                            </dl>
 	                            <dl>
@@ -203,44 +231,49 @@
 	                                        <img src="{{asset('image/home/s_20140806072335496497111.jpg')}}" width="120" height="90" defaultimg="image">
 	                                    </a>
 	                                </dt>
-	                                <dd><a href="" target="_blank">速腾论坛</a>
+	                                <dd><a href="{{url('home/blog/4')}}" target="_blank">阿斯顿马丁</a>
 	                                </dd>
 	                            </dl>
 	                            <dl class="last-dl"><dt><a href="" target="_blank">
 	                                        <img src="{{asset('image/home/s_201006301947123003343.jpg')}}" width="120" height="90" defaultimg="image">
 	                                    </a>
 	                                </dt>
-	                                <dd><a href="" target="_blank">POLO论坛</a>
+	                                <dd><a href="{{url('home/blog/7')}}" target="_blank">本田论坛</a>
 	                                </dd>
 	                            </dl>
 	                        </div>
 
 	                        <div class="more" id="clubFavoritesMore" style="display: none;">
-	                            <a href="http://">查看全部收藏的论坛&gt;&gt;</a>
+	                            <a href="#">查看全部收藏的论坛&gt;&gt;</a>
 	                        </div>
 	                        <!-- end 有收藏论坛 -->
 	                    </div>
 	                    <div id="tab-14" class="tab-content-item" >
 	                        <!-- start 无收藏论坛 -->
+							@if($info1 == null)
 	                        <div class="find-club" defaultfavorites="club" style="">
 	                            <span>您还没有收藏帖子~</span>
-	                            <a href="" target="_blank">找论坛</a>
+	                            <a href="{{url('/')}}" target="_blank">找帖子</a>
 	                        </div>
-	                    </div>
-	                    <div id="tab-15" class="tab-content-item" >
-	                        <!-- start 无收藏论坛 -->
-	                        <div class="find-club" defaultfavorites="club" style="">
-	                            <span>您还没有收藏精选~</span>
-	                            <a href="" target="_blank">找论坛</a>
+	                        @else
+	                        <div class="" style="">
+	                    		<p>最新收藏的一则帖子:</p>
+	                           
+	                                <div class="coll-list-pic">
+                                        标题:《<a href="{{url('home/post/'.$user4->tid)}}" style="font-size: 16px" >{{str_limit($user4->ptitle, $limit = 15, $end = '····')}}</a>》
+                                    </div>
+                                    <p class="p-height">
+                                        内容简要:<span style="font-size: 20px"><i>{{str_limit($user4->pmessage, $limit = 35, $end = '····')}}</i></span>
+                                    </p>
+                                    <span>{{date('Y-m-d H:i',$info1->time)}}</span>
+	                            	<p style="margin-top: 10px">
+	                            		<a href="{{url('/')}}">去看更多精彩帖子>>>>></a>
+	                            	</p>
+	                            <!-- <a href="{{url('/')}}" target="_blank">找帖子</a> -->
 	                        </div>
+	                        @endif
 	                    </div>
-	                    <div id="tab-16" class="tab-content-item" >
-	                        <!-- start 无收藏论坛 -->
-	                        <div class="find-club" defaultfavorites="club" style="">
-	                            <span>您还没有收藏文章~</span>
-	                            <a href="" target="_blank">找论坛</a>
-	                        </div>
-	                    </div>
+	                    
 	                </div>
 	            </div>
 	        </div>

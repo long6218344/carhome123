@@ -14,12 +14,8 @@
                         <span>{{date('Y-m-d',$regdate)}}</span>
                     </li>
                     <li>
-                        <strong>最后登录时间:</strong>
-                        <span>222</span>
-                    </li>
-                    <li>
                         <strong>积分:</strong>
-                        <span>222</span>
+                        <span>{{$credits}}</span>
                     </li>
                 </div>
             </div>
@@ -33,10 +29,6 @@
                     <strong>勋章:</strong>
                     <span>222</span>
                     <!-- <a href="">000</a> -->
-                </li>
-                <li>
-                    <strong>关注的车:</strong>
-                    <a href="">000</a>
                 </li>
             </div>
         </div>
@@ -66,10 +58,10 @@
                             <div style="margin-left: 50px">
                             <p>
                                 <a href="">{{$word->rauthor}}</a>&nbsp;&nbsp;在:&nbsp;&nbsp;
-                                《<a href="{{$word->tid}}">{{$word->title}}</a>》
+                                《<a href="{{url('home/post/'.$word->tid)}}">{{$word->title}}</a>》
                             </p>
                             <p>回复:
-                            <a href="#">{{str_limit($word->rmessage, $limit = 20, $end = '····')}}</a></p>
+                            <a href="{{url('home/post/'.$word->tid)}}">{{str_limit($word->rmessage, $limit = 20, $end = '····')}}</a></p>
                             </div>
                             </td>
                         <td style="">{{$word->clicknumber}}</td>

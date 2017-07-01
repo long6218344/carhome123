@@ -196,25 +196,26 @@
                                     用户权限　 </label>
 
                                 <div class="col-sm-9">
-                                    <input type="radio" name="grouppower" value="1" {{$v->grouppower == 1?'checked':''}} />　管理员　　　
-                                    <input type="radio" name="grouppower" value="2" {{$v->grouppower == 2?'checked':''}}/>　版主　　　　
-                                    <input type="radio" name="grouppower" value="3" {{$v->grouppower == 3?'checked':''}}/>　会员　　
-                                    <input type="radio" name="grouppower" value="3" {{$v->grouppower == 4?'checked':''}}/>　禁言　
+                                    <input type="radio" name="grouppower" value="1" {{$v->grouppower == 1?'checked':''}} />　会员　　　
+                                    <input type="radio" name="grouppower" value="2" {{$v->grouppower == 2?'checked':''}}/>　游客　　　　
+                                    <input type="radio" name="grouppower" value="3" {{$v->grouppower == 3?'checked':''}}/>　管理员　　
+                                    <input type="radio" name="grouppower" value="4" {{$v->grouppower == 4?'checked':''}}/>　版主
+                                    <input type="radio" name="grouppower" value="5" {{$v->grouppower == 5?'checked':''}}/>　禁言用户
                                 </div>
                             </div>
 
                             <div class="space-4"></div>
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 版块版主　
-                                </label>
+                            {{--<div class="form-group">--}}
+                                {{--<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 版块版主　--}}
+                                {{--</label>--}}
 
-                                <div class="col-sm-9">
-                                    <input type="checkbox" name="type" value="1" {{$v->type == 1?'checked':''}}/>　大众版　　　
-                                    <input type="checkbox" name="type" value="2" {{$v->type == 2?'checked':''}}/>　宝马版　　　
-                                    <input type="checkbox" name="type" value="3" {{$v->type == 3?'checked':''}}/>　奔驰版　　　
-                                </div>
-                            </div>
+                                {{--<div class="col-sm-9">--}}
+                                    {{--<input type="checkbox" name="type" value="1" {{$v->type == 1?'checked':''}}/>　大众版　　　--}}
+                                    {{--<input type="checkbox" name="type" value="2" {{$v->type == 2?'checked':''}}/>　宝马版　　　--}}
+                                    {{--<input type="checkbox" name="type" value="3" {{$v->type == 3?'checked':''}}/>　奔驰版　　　--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
                             <div class="space-4"></div>
 

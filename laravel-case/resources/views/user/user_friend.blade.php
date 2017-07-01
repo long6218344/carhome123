@@ -29,7 +29,7 @@
                     <div id="dynamicList">
                         <ul class="duList2" id="ulList">
                             @foreach($friend as $k)
-                            <li id="{{$k->uid}}">
+                            <li id="cc{{$k->uid}}">
                                 <div class="userHead2">
                                     @if($k->icon == null)
                                     <a href=""><img src="{{asset('image/home/head_120X120.gif')}}" alt="" width="50px" height="50px"></a>
@@ -119,7 +119,8 @@
 <script>
     $(function(){
         $("#ulList li").each(function(){
-            var id = $(this).attr("id");
+            var ad = $(this).attr("id");
+            var id = ad.slice(2);
             $(this).mouseover(function(){                          
                    $("#a"+id).show();
             }).mouseout(function(){             
@@ -141,7 +142,7 @@
             },
             success: function( id ) {
                 // console.log(id);
-                    var sel = $('#'+id);
+                    var sel = $('#cc'+id);
                     sel.remove();
             }
         });

@@ -14,6 +14,7 @@ class BothFriendController extends Controller
         // 查用户表 有页面需要值
         $user = DB::table('bbs_user_info')->where('username', $_SESSION['username'])->first();
         // 根据当前用户id查好友表 得到uid,fid等于当前用户id的 顺便排除关注过的人
+
         $info = DB::select('select `fid` from `bbs_friend` where uid = '.$_SESSION['uid']);
        
 
@@ -26,6 +27,7 @@ class BothFriendController extends Controller
                 $arr[] = $a->fid; 
             }
             // 感兴趣的人 排除已经关注过的  whereNotIn() 随机得到inRandomOrder()
+
             $randomUser = DB::table('bbs_user_info')->where('uid','<>',$_SESSION['uid'])->whereNotIn('uid', $arr)->inRandomOrder()->get();
             if($info && $list){
                 
@@ -64,6 +66,7 @@ class BothFriendController extends Controller
             }
         }else{
             // 除自己id 外 随机出用户
+
             $randomUser = DB::table('bbs_user_info')->where('uid','<>',$_SESSION['uid'])->inRandomOrder()->get();
             return view('user/user_bothfriend',[
                 'name'=>$user->username,
@@ -81,6 +84,7 @@ class BothFriendController extends Controller
     // 取消关注
     public function fans($id){
         //取消关注 删除 $id是好友fid
+
         $info = DB::table('bbs_friend')->where([['uid', $_SESSION['uid']],['fid',$id]])->delete();
         $info1 = DB::table('bbs_user_info')->where('uid', $_SESSION['uid'])->decrement('views');
         $info2 = DB::table('bbs_user_info')->where('uid', $id)->decrement('fans');
@@ -91,6 +95,7 @@ class BothFriendController extends Controller
     public function addfans($uid){
         // 关注 插入好友表
         $info = DB::table('bbs_friend')->insert(
+
             ['uid' => $_SESSION['uid'], 'fid' => $uid]
         );
 

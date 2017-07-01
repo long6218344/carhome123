@@ -15,7 +15,7 @@ class BlogPlateController extends Controller
         $forum = DB::table('forum')
             ->where('fid',$request->fid)
             ->get();
-//        var_dump($result);
+//        var_dump($result);die;
 //        $result->toArray();
 
         return view('/home/index2',['result'=>$result,'forum'=>$forum]);

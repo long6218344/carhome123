@@ -166,27 +166,27 @@
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户权限　 </label>
 
                             <div class="col-sm-9">
-                                <input type="radio" name="grouppower" value="1"/>　管理员　　　
-                                <input type="radio" name="grouppower" value="2"/>　版主　　　　
-                                <input type="radio" name="grouppower" value="3"/>　会员
-
-                                <input type="radio" name="grouppower" value="4"/>　禁言
+                                <input type="radio" name="grouppower" value="1" />　会员　　　
+                                <input type="radio" name="grouppower" value="2"/>　游客　　　　
+                                <input type="radio" name="grouppower" value="3" />　管理员　　
+                                <input type="radio" name="grouppower" value="4" />　版主
+                                <input type="radio" name="grouppower" value="5" />　禁言用户
                                 　　　
                             </div>
                         </div>
 
                         <div class="space-4"></div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 版块版主　
-                            </label>
+                        {{--<div class="form-group">--}}
+                            {{--<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 版块版主　--}}
+                            {{--</label>--}}
 
-                            <div class="col-sm-9">
-                                <input type="checkbox" name="type" value="1"/>　大众版　　　
-                                <input type="checkbox" name="type" value="2"/>　宝马版　　　
-                                <input type="checkbox" name="type" value="3"/>　奔驰版　　　
-                            </div>
-                        </div>
+                            {{--<div class="col-sm-9">--}}
+                                {{--<input type="checkbox" name="type" value="1"/>　大众版　　　--}}
+                                {{--<input type="checkbox" name="type" value="2"/>　宝马版　　　--}}
+                                {{--<input type="checkbox" name="type" value="3"/>　奔驰版　　　--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
                         <div class="space-4"></div>
 

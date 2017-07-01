@@ -1,6 +1,3 @@
-
-
-
 <!doctype html>
 <html>
 <head>
@@ -82,19 +79,19 @@
     <header class="header_wrap">
         <div class="head">
             <div id="J_header" class="cc header">
-                <div class="logo">
-                    <a href="__APP__/Index/index">
-                        <!--后台logo上传-->
-                        <img src="{{asset('home/picture/4439b6b579ac496.png')}}" alt="phpwind 官方论坛">
-                    </a>
-                </div>
+                {{--<div class="logo">--}}
+                    {{--<a href="{{url('/')}}">--}}
+                        {{--<!--后台logo上传-->--}}
+                        {{--<h1>carhome123官方论坛</h1>--}}
+                    {{--</a>--}}
+                {{--</div>--}}
                 <!-------调用显示导航------------->
-                <a rel="nofollow" href="__APP__/Login/index" class="login" >首页</a>
-                <a rel="nofollow" href="__APP__/Register/index" class="login">新帖</a>
+                <b><a rel="nofollow" href="{{url('/')}}" class="login" >carhome123官方论坛</a></b>
+                {{--<a rel="nofollow" href="__APP__/Register/index" class="login">新帖</a>--}}
 
                 <if condition="$Think.session.webuser != ''" >
                     <!--  用户信息头像那一部分  -->
-                    <a rel="nofollow" href="__APP__/Personinfo/avatar" class="fr userface" title="修改头像"><img class="J_avatar" src="__PUBLIC__/uploads/s_{$_SESSION['webuser']['icon']}" data-type="middle" width="50" height="50" onerror="this.src='{{asset('home/picture/face_small.jpg')}}'" /></a>
+                    <a rel="nofollow" href="{{url('user/icon')}}" class="fr userface" title="修改头像"><img class="J_avatar" src="{{asset('image/home/head_120X120.gif')}}" data-type="middle" width="50" height="50" onerror="this.src='{{asset('home/picture/face_small.jpg')}}'" /></a>
 
                     <!-------------->
                     <!--消息下拉菜单-->
@@ -112,14 +109,14 @@
                                     <div class="core_arrow_top" id="selected" style="left:77px;"><em></em><span></span></div>
                                     <ul class="ct cc">
                                         <li><a href="/user/index"><em class="icon_space"></em>我的空间</a></li>
-                                        <li><a href="__APP__/FriendList/index"><em class="icon_fresh"></em>我的好友</a></li>
+                                        <li><a href="/user/friend"><em class="icon_fresh"></em>我的好友</a></li>
                                         <li><a href="__APP__/Messagetext/index"><em class="icon_task"></em>站内信息</a></li>
-                                        <li><a href="__APP__/Message/index"><em class="icon_article"></em>我的信息</a></li>
+                                        <li><a href="/home/message-write/2"><em class="icon_article"></em>我的信息</a></li>
                                         <li><a href="__APP__/Medal/index"><em class="icon_medal"></em>我的勋章</a></li>
                                     </ul>
                                     <ul class="ft cc">
-                                        <li><a href="__APP__/Personinfo/index"><em class="icon_profile"></em>个人设置</a></li>
-                                        <li><a href="__APP__/Login/logout" rel="nofollow"><em class="icon_quit"></em>退出</a></li>
+                                        <li><a href="/user/show"><em class="icon_profile"></em>个人设置</a></li>
+                                        <li><a href="#" rel="nofollow"><em class="icon_quit"></em>退出</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -133,7 +130,7 @@
                 </if>
 
                 <div class="header_search" role="search">
-                    <form action="__CONTROLLER__/index" method="post">
+                    <form action="#" method="post">
                         <button  class="search-btn"type="submit" aria-label="搜索">搜索</button>
                         <input class="search-txt" type="text" id="s" aria-label="搜索关键词" accesskey="s" placeholder="按帖子标题搜索" x-webkit-speech speech name="title"/>
                         <input type="hidden" name="csrf_token" value="7c634c22f900c920"/>
@@ -164,6 +161,7 @@
                                 $(".header_search").animate({width: 0},100, function() {
 
                                 });
+
 
                                 $(".search-magnify").show();
                             }
@@ -199,9 +197,9 @@
                 <div class="left index-left" id="left">
                     <div class="userHead" id="userHead">
                         @if($icon == null)
-                        <a href=""><img src="{{asset('image/home/head_120X120.gif')}}" alt=""></a>
+                        <a href="{{url('user/icon')}}"><img src="{{asset('image/home/head_120X120.gif')}}" alt=""></a>
                         @else
-                       <a href=""><img src="{{asset($icon)}}" alt="" width="120"></a>
+                       <a href="{{url('user/icon')}}"><img src="{{asset($icon)}}" alt="" width="120"></a>
                         @endif
                         <p class="uh_edit"  id="upHead">
                             <a href="{{url('user/icon')}}">修改头像</a>
@@ -241,18 +239,15 @@
                         <h4>
                             应用</h4>
                         <ul class="item">
-                            <li class=""><a href="#" class="ico_yy20">任务中心</a></li>
-
                             <li class=""><a class="ico_yy15" href="{{url('user/allfeeds')}}">好友动态</a> </li>
                             <!-- <li class=""><a class="ico_yy12" href="#">车主价格</a></li> -->
 
-                            <li class=""><a class="ico_yy08" href="#">我的权限</a></li>
-                            <li class=""><a class="ico_yy01" href="#">我的积分</a></li>
+                            <li class=""><a class="ico_yy08" href="/user/user_power">我的权限</a></li>
+                            <li class=""><a class="ico_yy01" href="/user/user_point">我的积分</a></li>
                             <li class="" style="z-index: 200;">
                                 <a class="ico_yy03" href="{{url('user/store')}}">
                                     收藏</a>
                             </li>
-                            <li class=""><a class="ico_yy06" href="#">上传车型图</a></li>
                         </ul>
                     </div>
                 </div>

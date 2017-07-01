@@ -13,28 +13,30 @@ class StoreController extends Controller
         $user = DB::table('bbs_user_info')->select('icon')->where('uid', $id)->first();
         // 收藏贴
         $num = DB::table('bbs_astore')->select('thid')->where('uid',$id)->get();
-        if(!empty($num)){
+        // 如果有收藏贴
+        if(count($num) != 0){
             // 收藏表 thread表 post表 查
             foreach($num as $k){
-                $list[] = DB::table('post')
-                ->join('bbs_astore','bbs_astore.thid','=','post.tid')
-                ->join('thread','thread.tid','=','post.tid')
+                // dump($k);die;
+                $list[] = DB::table('bbs_astore')
+                ->join('post','bbs_astore.thid','=','post.tid')
+                ->join('thread','thread.tid','=','bbs_astore.thid')
                 ->where('post.tid',$k->thid)
                 ->select('thid','ptitle','pmessage','time')
                 ->orderBy('time','desc')
                 ->get();
             }
-            // dump(time());die;
+            // dump($list);die;
             return view('user/user_store',[
             'icon'=>$user->icon,
             'list'=>$list,
-           
+
             ]);
         }else{
             return view('user/user_store',[
             'icon'=>$user->icon,
             'list'=>'',
-           
+
             ]);
         }
 
@@ -51,15 +53,11 @@ class StoreController extends Controller
         $user = DB::table('bbs_user_info')->select('icon')->where('uid', $id)->first();
         // 收藏贴
         $num = DB::table('bbs_bstore')->select('fid')->where('uid',$id)->get();
-        if(!empty($num)){
+        if(count($num) != 0){
             // 收藏表 thread表 post表 查
             foreach($num as $k){
                 $list[] = DB::table('forum')
-                // ->join('forum','forum.fid','=','post.tid')
-                // ->join('thread','thread.tid','=','post.tid')
                 ->where('forum.fid',$k->fid)
-                // ->select('thid','ptitle','pmessage','time')
-                // ->orderBy('time','desc')
                 ->get();
             }
             return view('user/user_bbstore',[
@@ -79,6 +77,15 @@ class StoreController extends Controller
      public function cancel($id){
         // dd($id);
         $info = DB::table('bbs_bstore')->where([['uid', $_SESSION['uid']],['fid',$id]])->delete();
+        return $id;
+    }
+
+    // 添加收藏
+    public function add($id){
+        $info = DB::table('bbs_astore')->insert(
+
+            ['uid' => $_SESSION['uid'], 'thid' => $id,'time'=>time()]
+        );
         return $id;
     }
 
