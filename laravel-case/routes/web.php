@@ -21,6 +21,7 @@
 
 //前台 登录
 Route::get('/home/login','LoginController@index');
+Route::get('/home/login/exit','LoginController@exit');
 Route::post('/home/login/join','LoginController@join');
 
 
