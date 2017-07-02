@@ -55,7 +55,7 @@ class SIgnController extends Controller
         $mdpwd = md5($pass);
 
         $id = DB::table('bbs_user_info')->insertGetId(
-        ['username' => $name, 'pwd' => $mdpwd, 'sex' => $sex]
+        ['username' => $name, 'pwd' => $mdpwd, 'sex' => $sex,'regdate'=>time()]
     );
 //        $id = 2;
         if ($id)
@@ -94,7 +94,7 @@ class SIgnController extends Controller
             $result =  DB::table('bbs_user_info')
                 ->where('uid',$id)
                 ->update(['credits'=>$credits]);
-            dd($result);
+//            dd($result);
             $this->notice('注册成功','/');
 
         }

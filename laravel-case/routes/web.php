@@ -364,7 +364,7 @@ Route::get('user/bothfriend', 'user\BothFriendController@show');
 
 
 //前台发私信
-Route::get('/home/message-write/{jd}/{id?}','user\MessageController@index');
+Route::get('/home/message-write/{jd}/{id?}','user\MessageController@index')->middleware('message');
 Route::post('/home/message/write','user\MessageController@write');
 //ajax 检测用户是否存在
 Route::get('/home/message/detection/{data}','user\MessageController@detection');
@@ -396,13 +396,6 @@ Route::get('user/cancelbbs/{id?}', 'user\StoreController@cancel');
 Route::get('/home/sign','SignController@index');
 Route::post('/home/sign/create','SignController@create')->middleware('sign');
 Route::get('/home/sign/selete/{data?}','SignController@selete');
-
-
-
-Route::get('/home/{fid}/posting','PostingController@index');
-Route::post('/home/posting/submit','PostingController@submit');
-Route::post('/home/post/submit','PostDetailsController@submit');
-Route::get('/home/reply/{tid}','HomereplyController@index');
 
 
 //Route::get('/admin/login',function(){
@@ -516,14 +509,6 @@ Route::get('/user/user_point','user\PointController@index');
 Route::get('/user/user_power','user\UserpowerController@index');
 
 
-// --------------------周天野--------------------------
-
-Route::get('/','HomeIndexController@index');
-Route::get('/home/blog/{fid}','BlogPlateController@index');
-Route::get('/home/post/{tid}','PostDetailsController@index');
-
-// --------------------周天野--------------------------
-
 
 // ---------------前台帖子页面----------------------------
 // 本站新帖
@@ -570,8 +555,34 @@ Route::get('/user/user_point','user\PointController@index');
 // 权限
 Route::get('/user/user_power','user\UserpowerController@index');
 
+// -----------徽章---------
+// 前台
+Route::get('/user/medle','user\MedleController@index');
+
+// 前台徽章第二页显示
+Route::get('/user/medle2','user\MedleController@index2');
+
+// 前台徽章添加
+Route::get('/user/medle/add/{id}','user\MedleController@insert');
+
+// 后台
+Route::get('/admin/medle','admin\MedleController@index');
+
+// 添加页面
+Route::get('/admin/medle/addshow','admin\MedleController@addshow');
+// 添加徽章
+Route::post('/admin/medle/add','admin\MedleController@add');
+// 修改页面
+Route::get('/admin/medle/modshow/{id}','admin\MedleController@modshow');
+// 修改控制器
+Route::post('/admin/medle/mod/{id}','admin\MedleController@mod');
+
+// 删除
+Route::get('/admin/medle/del/{id}','admin\MedleController@delete');
 
 
+
+// -------徽章
 // -----------------龙淼end---------------
 
 
@@ -593,6 +604,7 @@ Route::post('/home/post/submit','PostDetailsController@submit');
 //版块页
 Route::get('/home/blog/{fid}','BlogPlateController@index');
 //帖子详情页
-Route::get('/home/post/{tid}','PostDetailsController@index');
+Route::get('/home/post/{tid}','PostDetailsController@index')->middleware('postdetails');
+
 
 // --------------------周天野--------------------------

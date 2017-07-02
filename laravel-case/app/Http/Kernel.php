@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'sign' => \App\Http\Middleware\SignMiddleware::class,
         'post' => \App\Http\Middleware\PostpowerMiddleware::class,
         'reply'=> \App\Http\Middleware\ReplypowerMiddleware::class,
-
+        'postdetails'=> \App\Http\Middleware\PostdetailsMiddleware::class,
+        'message'=> \App\Http\Middleware\MessageMiddleware::class,
     ];
 }

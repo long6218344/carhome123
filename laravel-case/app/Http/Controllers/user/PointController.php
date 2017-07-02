@@ -12,9 +12,9 @@ class PointController extends Controller
     public function index()
     {
 
-//    $username = $_SESSION['username'];
-        $username = 'admin';
-        $uid = '2';
+    $username = $_SESSION['username'];
+//        $username = 'admin';
+        $uid = $_SESSION['uid'];
         $icon = DB::table('bbs_user_info')->where('username', $username)->select('icon')->first();
 
         $sum1 = DB::table('bbs_point')
@@ -25,8 +25,7 @@ class PointController extends Controller
             ])
             ->select('bbs_point.point')
             ->get();
-//        dd($result);
-
+//        dd($sum1);
         // 1. 登录注册积分
         $loginsum ='';
         foreach ($sum1 as $v){
@@ -36,7 +35,7 @@ class PointController extends Controller
         }
 //            dd($loginsum);
 
-        // 3. 回帖
+        // 3. 发帖
         $reply = '';
         $sum3 = DB::table('bbs_point')
             ->join('bbs_pointrule', 'bbs_point.typeid', '=', 'bbs_pointrule.typeid')
@@ -51,13 +50,13 @@ class PointController extends Controller
         }
 //        dd($reply);
 
-        // 4. 发帖
+        // 2.回帖
         $post = '';
         $sum4 = DB::table('bbs_point')
             ->join('bbs_pointrule', 'bbs_point.typeid', '=', 'bbs_pointrule.typeid')
             ->where([
                 ['bbs_point.uid', '=', $uid],
-                ['bbs_point.typeid','=',4]
+                ['bbs_point.typeid','=',2]
             ])
             ->select('bbs_point.point')
             ->get();
@@ -68,7 +67,7 @@ class PointController extends Controller
         }
 //        dd($post);
         $userpoint = $post + $loginsum + $reply;
-
+//        dd($userpoint);
         $result = DB::table('bbs_user_info')->where('uid',$uid)->update(['credits'=>$userpoint]);
 //        dd($result);
         return view('/user.user_point')->with('icon', $icon->icon)->with('userpoint',$userpoint)->with('loginsum',$loginsum)->with('reply',$reply)->with('post',$post);

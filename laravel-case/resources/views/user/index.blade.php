@@ -33,31 +33,31 @@
             JS_VERSION : '20141124',                                            //js版本号(不能带空格)
             JS_EXTRES : 'http://www.phpwind.net/themes/extres',
             TOKEN : '7c634c22f900c920', //token $.ajaxSetup data
-            U_CENTER : 'http://www.phpwind.net/index.php?m=space',      //用户空间(参数 : uid)
+            U_CENTER : 'http://www.phpwind.net/index.blade.php?m=space',      //用户空间(参数 : uid)
             U_AVATAR_DEF : 'http://www.phpwind.net/res/images/face/face_small.jpg',                 //默认小头像
             U_ID : parseInt('0'),                                   //uid
             REGION_CONFIG : '',                                                     //地区数据
             CREDIT_REWARD_JUDGE : '',           //是否积分奖励，空值:false, 1:true
             URL : {
-                LOGIN : 'http://www.phpwind.net/index.php?m=u&c=login',                                     //登录地址
-                QUICK_LOGIN : 'http://www.phpwind.net/index.php?m=u&c=login&a=fast',                                //快速登录
+                LOGIN : 'http://www.phpwind.net/index.blade.php?m=u&c=login',                                     //登录地址
+                QUICK_LOGIN : 'http://www.phpwind.net/index.blade.php?m=u&c=login&a=fast',                                //快速登录
                 IMAGE_RES: 'http://www.phpwind.net/res/images',                                     //图片目录
-                CHECK_IMG : 'http://www.phpwind.net/index.php?m=u&c=login&a=showverify',                            //验证码图片url，global.js引用
-                VARIFY : 'http://www.phpwind.net/index.php?m=verify&a=get',                                 //验证码html
-                VARIFY_CHECK : 'http://www.phpwind.net/index.php?m=verify&a=check',                         //验证码html
+                CHECK_IMG : 'http://www.phpwind.net/index.blade.php?m=u&c=login&a=showverify',                            //验证码图片url，global.js引用
+                VARIFY : 'http://www.phpwind.net/index.blade.php?m=verify&a=get',                                 //验证码html
+                VARIFY_CHECK : 'http://www.phpwind.net/index.blade.php?m=verify&a=check',                         //验证码html
                 HEAD_MSG : {
-                    LIST : 'http://www.phpwind.net/index.php?m=message&c=notice&a=minilist'                         //头部消息_列表
+                    LIST : 'http://www.phpwind.net/index.blade.php?m=message&c=notice&a=minilist'                         //头部消息_列表
                 },
-                USER_CARD : 'http://www.phpwind.net/index.php?m=space&c=card',                              //小名片(参数 : uid)
-                LIKE_FORWARDING : 'http://www.phpwind.net/index.php?c=post&a=doreply',                          //喜欢转发(参数 : fid)
-                REGION : 'http://www.phpwind.net/index.php?m=misc&c=webData&a=area',                                    //地区数据
-                SCHOOL : 'http://www.phpwind.net/index.php?m=misc&c=webData&a=school',                              //学校数据
-                EMOTIONS : "http://www.phpwind.net/index.php?m=emotion&type=bbs",                   //表情数据
+                USER_CARD : 'http://www.phpwind.net/index.blade.php?m=space&c=card',                              //小名片(参数 : uid)
+                LIKE_FORWARDING : 'http://www.phpwind.net/index.blade.php?c=post&a=doreply',                          //喜欢转发(参数 : fid)
+                REGION : 'http://www.phpwind.net/index.blade.php?m=misc&c=webData&a=area',                                    //地区数据
+                SCHOOL : 'http://www.phpwind.net/index.blade.php?m=misc&c=webData&a=school',                              //学校数据
+                EMOTIONS : "http://www.phpwind.net/index.blade.php?m=emotion&type=bbs",                   //表情数据
                 CRON_AJAX : '',                                         //计划任务 后端输出执行
-                FORUM_LIST : 'http://www.phpwind.net/index.php?c=forum&a=list',                             //版块列表数据
-                CREDIT_REWARD_DATA : 'http://www.phpwind.net/index.php?m=u&a=showcredit',                   //积分奖励 数据
-                AT_URL: 'http://www.phpwind.net/index.php?c=remind',                                    //@好友列表接口
-                TOPIC_TYPIC: 'http://www.phpwind.net/index.php?c=forum&a=topictype'                         //主题分类
+                FORUM_LIST : 'http://www.phpwind.net/index.blade.php?c=forum&a=list',                             //版块列表数据
+                CREDIT_REWARD_DATA : 'http://www.phpwind.net/index.blade.php?m=u&a=showcredit',                   //积分奖励 数据
+                AT_URL: 'http://www.phpwind.net/index.blade.php?c=remind',                                    //@好友列表接口
+                TOPIC_TYPIC: 'http://www.phpwind.net/index.blade.php?c=forum&a=topictype'                         //主题分类
             }
         };
     </script>
@@ -112,7 +112,7 @@
                                         <li><a href="/user/friend"><em class="icon_fresh"></em>我的好友</a></li>
                                         <!-- <li><a href="#"><em class="icon_task"></em>站内信息</a></li> -->
                                         <li><a href="home/message-write/2"><em class="icon_article"></em>我的信息</a></li>
-                                        <li><a href="#"><em class="icon_medal"></em>我的勋章</a></li>
+                                        <li><a href="/user/medle"><em class="icon_medal"></em>我的勋章</a></li>
                                     </ul>
                                     <ul class="ft cc">
                                         <li><a href="/user/show"><em class="icon_profile"></em>个人设置</a></li>
@@ -232,7 +232,7 @@
                             <li class=""><a class="ico_lt02" href="{{url('user/get')}}">收到回复</a></li>
                             <li class=""><a class="ico_lt03" href="{{url('user/reply')}}">
                                     发出回复</a></li>
-                            <li class=""><a class="ico_lt04" href="">我的勋章</a></li>
+                            <li class=""><a class="ico_lt04" href="/user/medle">我的勋章</a></li>
                         </ul>
                         <div class="divide">
                         </div>
@@ -244,8 +244,8 @@
                             <li class=""><a class="ico_yy15" href="{{url('user/allfeeds')}}">好友动态</a> </li>
                             <!-- <li class=""><a class="ico_yy12" href="#">车主价格</a></li> -->
 
-                            <li class=""><a class="ico_yy08" href="#">我的权限</a></li>
-                            <li class=""><a class="ico_yy01" href="#">我的积分</a></li>
+                            <li class=""><a class="ico_yy08" href="/user/user_power">我的权限</a></li>
+                            <li class=""><a class="ico_yy01" href="/user/user_point">我的积分</a></li>
                             <li class="" style="z-index: 200;">
                                 <a class="ico_yy03" href="{{url('user/store')}}">
                                     收藏</a>
