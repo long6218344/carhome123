@@ -326,7 +326,7 @@
                             <div class="fl"><div class="floor_arrow"><em></em><span></span></div></div>
                             <div class="c"></div>
                             <div class="floor_top_tips cc">
-                                <div style="position:relative;"><span class="lou J_floor_copy" title="复制此楼地址" data-hash="read_20546433">1<sup>#</sup></span></div>
+                                <div style="position:relative;"><span class="lou J_floor_copy" title="" data-hash="read_20546433"><sup>#</sup></span></div>
                                 <span class="fl">发布于：{{$v->rdateline}}				</span>
                             </div>
                             <div id="J_read_main">
@@ -369,7 +369,7 @@
             </div>
 
         @endforeach
-
+        {{ $reply->links() }}
         <div class="read_pages_wrap cc" id="floor_reply">
             {{--<a rel="nofollow" href="http://www.phpwind.net/index.php?c=post&amp;fid=163" id="J_read_post_btn" class="btn_post J_qlogin_trigger">发帖</a>--}}
             <!-- 锁定时间 -->

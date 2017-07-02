@@ -8,23 +8,9 @@ class ThreadController extends Controller
 {
     public function index()
     {
-        $result = DB::table('forum')->join('thread', 'forum.fid', '=', 'thread.fid')->get();
+        $result = DB::table('forum')->join('thread', 'forum.fid', '=', 'thread.fid')->paginate(10);
         return view('/admin/posts/thread',['result'=>$result]);
     }
-
-//    public function add(Request $request)
-//    {
-//        $forum_name = $request->input('forum_name');
-//        $status = $request->input('status');
-//        if(DB::table('forum')->insert([
-//            'name'=>$forum_name,
-//            'status'=>$status
-//        ])) {
-//            echo 'ok';
-//        } else {
-//            echo 'no';
-//        }
-//    }
 
     public function edit(Request $request)
     {
@@ -86,17 +72,35 @@ class ThreadController extends Controller
         $fid = $request->fid;
         $posts = DB::table('forum')->where('fid',$fid)->value('posts');
         $posts = ($posts - 1);
-        DB::transaction(function() use ($tid, $posts, $fid)
+        $todayposts = DB::table('forum')->where('fid',$fid)->value('todayposts');
+        $todayposts = ($todayposts - 1);
+        $boutique = DB::table('forum')->where('fid',$fid)->value('boutique');
+        $best = DB::table('thread')->where('tid',$tid)->value('best');
+        if($best == 1){$boutique = ($boutique -1);}
+        DB::transaction(function() use ($fid, $tid, $posts, $todayposts, $boutique, $best)
         {
             try {
-        DB::table('thread')->where('tid',$tid)->delete() ;
-        DB::table('forum')->where('fid',$fid)->update(['posts'=>$posts]);
-        } catch (\Exception $e) {
+                DB::table('post')->where('tid',$tid)->delete();
+                DB::table('reply')->where('tid',$tid)->delete();
+                DB::table('thread')->where('tid',$tid)->delete();
+                DB::table('forum')->where('fid',$fid)->update(
+                   [ 'posts'=>$posts,
+                'todayposts'=>$todayposts,
+                'boutique'=>$boutique
+               ] );
+            }catch (\Exception $e) {
                 return redirect(url('/user/notice'))->with(['message'=>'失败','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
-                    exit;
-                }
+                exit;
+            }
         });
-//        return redirect(url(url('/admin/thread')));
         return redirect(url('/user/notice'))->with(['message'=>'成功','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
+    }
+
+    public function select(Request $request)
+    {
+        $search = $request->input('search');
+
+        $result = DB::table('forum')->join('thread', 'forum.fid', '=', 'thread.fid')->where('title','like','%'.$search.'%')->paginate(10);
+        return view('/admin/posts/thread',['result'=>$result]);
     }
 }

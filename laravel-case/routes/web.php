@@ -437,19 +437,23 @@ Route::get('/admin/forum','ForumController@index');
 Route::post('/admin/forum/add','ForumController@add');
 Route::get('/admin/forum/edit/{fid}/{status}','ForumController@edit');
 Route::get('/admin/forum/delete/{fid}','ForumController@delete');
+Route::get('/admin/forum/select','ForumController@select');
 
 //后台帖子管理
 Route::get('/admin/thread','ThreadController@index');
 Route::get('/admin/thread/edit/{tid}/{type}/{num}/{fid?}','ThreadController@edit');
 Route::get('/admin/thread/delete/{tid}/{fid}','ThreadController@delete');
+Route::get('/admin/thread/select','ThreadController@select');
 
 //后台帖子详情管理
 Route::get('/admin/post','PostController@index');
 Route::get('/admin/post/delete/{pid}','PostController@delete');
+Route::get('/admin/post/select','PostController@select');
 
 //后台回复管理
 Route::get('/admin/reply','ReplyController@index');
 Route::get('/admin/reply/delete/{rid}','ReplyController@delete');
+Route::get('/admin/reply/select','ReplyController@select');
 
 
 Route::get('/home/login','LoginController@index');
@@ -519,7 +523,17 @@ Route::get('/user/user_power','user\UserpowerController@index');
 // --------------------周天野--------------------------
 
 Route::get('/','HomeIndexController@index');
+Route::get('/{getinfo?}','HomeIndexController@getinfo');
+Route::get('/order/post','HomeIndexController@post');
+Route::get('/order/reply','HomeIndexController@reply');
+Route::get('/order/hot','HomeIndexController@hot');
+Route::get('/order/best','HomeIndexController@best');
 Route::get('/home/blog/{fid}','BlogPlateController@index');
+Route::get('{fid}/orderby/post','BlogPlateController@post');
+Route::get('{fid}/orderby/reply','BlogPlateController@reply');
+Route::get('{fid}/orderby/hot','BlogPlateController@hot');
+Route::get('{fid}/orderby/best','BlogPlateController@best');
+
 Route::get('/home/post/{tid}','PostDetailsController@index');
 
 // --------------------周天野--------------------------

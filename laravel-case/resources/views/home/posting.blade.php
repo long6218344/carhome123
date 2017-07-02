@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title></title>
-
+@extends('/home.public.layout')
+@section('imcss')
+    <style>
+        .pagination li{float:left;}
+    </style>
+@endsection
+@section('main-content')
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -19,29 +17,27 @@
 
     <link href="{{ asset('css/home/Post-details&blog-plate.css') }}" rel="stylesheet">
 
-</head>
-<body>
 
     <div class="container-fluid ">
 
         <div class="blog-top  clearfix">
 
 {{--            <img style="margin:10px 0 0 20px" src="{{asset('img/login-img/carhome-login-logo.jpg')}}" width="150" alt="">--}}
-            <p style="color: red;font-size: 50px;">{{$forum[0]->name}}版块</p>
-            <span style="float:right;margin:20px 70px 0 0"><span>游客</span><span> | 新消息</span></span>
+            {{--<p style="color: red;font-size: 50px;">{{$forum[0]->name}}版块</p>--}}
+            {{--<span style="float:right;margin:20px 70px 0 0"><span>游客</span><span> | 新消息</span></span>--}}
 
         </div> {{--end blog-top--}}
 
 
-        <div class="blog-top-ad">
-            <p>广告</p>
-        </div>
+        {{--<div class="blog-top-ad">--}}
+            {{--<p>广告</p>--}}
+        {{--</div>--}}
 
             <div class="blog-center clearfix">
 
 
             <div class="blog-center-top clearfix">
-                <a href="" > <button style="margin-top:10px;margin-left:20px" class="btn btn-default">返回帖子列表</button> </a>
+                <a href="{{url('/home/blog/'.$forum[0]->fid)}}" > <button style="margin-top:10px;margin-left:20px" class="btn btn-default">返回帖子列表</button> </a>
 
                 <div class="blog-center-top-right">
                 </div>
@@ -53,11 +49,11 @@
 
         <div class="blog-user-reply">
             {{--<a href="" name="reply"></a>--}}
-            <p style="font-size: 25px;margin-left: 10px">标题</p>
+            <p style="font-size: 25px;margin-left: 10px">标题:</p>
             <form action="{{url('home/posting/submit')}}" method="post" class="clearfix " style="margin-left: 10px;width: 70%">
                 {{ csrf_field() }}
                 {{--{{var_dump(url('home/posting/submit'))}}--}}
-                <input type="text" class="form-control" name="title" >内容
+                <input type="text" class="form-control" name="title" >请输入内容:
                 <textarea class="form-control" rows="5" name="content"></textarea>
                 <input type="hidden" value="{{$forum[0]->fid}}" name="fid">
                 <button class="btn btn-lg btn-info" type="submit"
@@ -98,5 +94,5 @@
         }
 
     </script>
-</body>
-</html>
+
+@endsection

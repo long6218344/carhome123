@@ -22,7 +22,7 @@ class PostDetailsController extends Controller
         $reply = DB::table('thread')
             ->join('reply', 'thread.tid', '=', 'reply.tid')
             ->where('reply.tid',$tid)
-            ->get();
+            ->paginate(5);
 
         $cn = DB::table('thread')->where('tid',$tid)
 

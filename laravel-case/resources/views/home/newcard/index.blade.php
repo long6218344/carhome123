@@ -5,6 +5,7 @@
     </style>
 @endsection
 @section('main-content')
+    <script src="../js/jquery-1.8.3.min.js"></script>
     <div class="main_wrap">
 
         <div class="bread_crumb" id="bread_crumb">
@@ -22,23 +23,24 @@
                         <tr>
                             <td class="subject">
                                 <p class="title">
-                                    <b><a href="{{url('/home/blog/'.$v->fid)}}" class="st">[<font>{{$v->name}}</font>]</a></b>
-                                    <i><span>[<font>版块精品贴：{{$v->posts}}</font>]</span></i>
-                                    <i><span>[<font>总帖数：{{$v->posts}}</font>]</span></i>
-                                    <i><span>[<font>今日帖子：{{$v->todayposts}}</font>]</span></i>
+                                    <b><a href="{{url('/home/blog/'.$v->fid)}}" class="st">[<font style="font-size:18px">{{$v->name}}</font>]</a></b>
+                                    <i><span>[<font style="color:red">版块精品贴：{{$v->posts}}</font>]</span></i>
+                                    <i><span>[<font style="color:green">总帖数：{{$v->posts}}</font>]</span></i>
+                                    <i><span>[<font style="color:orange">今日发帖：{{$v->todayposts}}</font>]</span></i>
                                 </p>
                             </td>
                         </tr>
                     @endforeach
                         </table>
                     </div>
-
+                    {{--{{ $forum->links() }}--}}
+                    {{$forum->appends(array_except(Request::query(), 'fpage'))->links()}}
                     <div class="box_wrap thread_page J_check_wrap">
                         <nav>
                             <div class="content_nav" id="hashpos_ttype">
-                                <div class="content_filter"><a href="__CONTROLLER__/index" class="">最新发帖</a><span>|</span><a href="#" class=" current">最后回复</a></div>
+                                <div class="content_filter"><a href="{{url('/order/post')}}" class="">最新发帖</a><span>|</span><a href="{{url('/order/reply')}}" class="">最新回复</a><span>|</span><a href="{{url('/order/hot')}}" class="">热门排序</a><span>|</span><a href="{{url('/order/best')}}" class="">精品贴</a></div>
                                 <ul>
-                                    <li class="current"><a href="__CONTROLLER__/index">本站新帖</a></li>
+                                    <li class="current"><a href="#">本站帖子</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -48,14 +50,40 @@
                             <table id="J_posts_list" summary="帖子列表" width="100%">
 
                                 {{--                                {{$thread}}--}}
-                                @foreach( $thread as $k => $v )
+                                @foreach( $best as $k => $v )
                                     <tr>
-                                        <td class="author"><a class="J_user_card_show" href="#"><img src="" onerror="this.src=''" height="45" width="45"></a></td>
+                                        <td class="author"><a class="J_user_card_show" href="#"></a></td>
                                         <td class="subject">
                                             <p class="title">
                                                 @if ($v->top == 1)  <a href="#" target="_blank"><span class="posts_icon"><i class="icon_headtopic_3" title="置顶3  新窗口打开"></i></span></a>顶 @endif
-                                                <a href="" class="st">[<font color="red">站长交流</font>]</a>
-                                                <a href="{{url('/home/post/'.$v->tid)}}" class="st" style="color:#FF0000;font-weight:bold" title="">{{$v->title}}</a>
+                                                {{--<a href="" class="st">[<font color="red">标题</font>]</a>--}}
+                                                <a href="{{url('/home/post/'.$v->tid)}}" class="st" style="color:#FF0000;font-weight:bold" title="">[<font color="red">{{$v->title}}</font>]</a>
+                                                 {{--<span class="posts_icon"><i class="icon_img" title="图片帖"><img src=""--}}
+                                                                                                               {{--alt=""></i></span>--}}
+                                                <a href="{{url('/home/blog/'.$v->fid)}}" class="st">[<font>{{$v->name}}</font>]</a>
+                                                <a href="#" class="st"><font color="red">@if ($v->best == 1) [精品]  @endif</font></a>
+                                            </p>
+                                            <p class="info">
+                                                楼主：<a class="J_user_card_show" style='color:blue' href="">{{$v->tauthor}}</a><span>{{$v->tdateline}}</span>
+                                                最后回复：
+                                                {{--<a class="J_user_card_show" href="">@if (!empty($v->rauthor)) {{$v->rauthor}} @else {{$v->rauthor}} @endif </a>--}}
+                                                <span><a href="#" rel="nofollow" aria-label="最后回复时间">@if (!empty($v->replies)) {{$v->replies}} @else {{$v->rdateline}} @endif </a></span>
+                                            </p>
+                                        </td>
+                                        <td class="num">
+                                            <span>回复<em style='color:red'>{{$v->renumber}}</em></span>
+                                            <span>浏览<em style='color:red'>{{$v->clicknumber}}</em></span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                @foreach( $thread as $k => $v )
+                                    <tr>
+                                        <td class="author"><a class="J_user_card_show" href="#"></a></td>
+                                        <td class="subject">
+                                            <p class="title">
+                                                @if ($v->top == 1)  <a href="#" target="_blank"><span class="posts_icon"><i class="icon_headtopic_3" title="置顶3  新窗口打开"></i></span></a>顶 @endif
+                                                {{--<a href="" class="st">[<font color="red">{{$v->title}}</font>]</a>--}}
+                                                <a href="{{url('/home/post/'.$v->tid)}}" class="st" style="color:#FF0000;font-weight:bold" title="">[<font color="red">{{$v->title}}</font>]</a>
                                                 <!-- <span class="posts_icon"><i class="icon_img" title="图片帖"></i></span>	 -->
                                                 <a href="{{url('/home/blog/'.$v->fid)}}" class="st">[<font>{{$v->name}}</font>]</a>
                                                 <a href="#" class="st"><font color="red">@if ($v->best == 1) [精品]  @endif</font></a>
@@ -78,9 +106,10 @@
                         </div>
                     </div>
                     <div class="J_page_wrap cc" data-key="true">
-                        <div class="pages" style="float:left">
-                            1
-                        </div>
+                        {{--<div class="pages" style="float:left">--}}
+                            {{--{{ $thread->links() }}--}}
+                        {{$thread->appends(array_except(Request::query(), 'spage'))->links()}}
+                        {{--</div>--}}
                     </div>
 
 
@@ -158,23 +187,23 @@
             {{--右边详情结束--}}
 
             <div class="main_sidebar">
-                {{--<p>城市：{{$weather->city}}</p>--}}
-                {{--<p>日期：{{$weather->date}}</p>--}}
-                {{--<p>星期：{{$weather->week}}</p>--}}
-                {{--<p>天气：{{$weather->weather}}</p>--}}
-                {{--<p>温度：{{$weather->templow}}~{{$weather->temphigh}}</p>--}}
-                {{--<p>风向：{{$weather->winddirect}}</p>--}}
-                {{--<p>风力：{{$weather->windpower}}</p>--}}
+                {{--<p>向智能机器人提问</p>--}}
+                {{--<form action="{{url('/getinfo')}}" method="get">--}}
+                    {{--<p><input type="text" placeholder="上海天气" name="question"></p>--}}
+                    {{--<button type="submit">提问</button>--}}
+                {{--</form>--}}
+                <p style="width:35%">{{$question->content}}</p>
             </div>
             {{--右边详情结束--}}
 
 
-            页数
         </div>
         <div id="cloudwind_forum_bottom">
-
+            {{--<p>回答：{{$question->content}}</p>--}}
         </div>
-    </div> -->
+    </div>
+
+
 
 @endsection
 
