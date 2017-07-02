@@ -8,7 +8,7 @@ class ForumController extends Controller
 {
     public function index()
     {
-        $result = DB::table('forum')->get();
+        $result = DB::table('forum')->paginate(10);
 //        dump($result);
 //        view('admin/posts/forum',['result'=>$result]);
 //        view('admin/posts/forum',['result'=>123123]);
@@ -48,10 +48,31 @@ class ForumController extends Controller
     public function delete(Request $request)
     {
         $fid = $request->fid;
-        if(DB::table('forum')->where('fid',$fid)->delete()) {
-            return redirect(url('/user/notice'))->with(['message'=>'成功','url' =>url('/admin/forum'), 'jumpTime'=>3,'status'=>true]);
-        } else {
-            return redirect(url('/user/notice'))->with(['message'=>'失败','url' =>url('/admin/forum'), 'jumpTime'=>3,'status'=>true]);
-        }
+        DB::transaction(function() use ($rid)
+        {
+            try {
+                DB::table('forum')->where('fid',$fid)->delete();
+                DB::table('post')->where('fid',$fid)->delete();
+                DB::table('reply')->where('fid',$fid)->delete();
+                DB::table('thread')->where('fid',$fid)->delete();
+            }catch (\Exception $e) {
+                return redirect(url('/user/notice'))->with(['message'=>'失败','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
+                exit;
+            }
+        });
+        return redirect(url('/user/notice'))->with(['message'=>'成功','url' =>url('/admin/thread'), 'jumpTime'=>3,'status'=>true]);
+
     }
+
+    public function select(Request $request)
+    {
+        $search = $request->input('search');
+//        dd($search);die;
+        $result = DB::table('forum')
+            ->where('name','like','%'.$search.'%')
+            ->paginate(10);
+
+        return view('/admin/posts/forum',['result'=>$result]);
+    }
+
 }

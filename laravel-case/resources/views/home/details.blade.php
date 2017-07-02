@@ -422,7 +422,7 @@
                             <div class="fl"><div class="floor_arrow"><em></em><span></span></div></div>
                             <div class="c"></div>
                             <div class="floor_top_tips cc">
-                                <div style="position:relative;"><span class="lou J_floor_copy" title="复制此楼地址" data-hash="read_20546433">1<sup>#</sup></span></div>
+                                <div style="position:relative;"><span class="lou J_floor_copy" title="" data-hash="read_20546433"><sup>#</sup></span></div>
                                 <span class="fl">发布于：{{$v->rdateline}}				</span>
                             </div>
                             <div id="J_read_main">

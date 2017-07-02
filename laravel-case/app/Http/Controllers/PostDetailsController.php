@@ -27,8 +27,7 @@ class PostDetailsController extends Controller
             ->join('reply', 'thread.tid', '=', 'reply.tid')
             ->join('bbs_user_info','bbs_user_info.uid','=','reply.rauthorid')
             ->where('reply.tid',$tid)
-            ->paginate(10);
-//        dd($reply);
+            ->paginate(5);
 
         $cn = DB::table('thread')->where('tid',$tid)
 

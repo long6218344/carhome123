@@ -128,8 +128,11 @@
 
                     <else />
                     <div class="header_login">
+                        @if(empty($_SESSION['username']))
                         <a rel="nofollow" href="{{url('/home/login')}}" class="mr15">登录</a><a rel="nofollow" href="/home/sign">注册</a>
-
+                        @else
+                            <a rel="#" class="mr15">{{$_SESSION['username']}}</a><a rel="nofollow" href="{{url('/home/login/out')}}">退出</a>
+                            @endif
                     </div>
                 </if>
 
