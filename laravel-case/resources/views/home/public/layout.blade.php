@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{{asset('home/css/forum.css')}}" />
     <link rel="stylesheet" href="{{asset('home/css/editor_content.css')}}" />
     <script src="{{asset('home/js/plugin.client.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link href="{{asset('css/home/bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/home/user_index.css')}}">
 
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <!-- Bootstrap -->

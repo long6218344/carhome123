@@ -149,7 +149,7 @@
 	                    <div id="tab-8" class="tab-content-item mes-review-con current" appisload="false" >
 	                    	<p>最近的一条回复消息是:</p>
 	                    	<p class="no-mes" >
-	                    		<a href="" style="font-size: 18px">{{$user1->rauthor}}</a>&nbsp;在:&nbsp;<a href="{{url('home/post/'.$user1->tid)}}">《{{$user1->title}}</a>》中给你回复:<i><a href="{{url('home/post/'.$user1->tid)}}" style="color:#666"><b>{{str_limit($user1->rmessage, $limit = 35, $end='....')}}</b></a></i>
+	                    		<a href="{{url('person/'.$user1->rauthorid)}}" style="font-size: 18px">{{$user1->rauthor}}</a>&nbsp;在:&nbsp;<a href="{{url('home/post/'.$user1->tid)}}">《{{$user1->title}}</a>》中给你回复:<i><a href="{{url('home/post/'.$user1->tid)}}" style="color:#666"><b>{{str_limit($user1->rmessage, $limit = 35, $end='....')}}</b></a></i>
 	                    	</p>
 	                    	<span><i>{{$user1->rdateline}}</i></span>
 	                    </div>
@@ -161,7 +161,7 @@
 	                    <div id="tab-9" class="tab-content-item mes-fans-con" appisload="false">
 	                    	<p>最近一条好友关注消息:</p>
 	                    	<p class="no-mes">
-	                    		<a href="" style="font-size: 18px">{{$user2->username}}</a>&nbsp;&nbsp; 在<span><i>{{date('Y-m-d H:m',$info->time)}}</i></span>&nbsp;&nbsp;关注了你
+	                    		<a href="{{url('person/'.$user2->uid)}}" style="font-size: 18px">{{$user2->username}}</a>&nbsp;&nbsp; 于<span><i>{{date('Y-m-d H:m',$info->time)}}</i></span>&nbsp;&nbsp;关注了你
 	                    	</p>
 	                    	
 	                    </div>
@@ -180,11 +180,11 @@
 	                    <div class="tab-content-item mes-letter-con">
 	                    	<p>最近的一条好友私信消息:</p> 
 	                    	<p class="no-mes">
-	                    		<a href="" style="font-size: 18px">{{$user3->seperson}}</a>&nbsp;&nbsp; 在<span><i>{{date('Y-m-d H:m',$user3->time)}}</i></span>&nbsp;&nbsp;给你发了一封标题为《<a href="{{url('/home/message-write/2/'.$_SESSION['uid'])}}" style="font-size: 18px">{{$user3->head}}</a>》的私信
+	                    		<a href="{{url('person/'.$user3->seuid)}}" style="font-size: 18px">{{$user3->seperson}}</a>&nbsp;&nbsp; 在<span><i>{{$user3->time}}</i></span>&nbsp;&nbsp;给你发了一封标题为《<a href="{{url('/home/message-write/2/'.$_SESSION['uid'])}}" style="font-size: 18px">{{$user3->head}}</a>》的私信
 	                    	</p>
 	                    </div>
 	                    @endif
-	                    <!-- <div id="tab-11" class="tab-content-item mes-letter-con " appisload="false"><p class="no-mes">您还未收到他人发送的私信~</p></div> -->
+	                    
 	                </div>
 	            </div>
 	        </div>
@@ -269,7 +269,6 @@
 	                            	<p style="margin-top: 10px">
 	                            		<a href="{{url('/')}}">去看更多精彩帖子>>>>></a>
 	                            	</p>
-	                            <!-- <a href="{{url('/')}}" target="_blank">找帖子</a> -->
 	                        </div>
 	                        @endif
 	                    </div>
@@ -291,7 +290,7 @@
 
 	            </div>
 	        </div>
-
+			新闻头条>>&nbsp;&nbsp;{{$news[rand(0,20)]->title}}
 	    </div>
 	</div>
 

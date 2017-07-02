@@ -11,7 +11,8 @@ class IndexController extends Controller
     public function show(){
 
         // session(['uid'=>9]);
-
+        $news = $this->getnews()->data;
+        // var_dump($news);die;
         $id = $_SESSION['uid'];
         $user = DB::table('bbs_user_info')->where('bbs_user_info.uid', $id)->first();
         // 最新回复
@@ -37,7 +38,7 @@ class IndexController extends Controller
         }else{
             $user4 = '';
         }
-        // dump($user4);die;
+        // dump($user3);die;
         $num = DB::table('thread')->where('tauthorid',$id)->count();
         $num1 = DB::table('thread')->where([['tauthorid',$id],['best',1]])->count();
         return view('user/user_index',[
@@ -51,12 +52,38 @@ class IndexController extends Controller
             'user2'=>$user2,
             'user3'=>$user3,
             'user4'=>$user4,
-            // 'name'=>$user->username,
-            // 'sex'=>$user->sex,
-            // 'fans'=>$user->fans,
-            // 'views'=>$user->views,
+            'news'=>$news
         ]);
     }
 
-    
+    public function getnews()
+    {
+        $host = "http://toutiao-ali.juheapi.com";
+        $path = "/toutiao/index";
+        $method = "GET";
+        $appcode = "434cdcf95bca4ebe830053f9151ecd67";
+        $headers = array();
+        array_push($headers, "Authorization:APPCODE " . $appcode);
+        $querys = "type=type";
+        $bodys = "";
+        $url = $host . $path . "?" . $querys;
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        // curl_setopt($curl, CURLOPT_FAILONERROR, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($curl, CURLOPT_HEADER, true);
+        if (1 == strpos("$".$host, "https://"))
+        {
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        }
+        $data = curl_exec($curl);
+        curl_close($curl);
+        $jsonObj = json_decode($data);
+        $news = $jsonObj->result;
+        return ($news);
+    }
 }

@@ -57,7 +57,7 @@
                         <td style="text-align: left;width:38%;white-space:nowrap;overflow:hide;">
                             <div style="margin-left: 50px">
                             <p>
-                                <a href="">{{$word->rauthor}}</a>&nbsp;&nbsp;在:&nbsp;&nbsp;
+                                <a href="{{url('person/'.$word->rauthorid)}}">{{$word->rauthor}}</a>&nbsp;&nbsp;在:&nbsp;&nbsp;
                                 《<a href="{{url('home/post/'.$word->tid)}}">{{$word->title}}</a>》
                             </p>
                             <p>回复:
@@ -66,7 +66,7 @@
                             </td>
                         <td style="">{{$word->clicknumber}}</td>
                         <td style="">{{$word->renumber}}</td>
-                        <td style=""><a href="">编辑</a></td>
+                        <td style=""><a href="{{url('home/post/'.$word->tid)}}">编辑</a></td>
                         <td style="">{{$word->tdateline}}</td>
                     </tr>
                 @endforeach

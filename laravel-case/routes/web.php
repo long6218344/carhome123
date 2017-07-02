@@ -340,6 +340,8 @@ Route::get('/admin/point/delete/{typeid}','admin\PointController@delete');
 
 // ------------------------刘超超-----------------------------
 
+Route::get('person/{id}', 'user\PersonController@show');
+
 // Route::group(['prefix'=>'user'],function(){
 // 前台用户模块
 Route::get('user/index', 'user\IndexController@show');
