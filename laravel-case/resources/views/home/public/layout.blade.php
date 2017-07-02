@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{{asset('home/css/forum.css')}}" />
     <link rel="stylesheet" href="{{asset('home/css/editor_content.css')}}" />
     <script src="{{asset('home/js/plugin.client.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link href="{{asset('css/home/bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/home/user_index.css')}}">
 
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <!-- Bootstrap -->
@@ -112,14 +115,14 @@
                                     <div class="core_arrow_top" id="selected" style="left:77px;"><em></em><span></span></div>
                                     <ul class="ct cc">
                                         <li><a href="/user/index"><em class="icon_space"></em>我的空间</a></li>
-                                        <li><a href="__APP__/FriendList/index"><em class="icon_fresh"></em>我的好友</a></li>
-                                        <li><a href="__APP__/Messagetext/index"><em class="icon_task"></em>站内信息</a></li>
-                                        <li><a href="__APP__/Message/index"><em class="icon_article"></em>我的信息</a></li>
-                                        <li><a href="__APP__/Medal/index"><em class="icon_medal"></em>我的勋章</a></li>
+                                        <li><a href="/user/friend"><em class="icon_fresh"></em>我的好友</a></li>
+                                        {{--<li><a href="__APP__/Messagetext/index"><em class="icon_task"></em>站内信息</a></li>--}}
+                                        <li><a href="/home/message-write/2"><em class="icon_article"></em>我的信息</a></li>
+                                        <li><a href="/user/medle"><em class="icon_medal"></em>我的勋章</a></li>
                                     </ul>
                                     <ul class="ft cc">
-                                        <li><a href="__APP__/Personinfo/index"><em class="icon_profile"></em>个人设置</a></li>
-                                        <li><a href="__APP__/Login/logout" rel="nofollow"><em class="icon_quit"></em>退出</a></li>
+                                        <li><a href="/user/show"><em class="icon_profile"></em>个人设置</a></li>
+                                        <li><a href="#" rel="nofollow"><em class="icon_quit"></em>退出</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -133,6 +136,7 @@
                         @else
                             <a rel="#" class="mr15">{{$_SESSION['username']}}</a><a rel="nofollow" href="{{url('/home/login/out')}}">退出</a>
                             @endif
+
                     </div>
                 </if>
 

@@ -20,7 +20,6 @@ class PostdetailsMiddleware
         // 帖子详情页查看权限判断
         $uid = $_SESSION['uid'];
         // 判断用户uid权限
-//        dd($uid);
         // 1. 从数据库获取权限
         $result = DB::table('bbs_user_info')
             ->join('bbs_user_group','bbs_user_group.gid','=','bbs_user_info.grouppower')

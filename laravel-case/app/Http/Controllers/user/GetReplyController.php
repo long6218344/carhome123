@@ -11,7 +11,8 @@ class GetReplyController extends Controller
 {
 	public function get(){
 
-        $user = DB::select('select `icon`, `username`, `regdate`,`sex` from `bbs_user_info` where `uid` = '.$_SESSION['uid']);
+
+        $user = DB::select('select `icon`, `username`, `regdate`,`sex`, `credits` from `bbs_user_info` where `uid` = '.$_SESSION['uid']);
         $info1 = DB::table('thread')->where('tauthorid',$_SESSION['uid'])->get();
         $info2 = DB::table('thread')->where([['tauthorid',$_SESSION['uid']],['best',1]])->get();
         // 回复表 和 帖子表联合查询
@@ -27,7 +28,8 @@ class GetReplyController extends Controller
         return view('user/user_get',[
         	'icon'=>$user[0]->icon,
             'name'=>$user[0]->username,
-        	'sex'=>$user[0]->sex,
+            'sex'=>$user[0]->sex,
+        	'credits'=>$user[0]->credits,
             'regdate'=>$user[0]->regdate,
             'n'=>$n,
             'num'=>$num,

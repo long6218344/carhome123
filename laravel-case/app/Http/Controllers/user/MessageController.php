@@ -51,16 +51,21 @@ class MessageController extends Controller
 			$time     = "'$time'";
 			$sql      = 'select * from `bbs_user_info` where username='.$username;
 			$result   = DB::select($sql);
-			
 			if (!$result){
 				return redirect('/user/notice')->withInput()->with(['message'=>'你输入的用户名并不存在','url' =>'/home/message-write/1', 'jumpTime'=>2,'status'=>false]);
 				// $this->notice('都和你讲了这个用户名不存在 你这人真的是');
 			}
-       		$this->validate($a, [
-       		    'user' => 'required',
-       		    'head' => 'required',
-       		    'details' => 'required',
-       		]);
+
+      if($result[0]->secret == 2){
+        return redirect('/user/notice')->withInput()->with(['message'=>'对方只接收互为好友的私信','url' =>'/home/message-write/1', 'jumpTime'=>2,'status'=>false]);
+      }
+
+
+   		$this->validate($a, [
+   		    'user' => 'required',
+   		    'head' => 'required',
+   		    'details' => 'required',
+   		]);
 			
 			foreach($result as $v){
 				$reid     = $v->uid;

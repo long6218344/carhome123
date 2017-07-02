@@ -14,12 +14,8 @@
                         <span>{{date('Y-m-d',$regdate)}}</span>
                     </li>
                     <li>
-                        <strong>最后登录时间:</strong>
-                        <span>222</span>
-                    </li>
-                    <li>
                         <strong>积分:</strong>
-                        <span>222</span>
+                        <span>{{$credits}}</span>
                     </li>
                 </div>
             </div>
@@ -33,10 +29,6 @@
                     <strong>勋章:</strong>
                     <span>222</span>
                     <!-- <a href="">000</a> -->
-                </li>
-                <li>
-                    <strong>关注的车:</strong>
-                    <a href="">000</a>
                 </li>
             </div>
         </div>
@@ -65,14 +57,14 @@
                         <td style="text-align: left;width:38%;white-space:nowrap;overflow:hide;">
                             <div style="margin-left: 50px">
                             <p>在:
-                            <a href="{{$word->tid}}">{{$word->title}}</a></p>
+                            <a href="{{url('home/post/'.$word->tid)}}">{{$word->title}}</a></p>
                             <p>回复:
-                            <a href="#">{{str_limit($word->rmessage, $limit = 20, $end = '····')}}</a></p>
+                            <a href="{{url('home/post/'.$word->tid)}}">{{str_limit($word->rmessage, $limit = 20, $end = '····')}}</a></p>
                             </div>
                             </td>
                         <td>{{$word->clicknumber}}</td>
                         <td>{{$word->renumber}}</td>
-                        <td><a href="">编辑</a></td>
+                        <td><a href="{{url('home/post/'.$word->tid)}}">编辑</a></td>
                         <td>{{$word->tdateline}}</td>
                     </tr>
                 @endforeach

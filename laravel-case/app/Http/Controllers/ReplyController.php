@@ -9,6 +9,7 @@ class ReplyController extends Controller
     public function index()
     {
         $result = DB::table('forum')->join('reply', 'forum.fid', '=', 'reply.fid')->paginate(10);
+
         return view('/admin/posts/reply',['result'=>$result]);
     }
 

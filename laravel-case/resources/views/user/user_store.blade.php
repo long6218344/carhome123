@@ -15,7 +15,7 @@
             <div class="dynD"></div>
             <div id="userstore">
             @if($list == null)
-                <p>你还没有收藏的</p>
+                <p style="margin-top: 10px">你还没有收藏的帖子</p>
             @else
                 <!-- <div class="dynD"></div> -->
 

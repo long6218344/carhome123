@@ -559,6 +559,7 @@
                             <a href="{{url('/admin/thread')}}">
                                 <i class="icon-double-angle-right"></i>
                                 所有帖子
+
                             </a>
                         </li>
 
@@ -566,6 +567,7 @@
                             <a href="{{url('/admin/post')}}">
                                 <i class="icon-double-angle-right"></i>
                                 内容概览
+
                             </a>
                         </li>
 
@@ -633,7 +635,7 @@
                     {{--</ul>--}}
                 {{--</li>--}}
 
-                <li>
+            <!--     <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-edit"></i>
                         <span class="menu-text"> 敏感词管理 </span>
@@ -649,9 +651,9 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
-                <li>
+               <!--  <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-edit"></i>
                         <span class="menu-text"> 举报管理 </span>
@@ -674,7 +676,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
                 {{--<li>--}}
                     {{--<a href="#" class="dropdown-toggle">--}}

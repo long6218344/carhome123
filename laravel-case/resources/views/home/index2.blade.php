@@ -23,6 +23,7 @@
                         <nav>
                             <div class="content_nav" id="hashpos_ttype">
                                 <div class="content_filter"><a href="{{url($forum[0]->fid.'/orderby/post')}}" class="notselect" name="post">最新发帖</a href="{{url($forum[0]->fid.'/orderby/post')}}"><span>|</span><a href="{{url($forum[0]->fid.'/orderby/reply')}}" class="notselect" name="reply">最新回复<span>|</span><a href="{{url($forum[0]->fid.'/orderby/hot')}}" class="notselect" name="hot">热门排序</a><span>|</span><a href="{{url($forum[0]->fid.'/orderby/best')}}" class="notselect" name="best">精品贴</a><a href="{{url('home/'.$forum[0]->fid).'/posting'}}" class="content_filter">我要发帖</a></div>
+
                                 <ul>
                                     <li class="current"><a href="{{url('/')}}">返回首页</a></li>
 
@@ -44,6 +45,7 @@
                                                     {{--<a href="" class="st">[<font color="red">{{$v->title}}</font>]</a>--}}
 
                                                     <a href="{{url('/home/post/'.$v->tid)}}" class="st" style="color:#FF0000;font-weight:bold" title="">[<font color="red">{{$v->title}}</font>]</a>
+
                                                     <!-- <span class="posts_icon"><i class="icon_img" title="图片帖"></i></span>	 -->
                                                     <a href="{{url('/home/blog/'.$v->fid)}}" class="st">[<font>{{$v->name}}</font>]</a>
                                                     <a href="#" class="st"><font color="red">@if ($v->best == 1) [精品]  @endif</font></a>

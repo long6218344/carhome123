@@ -341,6 +341,8 @@ Route::get('/admin/point/delete/{typeid}','admin\PointController@delete');
 
 // ------------------------刘超超-----------------------------
 
+Route::get('person/{id}', 'user\PersonController@show');
+
 // Route::group(['prefix'=>'user'],function(){
 // 前台用户模块
 Route::get('user/index', 'user\IndexController@show');
@@ -348,8 +350,11 @@ Route::get('user/index', 'user\IndexController@show');
 Route::get('user/show', 'user\EditController@show');
 Route::get('user/edit', 'user\EditController@show_edit');
 Route::post('user/edits', 'user\EditController@edit');
-// 编辑个人信息
+// 编辑个人信息  帖子页面 隐私私信权限
 Route::get('user/myword', 'user\WordController@show');
+Route::get('user/niceword', 'user\WordController@niceshow');
+Route::get('user/secret', 'user\WordController@secret');
+Route::get('user/secretsetting/{m}', 'user\WordController@set');
 Route::get('user/password', 'user\WordController@password');
 Route::post('user/editpwd', 'user\WordController@edit');
 // 头像和提示页
@@ -379,9 +384,11 @@ Route::get('user/newsfeed', 'user\NewsFeedController@show');
 Route::get('user/allfeeds', 'user\AllFeedsController@show');
 
 
+// 回复 收藏..
 Route::get('user/reply', 'user\ReplyController@reply');
 Route::get('user/get', 'user\GetReplyController@get');
 Route::get('user/store', 'user\StoreController@show');
+Route::get('user/addstore/{id}', 'user\StoreController@add');
 Route::get('user/notstore/{id?}', 'user\StoreController@del');
 Route::get('user/forum', 'user\StoreController@showforum');
 Route::get('user/cancelbbs/{id?}', 'user\StoreController@cancel');
@@ -397,7 +404,6 @@ Route::get('user/cancelbbs/{id?}', 'user\StoreController@cancel');
 Route::get('/home/sign','SignController@index');
 Route::post('/home/sign/create','SignController@create')->middleware('sign');
 Route::get('/home/sign/selete/{data?}','SignController@selete');
-
 
 //Route::get('/admin/login',function(){
 //    return view('/admin.public.login');
@@ -514,7 +520,6 @@ Route::get('/user/user_point','user\PointController@index');
 Route::get('/user/user_power','user\UserpowerController@index');
 
 
-
 // --------------------周天野--------------------------
 
 Route::get('/','HomeIndexController@index');
@@ -528,6 +533,7 @@ Route::get('{fid}/orderby/post','BlogPlateController@post');
 Route::get('{fid}/orderby/reply','BlogPlateController@reply');
 Route::get('{fid}/orderby/hot','BlogPlateController@hot');
 Route::get('{fid}/orderby/best','BlogPlateController@best');
+
 
 Route::get('/home/post/{tid}','PostDetailsController@index');
 
@@ -579,7 +585,7 @@ Route::get('/user/user_point','user\PointController@index');
 // 权限
 Route::get('/user/user_power','user\UserpowerController@index');
 
-// -----------徽章---------
+// -----------勋章---------
 // 前台
 Route::get('/user/medle','user\MedleController@index');
 
@@ -607,6 +613,9 @@ Route::get('/admin/medle/del/{id}','admin\MedleController@delete');
 
 
 // -------徽章
+// -----------------龙淼end---------------
+
+
 // -----------------龙淼end---------------
 
 

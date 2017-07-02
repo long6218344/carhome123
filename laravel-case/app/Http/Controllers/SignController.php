@@ -94,7 +94,6 @@ class SIgnController extends Controller
             $result =  DB::table('bbs_user_info')
                 ->where('uid',$id)
                 ->update(['credits'=>$credits]);
-//            dd($result);
             $this->notice('注册成功','/');
 
         }

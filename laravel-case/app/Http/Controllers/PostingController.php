@@ -80,6 +80,7 @@ class PostingController extends Controller
             });
 
 
+
         // 发帖得分
         $uid = $_SESSION['uid'];
         // 1. 选出积分

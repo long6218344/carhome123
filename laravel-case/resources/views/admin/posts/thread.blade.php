@@ -22,6 +22,7 @@
                 <span class="input-icon">
 									<input type="text" placeholder="Search ..." name="search" class="nav-search-input"
                                            id="nav-search-input" autocomplete="off"/>
+
 									<i class="icon-search nav-search-icon"></i>
 									<button class="btn btn-xs btn-info" type="submit">搜索</button>
 								</span>

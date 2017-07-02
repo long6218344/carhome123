@@ -102,5 +102,6 @@ class ThreadController extends Controller
 
         $result = DB::table('forum')->join('thread', 'forum.fid', '=', 'thread.fid')->where('title','like','%'.$search.'%')->paginate(10);
         return view('/admin/posts/thread',['result'=>$result]);
+
     }
 }

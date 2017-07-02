@@ -86,7 +86,8 @@
 
                                             <td>{{$v->pid}}</td>
                                             <td>{{$v->name}}({{$v->fid}})</td>
-                                            <td>{{$v->tid}}</td>
+
+                                            <td>({{$v->tid}})</td>
                                             <td>{{$v->rid}}</td>
                                             <td>{{$v->rauthor}}</td>
                                             <td>{{$v->rauthorid}}</td>

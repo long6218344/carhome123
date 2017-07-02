@@ -73,6 +73,7 @@ class ForumController extends Controller
             ->paginate(10);
 
         return view('/admin/posts/forum',['result'=>$result]);
+
     }
 
 }

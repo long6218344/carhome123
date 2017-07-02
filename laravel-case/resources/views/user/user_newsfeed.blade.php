@@ -31,10 +31,10 @@
                                     <a href="#" target="_blank">{{session('username')}}</a>&nbsp;&nbsp;发表了帖子
                                 </p>
                                 <p class=" f14 fcolor_1 lh22">
-                                    《<a href="#" target="_blank">{{$n->ptitle}}</a>》
+                                    《<a href="{{url('home/post/'.$n->tid)}}" target="_blank">{{$n->ptitle}}</a>》
                                 </p>
                                 <p class="f14 fcolor_11 lh22">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;{{str_limit($n->pmessage, $limit = 200, $end = '····')}}&nbsp;<a href="#" target="_blank">查看全部&gt;&gt;</a></p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{{str_limit($n->pmessage, $limit = 200, $end = '····')}}&nbsp;<a href="{{url('home/post/'.$n->tid)}}" target="_blank">查看全部&gt;&gt;</a></p>
                                 
                                 <p class="fcolor_12">{{$n->pdateline}}</p>
                             </div>
@@ -54,13 +54,13 @@
                         <li class="" style="display: " id="d{{$user->uid}}">
                             <div class="mList_3_head">
                                 @if($user->icon == null)
-                                <a href=""><img src="{{asset('image/home/head_120X120.gif')}}" alt="" width="50px" height="50px"></a>
+                                <a href="{{url('person/'.$user->uid)}}"><img src="{{asset('image/home/head_120X120.gif')}}" alt="" width="50px" height="50px"></a>
                                 @else
-                                <a href=""><img src="{{asset($user->icon)}}" alt="" width="50" height="50px"></a>
+                                <a href="{{url('person/'.$user->uid)}}"><img src="{{asset($user->icon)}}" alt="" width="50" height="50px"></a>
                                 @endif
                             </div>
                             <p>
-                                <a href=""><strong>
+                                <a href="{{url('person/'.$user->uid)}}"><strong>
                                     {{$user->username}}</strong></a><a target="_blank" href="#" class="sign"></a></p>
                             <!-- <p class="fcolor_13">他也关注了...</p> -->
                             

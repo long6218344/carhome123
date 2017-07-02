@@ -41,9 +41,9 @@ class HomeIndexController extends Controller
         $appcode = "434cdcf95bca4ebe830053f9151ecd67";
         $headers = array();
         array_push($headers, "Authorization:APPCODE " . $appcode);
-//        $q = $request->input('question');
 //        if($q == null){$q = '上海天气';}
         $querys = "question=上海天气";
+
         $bodys = "";
         $url = $host . $path . "?" . $querys;
 
@@ -130,6 +130,7 @@ class HomeIndexController extends Controller
 
         $forum = DB::table('forum')->paginate(10,  ['*'],  'fpage');;
         return view('home/newcard/index',['forum'=>$forum,'thread'=>$thread,'best'=>$best]);
+
     }
 
 

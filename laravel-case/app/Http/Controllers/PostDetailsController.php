@@ -29,6 +29,7 @@ class PostDetailsController extends Controller
             ->where('reply.tid',$tid)
             ->paginate(5);
 
+
         $cn = DB::table('thread')->where('tid',$tid)
 
             ->value('clicknumber');
@@ -207,7 +208,23 @@ class PostDetailsController extends Controller
             ->select('groupicon')
             ->first();
 
-        return view('/home.details',['reply'=>$reply,'post'=>$post,'group'=>$result,'count'=>$num,'groupname'=>$groupname,'groupicon6'=>$groupicon6,'groupicon7'=>$groupicon7,'groupicon8'=>$groupicon8,'groupicon9'=>$groupicon9,'groupicon10'=>$groupicon10,'groupicon11'=>$groupicon11,'groupicon12'=>$groupicon12,'groupicon1'=>$groupicon1]);
+
+        if ($_SESSION){
+            $info = DB::table('bbs_astore')->select('thid')->where('uid',$_SESSION['uid'])->get();
+            // dd(count($info));
+            if(count($info) != 0){
+                foreach($info as $k){
+                    $r[] = $k->thid;
+                }
+                return view('/home.details',['reply'=>$reply,'post'=>$post,'group'=>$result,'count'=>$num,'groupname'=>$groupname,'groupicon6'=>$groupicon6,'groupicon7'=>$groupicon7,'groupicon8'=>$groupicon8,'groupicon9'=>$groupicon9,'groupicon10'=>$groupicon10,'groupicon11'=>$groupicon11,'groupicon12'=>$groupicon12,'groupicon1'=>$groupicon1,'r'=>$r]);
+
+            }else{
+                return view('/home.details',['reply'=>$reply,'post'=>$post,'group'=>$result,'count'=>$num,'groupname'=>$groupname,'groupicon6'=>$groupicon6,'groupicon7'=>$groupicon7,'groupicon8'=>$groupicon8,'groupicon9'=>$groupicon9,'groupicon10'=>$groupicon10,'groupicon11'=>$groupicon11,'groupicon12'=>$groupicon12,'groupicon1'=>$groupicon1,'r'=>'']);
+            }
+
+        }else{
+            return view('/home.details',['reply'=>$reply,'post'=>$post,'group'=>$result,'count'=>$num,'groupname'=>$groupname,'groupicon6'=>$groupicon6,'groupicon7'=>$groupicon7,'groupicon8'=>$groupicon8,'groupicon9'=>$groupicon9,'groupicon10'=>$groupicon10,'groupicon11'=>$groupicon11,'groupicon12'=>$groupicon12,'groupicon1'=>$groupicon1]);
+        }
     }
 
 
@@ -278,7 +295,6 @@ class PostDetailsController extends Controller
         $result =  DB::table('bbs_user_info')
             ->where('uid',$uid)
             ->update(['credits'=>$credits]);
-//        dd($result);
         return redirect('/home/post/'.$tid);
 
     }

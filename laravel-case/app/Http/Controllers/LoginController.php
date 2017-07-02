@@ -99,6 +99,7 @@ class LoginController extends Controller
         $this->notice('退出成功',url('/'));
 
 
+
     }
 
 

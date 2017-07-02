@@ -6,9 +6,6 @@
 @endsection
 @section('main-content')
 
-
-
-
     <h2>输入回复的内容：</h2>
 {{--{{session(['uid' => '18','username' => 'zty'])}}--}}
         <form action="{{url('/home/post/submit')}}" method="post" class="" style="margin-left: 10px;width: 70%">
@@ -27,7 +24,6 @@
         <a href="{{url('/home/post/'.$post[0]->tid)}}" > <button style="margin-top:10px;margin-left:20px" class="btn btn-default">返回帖子列表</button> </a>
 
         <div class="blog-center-top-right">
-
 
 @endsection
 

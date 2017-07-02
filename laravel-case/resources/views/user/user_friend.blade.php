@@ -29,7 +29,7 @@
                     <div id="dynamicList">
                         <ul class="duList2" id="ulList">
                             @foreach($friend as $k)
-                            <li id="{{$k->uid}}">
+                            <li id="cc{{$k->uid}}">
                                 <div class="userHead2">
                                     @if($k->icon == null)
                                     <a href=""><img src="{{asset('image/home/head_120X120.gif')}}" alt="" width="50px" height="50px"></a>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="duRight">
                                     <p>
-                                        <a href="" target="_blank">{{$k->username}}</a>
+                                        <a href="{{url('person/'.$k->uid)}}" target="_blank">{{$k->username}}</a>
                                         <a href="http://club.autohome.com.cn/bbs/carOwnerCamp.html" target="_blank" class="sign"></a>
                                         <span class="m_r22">&nbsp;</span>
                                         @if($k->sex == 1)
@@ -91,15 +91,15 @@
                         <li class="" style="display: " id="d{{$user->uid}}">
                             <div class="mList_3_head">
                                 @if($user->icon == null)
-                                <a href=""><img src="{{asset('image/home/head_120X120.gif')}}" alt="" width="50px" height="50px"></a>
+                                <a href="{{url('person/'.$user->uid)}}"><img src="{{asset('image/home/head_120X120.gif')}}" alt="" width="50px" height="50px"></a>
                                 @else
 
-                                <a href=""><img src="{{asset($user->icon)}}" alt="" width="50px" height="50px"></a>
+                                <a href="{{url('person/'.$user->uid)}}"><img src="{{asset($user->icon)}}" alt="" width="50px" height="50px"></a>
                                 @endif
                                 <!-- <a href=""><img src="{{url($user->icon)}}"></a> -->
                             </div>
                             <p>
-                                <a href=""><strong>
+                                <a href="{{url('person/'.$user->uid)}}"><strong>
                                     {{$user->username}}</strong></a><a target="_blank" href="#" class="sign"></a></p>
                             <!-- <p class="fcolor_13">他也关注了...</p> -->
                             
@@ -119,7 +119,8 @@
 <script>
     $(function(){
         $("#ulList li").each(function(){
-            var id = $(this).attr("id");
+            var ad = $(this).attr("id");
+            var id = ad.slice(2);
             $(this).mouseover(function(){                          
                    $("#a"+id).show();
             }).mouseout(function(){             
@@ -141,7 +142,7 @@
             },
             success: function( id ) {
                 // console.log(id);
-                    var sel = $('#'+id);
+                    var sel = $('#cc'+id);
                     sel.remove();
             }
         });

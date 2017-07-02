@@ -27,6 +27,7 @@
                                     <i><span>[<font style="color:red">版块精品贴：{{$v->posts}}</font>]</span></i>
                                     <i><span>[<font style="color:green">总帖数：{{$v->posts}}</font>]</span></i>
                                     <i><span>[<font style="color:orange">今日发帖：{{$v->todayposts}}</font>]</span></i>
+
                                 </p>
                             </td>
                         </tr>
@@ -35,6 +36,7 @@
                     </div>
                     {{--{{ $forum->links() }}--}}
                     {{$forum->appends(array_except(Request::query(), 'fpage'))->links()}}
+
                     <div class="box_wrap thread_page J_check_wrap">
                         <nav>
                             <div class="content_nav" id="hashpos_ttype">
@@ -51,6 +53,7 @@
 
                                 {{--                                {{$thread}}--}}
                                 @foreach( $best as $k => $v )
+
                                     <tr>
                                         <td class="author"><a class="J_user_card_show" href="#"></a></td>
                                         <td class="subject">
@@ -84,6 +87,7 @@
                                                 @if ($v->top == 1)  <a href="#" target="_blank"><span class="posts_icon"><i class="icon_headtopic_3" title="置顶3  新窗口打开"></i></span></a>顶 @endif
                                                 {{--<a href="" class="st">[<font color="red">{{$v->title}}</font>]</a>--}}
                                                 <a href="{{url('/home/post/'.$v->tid)}}" class="st" style="color:#FF0000;font-weight:bold" title="">[<font color="red">{{$v->title}}</font>]</a>
+
                                                 <!-- <span class="posts_icon"><i class="icon_img" title="图片帖"></i></span>	 -->
                                                 <a href="{{url('/home/blog/'.$v->fid)}}" class="st">[<font>{{$v->name}}</font>]</a>
                                                 <a href="#" class="st"><font color="red">@if ($v->best == 1) [精品]  @endif</font></a>
@@ -193,15 +197,17 @@
                     {{--<button type="submit">提问</button>--}}
                 {{--</form>--}}
                 {{--<p style="width:35%">{{$question->content}}</p>--}}
+
             </div>
             {{--右边详情结束--}}
+
 
 
         </div>
         <div id="cloudwind_forum_bottom">
             {{--<p>回答：{{$question->content}}</p>--}}
         </div>
-    </div>
+    </div> -->
 
 
 

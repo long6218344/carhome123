@@ -5,7 +5,22 @@
     <div style="width: 80%;margin: auto;;">
 
         <div class="read_pages_wrap cc" style="margin: 20px 20px 20px 20px;">
+            @if($_SESSION)
+                @if($r == null)
+                <a rel="nofollow" href="{{url('/home/reply/'.$post[0]->tid)}}" data-referer="true" class="btn_replay J_qlogin_trigger">回复</a>
+                <a href="javascript:void(0)" style="display:inline-block;margin-right: 10px;float:right;padding:5px;" id="a{{$post[0]->tid}}" onclick="store(this,{{$post[0]->tid}})">收藏</a>
+                @else
+                    @if(in_array($post[0]->tid,$r))
+                    <a rel="nofollow" href="{{url('/home/reply/'.$post[0]->tid)}}" data-referer="true" class="btn_replay J_qlogin_trigger">回复</a>
+                    <a href="javascript:void(0)" style="display:inline-block;margin-right: 10px;float:right;padding:5px;color:red">已收藏</a>
+                    @else
+                    <a rel="nofollow" href="{{url('/home/reply/'.$post[0]->tid)}}" data-referer="true" class="btn_replay J_qlogin_trigger">回复</a>
+                    <a href="javascript:void(0)" style="display:inline-block;margin-right: 10px;float:right;padding:5px;" id="a{{$post[0]->tid}}" onclick="store(this,{{$post[0]->tid}})">收藏</a>
+                    @endif
+                @endif
+            @else
             <a rel="nofollow" href="{{url('/home/reply/'.$post[0]->tid)}}" data-referer="true" class="btn_replay J_qlogin_trigger">回复</a>
+            @endif
             <div class="pages" style="margin-right:3px;"><a href="{{url('/home/blog/'.$post[0]->fid)}}" class="pages_pre" rel="nofollow">« 返回版块页</a></div>
 
         </div>
@@ -96,6 +111,7 @@
                                 </div>
                                 <div class="fr">
                                     <!--开始右侧广告位-->
+
 
                                     <!--结束右侧广告位-->
                                 </div>
@@ -252,6 +268,7 @@
                                         });
                                     </script>
 
+
                                 </div>
                                 <div style="" id="J_read_like_list" class="read_like_list cc">
 
@@ -279,6 +296,7 @@
             <a rel="nofollow" href="#" data-hash="floor_reply" class="a_reply" id="J_readreply_main" style="font-size:25px;">评论区</a>
         </div>
         <hr>
+
 
         @foreach( $reply as $k => $v )
 
@@ -396,6 +414,7 @@
                                         </span>
                                     </li>
                                     <li><em>注册日期</em><span style="width:72px">{{date('Y-m-d',$v->regdate)}}</span></li>
+
                                     <li><em>来自ip:</em><span>{{$v->rauthorip}}</span></li>
                                 </ul>
                                 <!--发私信加关注-->
@@ -423,6 +442,7 @@
                             <div class="c"></div>
                             <div class="floor_top_tips cc">
                                 <div style="position:relative;"><span class="lou J_floor_copy" title="" data-hash="read_20546433"><sup>#</sup></span></div>
+
                                 <span class="fl">发布于：{{$v->rdateline}}				</span>
                             </div>
                             <div id="J_read_main">
@@ -451,6 +471,7 @@
 
 
                                 {{--&nbsp;&nbsp;&nbsp;&nbsp;<a role="button" rel="nofollow" href="#" data-pid="20546433" data-uri="http://www.phpwind.net/index.php?m=app&amp;a=mark&amp;tid=3709782&amp;pid=20546433&amp;app=mark" class="J_plugin_read_mark" id=""><span>评分</span></a>--}}
+
                                 <script>
                                     Wind.ready('global.js', function(){
                                         Wind.js('http://www.phpwind.net/themes/extres/mark/js/mark.min.js?v=' + GV.JS_VERSION);
@@ -466,6 +487,7 @@
 
         @endforeach
         {{ $reply->links() }}
+
         <div class="read_pages_wrap cc" id="floor_reply">
             {{--<a rel="nofollow" href="http://www.phpwind.net/index.php?c=post&amp;fid=163" id="J_read_post_btn" class="btn_post J_qlogin_trigger">发帖</a>--}}
             <!-- 锁定时间 -->
@@ -477,4 +499,26 @@
         </div>
     </div>
 </div>
+<script>
+
+        function store(obj,id){
+            var id = id;
+            // alert(id);
+            $.ajax({
+                url:"{{url('user/addstore')}}/"+id,
+                type:'get',
+                dataType: 'json',
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                success: function( id ) {
+                    // console.log(id);
+                        var sel = $('#a'+id);
+                        sel.html('已收藏');
+                    
+                }
+            });
+            obj.onclick = function(){};
+        }
+</script>
 @endsection

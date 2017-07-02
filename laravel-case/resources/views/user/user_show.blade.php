@@ -11,12 +11,8 @@
             <ul class="dynNav m_t27">
                 <li class="current">个人资料</li>
 
-                <!-- <li><a href="#">修改头像</a></li> -->
-
-                <li><a href="#">隐私设置</a></li>
-                <li><a href="#">消息设置</a></li>
-                <!-- <li><a href="/setting/PaymentSettings" >支付设置</a></li> -->
-                <!-- <li><a href="http://club.autohome.com.cn/bbs/thread-o-200058-17326399-1.html?pvareaid=2072101" target="_blank">意见反馈</a></li> -->
+                <li><a href="{{url('user/secret')}}">隐私设置</a></li>
+                
             </ul>
             <div class="dynD">
             </div>
@@ -92,24 +88,12 @@
                         </td>
                     </tr>
                     
-                    @if (session('msg'))
-                    <tr>
-                        <th>
-                            <td style="color:red;font-size: 13px" id="msg">
-                                {{ session('msg') }}
-                            </td>
-                        </th>
-                        @endif
-                    </tr>
                 </table>
             </div>
         </div>
    
 </div>
 <script>
-    setTimeout(function(){
-        msg.style.display = "none";
-    },3000)
 </script>
 
 

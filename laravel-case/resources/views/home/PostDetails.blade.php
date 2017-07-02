@@ -82,7 +82,7 @@
                             <li>{{$post[0]->pauthor}}</li>
                             <p>{{$post[0]->pdateline}}</p>
                             <li><a href="">加关注</a>
-                                <a href="">发私信</a></li>
+                                <a href="{{url('/home/message-write/1/'.$post[0]->pauthorid)}}">发私信</a></li>
                             <li>来自:{{$post[0]->pauthorip}}</li>
                             <li>回帖:<p>{{$post[0]->renumber}}</p></li>
 
@@ -131,7 +131,7 @@
                         <li>{{$v->rauthor}}</li>
                         <p>{{$v->rdateline}}</p>
                         <li><a href="">加关注</a>
-                            <a href="">发私信</a></li>
+                            <a href="{{url('/home/message-write/1/'.$post[0]->pauthorid)}}">发私信</a></li>
                         <li>来自:{{$v->rauthorip}}</li>
                         {{--<li>回帖:<p>{{$v->renumber}}</p></li>--}}
 
