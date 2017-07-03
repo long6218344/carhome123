@@ -286,7 +286,7 @@
                         </li>
 
                         <li>
-                            <a href="__APP__/Index/person">
+                            <a href="#">
                                 <i class="icon-user"></i>
                                 个人资料
                             </a>
@@ -295,7 +295,7 @@
                         <li class="divider"></li>
 
                         <li>
-                            <a href="__APP__/Public/logout">
+                            <a href="{{url('/admin/loginout')}}">
                                 <i class="icon-off"></i>
                                 退出
                             </a>
@@ -360,9 +360,9 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="{{asset('/admin/weather')}}">
+                    <a href="{{asset('/admin/ip')}}">
                         <i class="icon-dashboard"></i>
-                        <span class="menu-text"> 天气 </span>
+                        <span class="menu-text"> IP地址查询 </span>
                     </a>
                 </li>
 

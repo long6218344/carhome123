@@ -237,9 +237,6 @@ class UserController extends Controller
         // 获取数据,判断
         $username = $request->input('username');
         //处理图片
-        $pwd = $request->input('pwd');
-
-        $repwd = $request->input('repwd');
 
         $grouppower = $request->input('grouppower');
 
@@ -272,10 +269,7 @@ class UserController extends Controller
             //邮箱格式不正确,至少7位
             return back()->with('error','邮箱格式不正确');
         }
-        // 判断两次密码是否一致
-        if ($pwd != $repwd) {
-            return back()->with('error','两次密码不一致');
-        }
+
         // 输入内容不能为空
         foreach ($input as $k => $v) {
             if (empty($v)) {
@@ -359,12 +353,6 @@ class UserController extends Controller
         $str = '';
         foreach ($input as $k => $v) {
 
-            if ($k == 'repwd') {
-                continue;
-            }
-            if ($k == 'pwd') {
-                $v = md5($v);
-            }
             if ($k == 'icon') {
 //                $v = $path . '/' . '300_' . $filename;
                 $v = $path . '/' .  $filename;

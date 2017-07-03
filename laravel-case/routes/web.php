@@ -146,6 +146,12 @@ Route::get('/admin/user/repwd/{id}', function ($id) {
     return view('/admin.user.repwd')->with('uid', $id);
 });
 
+// IP地址查询
+//Route::get('/admin/ip','');
+Route::get('/admin/ip','CalendarController@ip');
+Route::post('/admin/selectip','CalendarController@selectip');
+
+
 // -----------------------权限判断-----------------------------------------
 
 
@@ -238,7 +244,7 @@ Route::get('/admin/calendar','CalendarController@index');
 // 登录
 Route::get('/admin/login','AdminLoginController@index');
 Route::post('/admin/login/join','AdminLoginController@join');
-
+Route::get('/admin/loginout','AdminLoginController@loginout');
 // 重置管理员组第一步
 Route::get('/admin/user/group/{uid}',function($uid){
 
