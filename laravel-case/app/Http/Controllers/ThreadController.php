@@ -104,4 +104,44 @@ class ThreadController extends Controller
         return view('/admin/posts/thread',['result'=>$result]);
 
     }
+
+    public function black(Request $request)
+    {
+        $tid = $request->tid;
+        DB::table('thread')
+            ->where('tid',$tid)
+            ->update([
+                'black'=>'1'
+            ]);
+        return redirect(url('/user/notice'))->with(['message'=>'举报成功','url' =>url('/home/post/'.$tid), 'jumpTime'=>3,'status'=>true]);
+    }
+
+    public function cancel(Request $request)
+    {
+        $tid = $request->tid;
+        DB::table('thread')
+            ->where('tid',$tid)
+            ->update([
+                'black'=>'0'
+            ]);
+        return redirect(url('/user/notice'))->with(['message'=>'已驳回','url' =>url('/admin/black'), 'jumpTime'=>3,'status'=>true]);
+    }
+
+    public function blackindex()
+    {
+        $result = DB::table('forum')->join('thread', 'forum.fid', '=', 'thread.fid')->where('black',1)->paginate(10);
+        return view('/admin/posts/black',['result'=>$result]);
+    }
+
+    public function bestindex()
+    {
+        $result = DB::table('forum')->join('thread', 'forum.fid', '=', 'thread.fid')->where('best',1)->paginate(10);
+        return view('/admin/posts/best',['result'=>$result]);
+    }
+
+    public function topindex()
+    {
+        $result = DB::table('forum')->join('thread', 'forum.fid', '=', 'thread.fid')->where('top',1)->paginate(10);
+        return view('/admin/posts/top',['result'=>$result]);
+    }
 }

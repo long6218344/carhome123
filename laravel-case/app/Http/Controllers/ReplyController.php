@@ -40,4 +40,11 @@ class ReplyController extends Controller
         });
         return redirect(url('/user/notice'))->with(['message'=>'成功','url' =>url('/admin/reply'), 'jumpTime'=>3,'status'=>true]);
     }
+
+    public function comment()
+    {
+        $result = DB::table('forum')->join('reply', 'forum.fid', '=', 'reply.fid')->where('rtype',1)->paginate(10);
+//        $comment = DB::table('reply')->where('rip',$target)->value('rmessage');
+        return view('/admin/posts/comment',['result'=>$result]);
+    }
 }

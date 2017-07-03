@@ -571,6 +571,30 @@
                             </a>
                         </li>
 
+                        <li>
+                            <a href="{{url('/admin/black')}}">
+                                <i class="icon-double-angle-right"></i>
+                                举报管理
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{url('/admin/best')}}">
+                                <i class="icon-double-angle-right"></i>
+                                加精帖子
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{url('/admin/top')}}">
+                                <i class="icon-double-angle-right"></i>
+                                置顶帖子
+
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
 
@@ -587,6 +611,13 @@
                             <a href="{{url('/admin/reply')}}">
                                 <i class="icon-double-angle-right"></i>
                                 评论管理
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{url('/admin/comment')}}">
+                                <i class="icon-double-angle-right"></i>
+                                回复管理
                             </a>
                         </li>
                     </ul>

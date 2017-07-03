@@ -9,6 +9,9 @@ class HomereplyController extends Controller
 {
     public function index(Request $request)
     {
+        $type = $request->type;
+        $rid = $request->rid;
+//        var_dump($type);die;
         $tid = $request->tid;
 //        var_dump(mt_rand());die;
         $post = DB::table('thread')
@@ -28,6 +31,6 @@ class HomereplyController extends Controller
             ->update([
                 'clicknumber'=>$cn
             ]);
-        return view('/home.reply',['reply'=>$reply,'post'=>$post]);
+        return view('/home.reply',['reply'=>$reply,'post'=>$post,'type'=>$type,'rid'=>$rid]);
     }
 }

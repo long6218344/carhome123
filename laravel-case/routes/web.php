@@ -445,6 +445,17 @@ Route::get('/admin/thread/edit/{tid}/{type}/{num}/{fid?}','ThreadController@edit
 Route::get('/admin/thread/delete/{tid}/{fid}','ThreadController@delete');
 Route::get('/admin/thread/select','ThreadController@select');
 
+//帖子举报管理
+Route::get('/admin/black','ThreadController@blackindex');
+Route::get('/admin/black/{tid}','ThreadController@black');
+Route::get('/admin/cancel/{tid}','ThreadController@cancel');
+
+//精品贴管理
+Route::get('/admin/best','ThreadController@bestindex');
+
+//置顶帖管理
+Route::get('/admin/top','ThreadController@topindex');
+
 //后台帖子详情管理
 Route::get('/admin/post','PostController@index');
 Route::get('/admin/post/delete/{pid}','PostController@delete');
@@ -454,7 +465,7 @@ Route::get('/admin/post/select','PostController@select');
 Route::get('/admin/reply','ReplyController@index');
 Route::get('/admin/reply/delete/{rid}','ReplyController@delete');
 Route::get('/admin/reply/select','ReplyController@select');
-
+Route::get('/admin/comment','ReplyController@comment');
 
 Route::get('/home/login','LoginController@index');
 Route::post('/home/login/join','LoginController@join');
@@ -629,11 +640,11 @@ Route::get('/','HomeIndexController@index');
 //发帖页
 Route::get('/home/{fid}/posting','PostingController@index')->middleware('post');
 //回复页
-Route::get('/home/reply/{tid}','HomereplyController@index')->middleware('reply');
+Route::get('/home/reply/{tid}/{type?}/{rid?}','HomereplyController@index')->middleware('reply');
 //发帖提交
 Route::post('/home/posting/submit','PostingController@submit');
 //回复提交
-Route::post('/home/post/submit','PostDetailsController@submit');
+Route::post('/home/post/submit/{type?}/{rid?}','PostDetailsController@submit');
 //版块页
 Route::get('/home/blog/{fid}','BlogPlateController@index');
 //帖子详情页

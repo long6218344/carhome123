@@ -37,12 +37,46 @@ class PostingController extends Controller
 //        var_dump($value[0]->posts);die;
         $posts = ($value[0]->posts+1);
         $todayposts = ($value[0]->todayposts+1);
+        if($request->hasFile('file')){
+        $img = $request->file('file');
+//        $request->file('file')->move('./ztyuploads/');
+        $request->file('file')->getClientOriginalExtension();
 
 
 
 
-//        var_dump($tid, $title, $content, $fid, $now, $ip, $posts, $todayposts);die;
-            DB::transaction(function() use ($tid, $title, $content, $fid, $now, $ip, $posts, $todayposts)
+//        $type = $request->file('file')->getClientOriginalExtension();
+
+        // 获取 后缀名(扩展名)
+        $suffix = $request->file('file')->getClientOriginalExtension();
+
+
+
+        // 4. 设置 上传之后的文件名       20170320xxxxxx.jpg
+        $filename = date('Ymd').uniqid().'.'.$suffix;
+
+        // 5. 判断 存储目录
+        $filepath = './ztyuploads/';
+        $filepath .= date('/Y/m/d/');
+
+        if( !file_exists($filepath) ){
+            mkdir($filepath, '0777' , true);
+        }
+
+        // 6. 移动文件 到 存储目录
+        $request->file('file')->move($filepath,$filename);
+//        if( move_uploaded_file(  $_FILES[$key]['tmp_name']  , $filepath.$filename )){
+//            return $filename;
+//        }else{
+//            return false;
+//        }
+        $affix = $filepath.$filename;}else{$affix = 'null' ;}
+//        var_dump($filepath.$filename);die;
+
+
+
+
+        DB::transaction(function() use ($tid, $title, $content, $fid, $now, $ip, $posts, $todayposts, $affix)
             {
                 try {
                     DB::table('forum')
@@ -59,7 +93,8 @@ class PostingController extends Controller
                         'tauthor'=> $_SESSION['username'],
                         'tauthorid'=> $_SESSION['uid'],
                         'tdateline'=>$now,
-                        'replies'=>$now
+                        'replies'=>$now,
+                        'affix'=>$affix
                     ]);
 //                var_dump($tid);die;
                     DB::table('post')->insert([

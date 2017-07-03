@@ -50,14 +50,14 @@
         <div class="blog-user-reply">
             {{--<a href="" name="reply"></a>--}}
             <p style="font-size: 25px;margin-left: 10px">标题:</p>
-            <form action="{{url('home/posting/submit')}}" method="post" class="clearfix " style="margin-left: 10px;width: 70%">
+            <form action="{{url('home/posting/submit')}}" method="post" class="clearfix " style="margin-left: 10px;width: 70%" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{--{{var_dump(url('home/posting/submit'))}}--}}
                 <input type="text" class="form-control" name="title" >请输入内容:
                 <textarea class="form-control" rows="5" name="content"></textarea>
                 <input type="hidden" value="{{$forum[0]->fid}}" name="fid">
-                <button class="btn btn-lg btn-info" type="submit"
-                style="width: 150px;margin-left: 10px; float: right; margin-top: 10px;margin-bottom: 20px">发帖</button>
+                您可以在文字后添加图片：<input type="file" name="file" />
+                <button class="btn btn-lg btn-info" type="submit" style="width: 150px;margin-left: 10px; float: right; margin-top: 10px;margin-bottom: 20px">发帖</button>
             </form>
             {{--{{$result[0]->fid}}--}}
         </div>

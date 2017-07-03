@@ -191,12 +191,21 @@
             {{--右边详情结束--}}
 
             <div class="main_sidebar">
-                {{--<p>向智能机器人提问</p>--}}
+                <p>驾考题库</p>
                 {{--<form action="{{url('/getinfo')}}" method="get">--}}
                     {{--<p><input type="text" placeholder="上海天气" name="question"></p>--}}
                     {{--<button type="submit">提问</button>--}}
                 {{--</form>--}}
-                {{--<p style="width:35%">{{$question->content}}</p>--}}
+                <p style="width:35%">题目：{{$question[0]->question}}</p>
+                @if($question[0]->option1)
+                <p style="width:35%">选项：{{$question[0]->option1}}</p>
+                <p style="width:35%">选项：{{$question[0]->option2}}</p>
+                <p style="width:35%">选项：{{$question[0]->option3}}</p>
+                <p style="width:35%">选项：{{$question[0]->option4}}</p>
+                @endif
+                <p style="width:35%">回答：{{$question[0]->answer}}</p>
+                <p style="width:35%">解释：{{$question[0]->explain}}</p>
+                <p style="width:35%">出处：{{$question[0]->chapter}}</p>
 
             </div>
             {{--右边详情结束--}}
@@ -205,7 +214,10 @@
 
         </div>
         <div id="cloudwind_forum_bottom">
-            {{--<p>回答：{{$question->content}}</p>--}}
+            {{--<p>题目：{{$question[0]->question}}</p>--}}
+            {{--<p>回答：{{$question[0]->answer}}</p>--}}
+            {{--<p>解释：{{$question[0]->explain}}</p>--}}
+            {{--<p>答案：{{$question[0]->chapter}}</p>--}}
         </div>
     </div> -->
 
