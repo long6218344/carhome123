@@ -354,12 +354,17 @@
 
             <ul class="nav nav-list">
                 <li class="active">
-                    <a href="__APP__/index/datetime">
+                    <a href="#">
                         <i class="icon-dashboard"></i>
                         <span class="menu-text"> 控制台 </span>
                     </a>
                 </li>
-
+                <li class="active">
+                    <a href="{{asset('/admin/weather')}}">
+                        <i class="icon-dashboard"></i>
+                        <span class="menu-text"> 天气 </span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="#" class="dropdown-toggle">
@@ -431,6 +436,7 @@
 
                     </ul>
                 </li>
+
 
                 <li>
                     <a href="#" class="dropdown-toggle">

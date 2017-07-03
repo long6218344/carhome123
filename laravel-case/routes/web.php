@@ -641,3 +641,6 @@ Route::get('/home/post/{tid}','PostDetailsController@index')->middleware('postde
 
 
 // --------------------周天野--------------------------
+
+// 龙淼-------
+Route::get('/admin/weather','admin\WeatherController@index');

@@ -14,7 +14,7 @@
         </div>
 
         <div id="cloudwind_forum_top"></div>
-        <div class="main cc">
+        <div class="main cc" style="background:none;">
             <div class="main_body">
                 <div class="main_content cc">
 
@@ -78,77 +78,7 @@
                 </div>
             </div>
 
-            {{--右边栏,用户详情--}}
-            <div class="main_sidebar">
-                <div class="box_wrap user_info">
-                    <dl class="cc">
-                        <dt id="J_ava_ie6">
-                            <a href="/phpwind/thinkphp3.2.2phpwind/phpwind/index.php/Personinfo/avatar"><img class="J_avatar" src="/phpwind/thinkphp3.2.2phpwind/phpwind/Public/uploads/m_55ad93b99f7da.jpg" data-type="middle" width="72" height="72" onerror="this.src='/phpwind/thinkphp3.2.2phpwind/phpwind/Public/home/picture/face_small.jpg'"></a>
-                            <a href="/phpwind/thinkphp3.2.2phpwind/phpwind/index.php/Personinfo/avatar"><b></b><span>修改头像</span></a>
-                        </dt>
-                        <dd>
-                            <div class="name"><a href="/phpwind/thinkphp3.2.2phpwind/phpwind/index.php/Personinfo/index" class="username">admin<i></i></a></div>
-                            <div class="level"><a href="/phpwind/thinkphp3.2.2phpwind/phpwind/index.php/Personinfo/permission/gid/3">管理员</a></div>
-                            <div class="level_img">
-                                <a href="#"><img src="/phpwind/thinkphp3.2.2phpwind/phpwind/Public/uploads/level/" alt="管理员"></a>
-                            </div>
-                        </dd>
-                    </dl>
-                    <div class="num">
-                        <ul class="cc">
-                            <li><a href="/phpwind/thinkphp3.2.2phpwind/phpwind/index.php/FriendList/index"><span>7</span><em>关注</em></a></li>
-                            <li><a href="/phpwind/thinkphp3.2.2phpwind/phpwind/index.php/FriendList/fans"><span>4</span><em>粉丝</em></a></li>
-                            <li class="tail"><a href="/phpwind/thinkphp3.2.2phpwind/phpwind/index.php/Zone/index"><span>17</span><em>帖子</em></a></li>
-                        </ul>
-                    </div>
-                    <div class="medal_widget" id="J_medal_widget">
-                        <div class="medal_list_wrap">
-                            <ul id="J_medal_widget_ul" class="cc J_lazyslide_list" style="width:900px;">
-                                <li><img src="/phpwind/thinkphp3.2.2phpwind/phpwind/Public/uploads/icon/c_shequjumin.gif" width="30" height="30" title="社区居民" alt="社区居民"></li><li><img src="/phpwind/thinkphp3.2.2phpwind/phpwind/Public/uploads/icon/c_shequmingxing.gif" width="30" height="30" title="社区明星" alt="社区明星"></li><li><img src="/phpwind/thinkphp3.2.2phpwind/phpwind/Public/uploads/icon/c_zuiaishafa.gif" width="30" height="30" title="最爱沙发" alt="最爱沙发"></li>			</ul>
 
-                        </div>
-                    </div>
-                    <div class="cc punch_widget_wrap">
-                        <div id="J_punch_main_tip" class="fl dn"></div>
-                        <div class="punch_widget punch_widget_disabled" id="J_punch_widget">
-                            <div class="date">06.28<span>周三</span></div>
-
-                            <!--------打卡签到--------->
-                            <div id="J_credittxt_pop" class="pop_credittxt_tips" style="position: fixed; top: 186.5px; left: 570.5px; display: none;">
-                                <strong>打卡签到</strong>
-                                <span>
-					积分
-					<em>+10</em>
-					</span>
-                            </div>
-                            <!---------打卡签到--------->
-                            <div class="cont">
-                                <a href="javascript:void(0);" id="J_punch_over" tabindex="-1" disabled="">已经打卡</a>
-                            </div>
-                            <div style="line-height:40px;color:#555;font-weight:bold;">&lt;-点击这里</div>			</div>
-                    </div>
-                </div>
-
-                <pw-drag id="sidebar_1">
-                    {{--<div class="linkforum">--}}
-                        {{--<div class="box_wrap">--}}
-                            {{--<h2 class="box_title J_sidebar_box_toggle">我的应用</h2>--}}
-                            {{--<div class="my_app_list">--}}
-                                {{--<ul>--}}
-                                    {{--<li><a href="#"><span class="icon_vote"></span>投票</a></li>--}}
-                                    {{--<li><a href="#"><span class="icon_like"></span>喜欢</a></li>--}}
-                                    {{--<li><a href="#"><span class="icon_medal"></span>勋章</a></li>--}}
-                                    {{--<li><a href="#"><span class="icon_task"></span>任务</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    <pw-drag id="sidebar_thread">
-
-                    </pw-drag></pw-drag></div>
-            {{--右边详情结束--}}
-
-        </div>
         <div id="cloudwind_forum_bottom">
 
         </div>

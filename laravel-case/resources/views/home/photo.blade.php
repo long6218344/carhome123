@@ -1,3 +1,11 @@
+@extends('/home.public.layout')
+@section('imcss')
+    <style>
+        .pagination li{float:left;}
+    </style>
+@endsection
+@section('main-content')
+
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -12,11 +20,6 @@
 
 
 
-<div class="btn-group" style="margin: 20px 20px 20px 900px;">
-    <a href=""><button class="btn">返回首页</button></a>
-    <a href=""><button class="btn">个人中心</button></a>
-
-</div>
     <div class="container" >
 
         <nav class="navbar" role="navigation">
@@ -72,3 +75,5 @@
 
 </body>
 </html>
+
+@endsection

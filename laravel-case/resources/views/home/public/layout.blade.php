@@ -93,11 +93,13 @@
                 {{--</div>--}}
                 <!-------调用显示导航------------->
                 <b><a rel="nofollow" href="{{url('/')}}" class="login" >carhome123官方论坛</a></b>
+
+                    <b><a rel="nofollow" href="{{'/home/photo/167'}}" class="login" >精品赏析</a></b>
                 {{--<a rel="nofollow" href="__APP__/Register/index" class="login">新帖</a>--}}
 
                 <if condition="$Think.session.webuser != ''" >
                     <!--  用户信息头像那一部分  -->
-                    <a rel="nofollow" href="__APP__/Personinfo/avatar" class="fr userface" title="修改头像"><img class="J_avatar" src="__PUBLIC__/uploads/s_{$_SESSION['webuser']['icon']}" data-type="middle" width="50" height="50" onerror="this.src='{{asset('home/picture/face_small.jpg')}}'" /></a>
+                    <a rel="nofollow" href="#" class="fr userface" title="修改头像"><img class="J_avatar" src="#" data-type="middle" width="50" height="50" onerror="this.src='{{asset('home/picture/face_small.jpg')}}'" /></a>
 
                     <!-------------->
                     <!--消息下拉菜单-->
