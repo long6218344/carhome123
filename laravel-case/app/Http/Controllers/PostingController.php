@@ -38,9 +38,6 @@ class PostingController extends Controller
         $posts = ($value[0]->posts+1);
         $todayposts = ($value[0]->todayposts+1);
 
-
-
-
 //        var_dump($tid, $title, $content, $fid, $now, $ip, $posts, $todayposts);die;
             DB::transaction(function() use ($tid, $title, $content, $fid, $now, $ip, $posts, $todayposts)
             {

@@ -130,6 +130,11 @@
                                                             var sel = $('#lq'+id);
                                                             sel.css('disabled','disabled');
 
+                                                        },
+                                                        error: function () {
+                                                            // AJAX执行失败
+
+                                                            alert('积分不足');
                                                         }
                                                     });
                                                     obj.onclick = function(){};

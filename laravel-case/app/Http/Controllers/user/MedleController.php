@@ -48,16 +48,28 @@ class MedleController extends Controller
     // 勋章添加
     public function insert($id)
     {
-
         $uid = $_SESSION['uid'];
+
+        // 取出用户积分
+        $credits = DB::table('bbs_user_info')->where('uid',$uid)->first();
+        $credits = $credits->credits;
+        // 取出勋章积分
         $hasimage = DB::table('bbs_medleinfo')
-            ->join('bbs_user_medle', 'bbs_user_medle.medal_id', '=', 'bbs_medleinfo.medal_id')
-            ->where('bbs_user_medle.medal_id', $id)
-            ->select()
-            ->get();
+            ->where('medal_id', $id)
+            ->first();
+
+        $points = $hasimage->points;
+        //用户积分判断
+        if ($credits <= $points){
+            return false;
+        }
 
         $result = DB::table('bbs_user_medle')->insert(['uid' => $uid, 'medal_id' => $id, 'statues' => 1]);
-        return $result;
+        if ($result){
+            return $id;
+        }else{
+            return false;
+        }
     }
 
     public function index2()

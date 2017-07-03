@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     {{--<meta http-equiv="X-UA-Compatible" content="IE=edge">--}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>phpwind 官方论坛 - Powered by phpwind</title>
+    <title>Carhome123 官方论坛 - Powered by carhome123</title>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="generator" content="phpwind v9.0.1" />
+    <meta name="generator" content="carhome123 v9.0.1" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="{{asset('home/css/core_3.css')}}" />
@@ -24,10 +24,10 @@
     <!-- Bootstrap -->
     <link href="{{asset('/home/css/bootstrap.min.css')}}" rel="stylesheet">
     <!--[if lt IE 9]>
-    <script src="./public/js/html5shiv.min.js"></script>
-    <script src="./public/js/respond.min.js"></script>
+    <script src="{{asset('./home/bootstrap/js/html5shiv.min.js')}}"></script>
+    <script src="{{asset('./home/bootstrap/js/respond.min.js')}}"></script>
     <![endif]-->
-    <link rel="stylesheet" href="./public/my.css">
+    {{--<link rel="stylesheet" href="{{asset('./public/my.css')}}">--}}
     <!--  -->
     @section('imcss')
     @show
