@@ -10,17 +10,17 @@ class IndexController extends Controller
 {
     public function show(){
 
-        // session(['uid'=>9]);
         $news = $this->getnews()->data;
-        // var_dump($news);die;
+        $link = rand(0,20);
+        // dd($link);
         $id = $_SESSION['uid'];
         $user = DB::table('bbs_user_info')->where('bbs_user_info.uid', $id)->first();
         // 最新回复
         $user1 = DB::table('thread')
                         ->join('reply', 'reply.tid', '=', 'thread.tid')
-                        ->where('thread.tauthorid', $id)->orderBy('reply.rdateline')->first();
+                        ->where('thread.tauthorid', $id)->orderBy('reply.rdateline','desc')->first();
         // 最新关注我好友
-        $info = DB::table('bbs_friend')->where('bbs_friend.fid', $id)->orderBy('bbs_friend.time')->first();
+        $info = DB::table('bbs_friend')->where('bbs_friend.fid', $id)->orderBy('bbs_friend.time','desc')->first();
         if($info != null){
             $user2 = DB::table('bbs_user_info')->where('bbs_user_info.uid', $info->uid)->first();
         }else{
@@ -30,9 +30,10 @@ class IndexController extends Controller
         // 最新收到好友私信
         $user3 = DB::table('bbs_message')
                         ->join('bbs_user_info', 'bbs_user_info.uid', '=', 'bbs_message.reuid')
-                        ->where('bbs_user_info.uid', $id)->orderBy('bbs_message.time')->first();
+                        ->where('bbs_user_info.uid', $id)->orderBy('bbs_message.time','desc')->first();
         // 最新收藏帖子
-        $info1 = DB::table('bbs_astore')->where('bbs_astore.uid', $id)->orderBy('bbs_astore.time')->first();
+        $info1 = DB::table('bbs_astore')->where('bbs_astore.uid', $id)->orderBy('bbs_astore.time','desc')->first();
+        // dd($info1);
         if($info1 != null){
             $user4 = DB::table('post')->where('post.tid', $info1->thid)->first();
         }else{
@@ -41,6 +42,16 @@ class IndexController extends Controller
         // dump($user3);die;
         $num = DB::table('thread')->where('tauthorid',$id)->count();
         $num1 = DB::table('thread')->where([['tauthorid',$id],['best',1]])->count();
+
+        // 签到
+        $mark = DB::table('bbs_mark')->select('days','time')->where('uid',$_SESSION['uid'])->first();
+        if(count($mark) == 0){
+            $day = '0';
+            $time = '0';
+        }else{
+             $day = $mark->days;
+             $time = $mark->time;
+        }
         return view('user/user_index',[
             'icon'=>$user->icon,
             'num'=>$num,
@@ -52,7 +63,10 @@ class IndexController extends Controller
             'user2'=>$user2,
             'user3'=>$user3,
             'user4'=>$user4,
-            'news'=>$news
+            'news'=>$news,
+            'link'=>$link,
+            'day'=>$day,
+            'time'=>$time,
         ]);
     }
 

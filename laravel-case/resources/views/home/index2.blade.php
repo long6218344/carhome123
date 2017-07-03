@@ -5,6 +5,7 @@
     </style>
 @endsection
     @section('main-content')
+        <script src="../js/jquery-1.8.3.min.js"></script>
     <div class="main_wrap">
 
         <div class="bread_crumb" id="bread_crumb">
@@ -21,7 +22,8 @@
                     <div class="box_wrap thread_page J_check_wrap">
                         <nav>
                             <div class="content_nav" id="hashpos_ttype">
-                                <div class="content_filter"><a href="" class="">最新发帖</a><span>|</span><a href="" class=" current">最后回复</a>                                 <a href="{{url('home/'.$forum[0]->fid).'/posting'}}" class="content_filter">我要发帖</a></div>
+                                <div class="content_filter"><a href="{{url($forum[0]->fid.'/orderby/post')}}" class="notselect" name="post">最新发帖</a href="{{url($forum[0]->fid.'/orderby/post')}}"><span>|</span><a href="{{url($forum[0]->fid.'/orderby/reply')}}" class="notselect" name="reply">最新回复<span>|</span><a href="{{url($forum[0]->fid.'/orderby/hot')}}" class="notselect" name="hot">热门排序</a><span>|</span><a href="{{url($forum[0]->fid.'/orderby/best')}}" class="notselect" name="best">精品贴</a><a href="{{url('home/'.$forum[0]->fid).'/posting'}}" class="content_filter">我要发帖</a></div>
+
                                 <ul>
                                     <li class="current"><a href="{{url('/')}}">返回首页</a></li>
 
@@ -36,13 +38,14 @@
                                 @if (!empty($result[0]))
                                     @foreach( $result as $k => $v )
                                         <tr>
-                                            <td class="author"><a class="J_user_card_show" href="#"><img src="" onerror="this.src=''" height="45" width="45"></a></td>
+                                            {{--<td class="author"><a class="J_user_card_show" href="#"><img src="{{asset('\imgs\shouyeche.jpg')}}" onerror="this.src=''" height="45" width="45"></a></td>--}}
                                             <td class="subject">
                                                 <p class="title">
                                                     @if ($v->top == 1)  <a href="#" target="_blank"><span class="posts_icon"><i class="icon_headtopic_3" title="置顶3  新窗口打开"></i></span></a>顶 @endif
-                                                    <a href="" class="st">[<font color="red">站长交流</font>]</a>
+                                                    {{--<a href="" class="st">[<font color="red">{{$v->title}}</font>]</a>--}}
 
-                                                    <a href="{{url('/home/post/'.$v->tid)}}" class="st" style="color:#FF0000;font-weight:bold" title="">{{$v->title}}</a>
+                                                    <a href="{{url('/home/post/'.$v->tid)}}" class="st" style="color:#FF0000;font-weight:bold" title="">[<font color="red">{{$v->title}}</font>]</a>
+
                                                     <!-- <span class="posts_icon"><i class="icon_img" title="图片帖"></i></span>	 -->
                                                     <a href="{{url('/home/blog/'.$v->fid)}}" class="st">[<font>{{$v->name}}</font>]</a>
                                                     <a href="#" class="st"><font color="red">@if ($v->best == 1) [精品]  @endif</font></a>
@@ -68,9 +71,7 @@
                         </div>
                     </div>
                     <div class="J_page_wrap cc" data-key="true">
-                        <div class="pages" style="float:left">
-                            1
-                        </div>
+                        {{ $result->links() }}
                     </div>
 
 
@@ -147,11 +148,38 @@
                     </pw-drag></pw-drag></div>
             {{--右边详情结束--}}
 
-            页数
         </div>
         <div id="cloudwind_forum_bottom">
 
         </div>
     </div>
+
+        {{--<script>--}}
+
+
+            {{--$(function(){--}}
+                {{--$('.notselect').click(function(){--}}
+                    {{--var way = $(this).attr("name");--}}
+                    {{--var path = '{{url($forum[0]->fid.'/orderby')}}/'+way;--}}
+{{--//                console.log(path);--}}
+                    {{--$.ajax({--}}
+                        {{--type: 'get',--}}
+                        {{--url: path,--}}
+                        {{--success: function (){--}}
+{{--//                            alert('删除成功!');--}}
+{{--//                        console.log(path);--}}
+                        {{--},--}}
+                        {{--error: function (){--}}
+{{--//                            alert('删除出现错误!');--}}
+{{--//                        console.log(path);--}}
+                        {{--}--}}
+                    {{--});--}}
+                {{--})--}}
+            {{--})--}}
+        {{--</script>--}}
+
+
+
+
 
 @endsection

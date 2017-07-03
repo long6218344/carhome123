@@ -25,11 +25,6 @@
                     <a href="">{{$num1}}篇精华帖</a> /
                     <a href="">{{$num}}篇帖子</a>
                 </li>
-                <li>
-                    <strong>勋章:</strong>
-                    <span>222</span>
-                    <!-- <a href="">000</a> -->
-                </li>
             </div>
         </div>
         <div class="dynNav2" id="dynNav2">
@@ -57,7 +52,7 @@
                         <td style="text-align: left;width:38%;white-space:nowrap;overflow:hide;">
                             <div style="margin-left: 50px">
                             <p>在:
-                            <a href="{{url('home/post/'.$word->tid)}}">{{$word->title}}</a></p>
+                            《<a href="{{url('home/post/'.$word->tid)}}">{{$word->title}}</a>》</p>
                             <p>回复:
                             <a href="{{url('home/post/'.$word->tid)}}">{{str_limit($word->rmessage, $limit = 20, $end = '····')}}</a></p>
                             </div>

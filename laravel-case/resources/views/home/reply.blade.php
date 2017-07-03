@@ -20,5 +20,10 @@
                     style="width: 150px;margin-left: 10px; float: right; margin-top: 10px;margin-bottom: 20px">回帖</button>
         </form>
 
+    <div class="blog-center-top clearfix">
+        <a href="{{url('/home/post/'.$post[0]->tid)}}" > <button style="margin-top:10px;margin-left:20px" class="btn btn-default">返回帖子列表</button> </a>
+
+        <div class="blog-center-top-right">
+
 @endsection
 

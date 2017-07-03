@@ -1,27 +1,27 @@
 /**
  * PHPWind PAGE JS
  * @Copyright Copyright 2011, phpwind.com
- * @Descript: Ç°Ì¨-Í·²¿·¢Ìû&ÏûÏ¢
+ * @Descript: Ç°Ì¨-Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&ï¿½ï¿½Ï¢
  * @Author	: linhao87@gmail.com
- * @Depend	: core.js¡¢jquery.js(1.7 or later), global
+ * @Depend	: core.jsï¿½ï¿½jquery.js(1.7 or later), global
  * $Id: headMsg.js 24161 2013-01-22 07:55:30Z yanchixia $
  */
 
- //ÏûÏ¢
+ //ï¿½ï¿½Ï¢
 ;(function(){
-	var $hm_wrap = $('#J_head_msg'), //ÏûÏ¢´°¸¸ÈÝÆ÷
-			hm_home = '#J_hm_home', //ÏûÏ¢´°Ê×Ò³ÁÐ±í
-			hm_list = '.J_hm_list', //ÏûÏ¢´°¸÷Ò³ÃæÁÐ±íÇø
-			hm_max_height = 400, //ÏûÏ¢´°¸ß
+	var $hm_wrap = $('#J_head_msg'), //ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			hm_home = '#J_hm_home', //ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Ò³ï¿½Ð±ï¿½
+			hm_list = '.J_hm_list', //ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½
+			hm_max_height = 400, //ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
 			hm_loading = $('<div class="pop_loading" style="position:absolute;left:50%;top:50%;margin:-40px 0 0 -25px;"></div>'),
-			lock = false, //ÏûÏ¢´°ÇëÇóËø¶¨
+			lock = false, //ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			postlock = false;
 
-	//»ñÈ¡ÏûÏ¢´°Ê×Ò³
+	//ï¿½ï¿½È¡ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Ò³
 	var headMsgUtil = {
 		init : function(){
 
-			//ÇëÇóËø¶¨
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if(lock) {
 				return;
 			}
@@ -29,13 +29,13 @@
 
 			var _this = this;
 
-			//ÇëÇóÏûÏ¢´°Ê×Ò³
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Ò³
 			$.post(GV.URL.HEAD_MSG.LIST)
 			.done(function(data){
 				//global.js
 				if(Wind.Util.ajaxTempError(data, $('#J_head_msg_btn'))) {
 					$('#J_head_msg_pop').hide();
-					$hm_wrap.html('<div class="not_content_mini"><i></i>³ö´íÀ²£¬ÇëÉÔºóË¢ÐÂÔÙÊÔ</div>');
+					$hm_wrap.html('<div class="not_content_mini"><i></i>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôºï¿½Ë¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</div>');
 					return false;
 				}
 
@@ -46,7 +46,7 @@
 					_this.IE6Height();
 
 					if($.support.getSetAttribute) {
-						//ie6 7 ²»ÒýÈë
+						//ie6 7 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						Wind.use('scrollFixed', function(){
 							$hm_list.scrollFixed();
 						});
@@ -72,7 +72,7 @@
 			});
 		},
 		IE6Height : function() {
-			//ie6 ¸ß¶ÈÅÐ¶¨
+			//ie6 ï¿½ß¶ï¿½ï¿½Ð¶ï¿½
 			if ($.browser.msie && $.version === '6.0') {
 				if ($(hm_list).height() > this.max_height) {
 					$(hm_list).css('height', this.max_height);
@@ -82,7 +82,7 @@
 			}
 		},
 		getPage : function(url, elem) {
-			//¸ü»»Ò³Ãæ
+			//ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
 			var _this = this;
 			$('#J_emotions_pop').hide();
 			hm_loading.appendTo($hm_wrap);
@@ -96,12 +96,12 @@
 				$(hm_home).hide().siblings().remove();
 				$hm_wrap.append(data).find(hm_loading).remove();
 
-				//°ó¶¨·¢Ë½ÐÅ
+				//ï¿½ó¶¨·ï¿½Ë½ï¿½ï¿½
 				if($hm_wrap.find('a.J_send_msg_pop').length) {
 					Wind.js(GV.JS_ROOT+ 'pages/common/sendMsgPop.js?v='+ GV.JS_VERSION);
 				}
 
-				//±íÇé
+				//ï¿½ï¿½ï¿½ï¿½
 				if($hm_wrap.find('a.J_insert_emotions').length) {
 					Wind.use(GV.JS_ROOT+ 'pages/common/insertEmotions.js?v='+ GV.JS_VERSION);
 				}
@@ -109,7 +109,7 @@
 				_this.IE6Height();
 
 				if(elem.length) {
-					//Í³¼Æ
+					//Í³ï¿½ï¿½
 					_this.readCount(elem);
 				}
 				
@@ -119,17 +119,17 @@
 			});
 		},
 		readCount : function(elem){
-			//Î´¶ÁÍ³¼Æ
+			//Î´ï¿½ï¿½Í³ï¿½ï¿½
 			if(!elem.hasClass('unread')) {
 				return;
 			}
 
-			var hm_num = $('.J_hm_num'),	//×ÜÌåÎ´¶ÁÍ³¼Æ
+			var hm_num = $('.J_hm_num'),	//ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½Í³ï¿½ï¿½
 				org_num = parseInt(hm_num[0].innerHTML),
 				multi = elem.find('.J_unread_multi'),
 				result_num;
 			if(multi.length) {
-				//Ë½ÐÅ
+				//Ë½ï¿½ï¿½
 				result_num = org_num - multi.data('unread');
 				multi.remove();
 			}else{
@@ -149,20 +149,20 @@
 			}
 		},
 		topTipsAdd : function(html){
-			//Ìí¼ÓÏûÏ¢¶¥²¿ÌáÊ¾
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 			$('#J_hm_top').after('<div class="tips">'+ html +'</div>');
 		},
 		topTipsDel : function(){
-			//ÒÆ³ýÏûÏ¢¶¥²¿ÌáÊ¾
+			//ï¿½Æ³ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 			$('#J_hm_top').next('.tips').remove();
 		}
 	};
 	headMsgUtil.init();
 
 
-	//ÏûÏ¢´°ÄÚ²Ù×÷°ó¶¨
+	//ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	//°ó¶¨ËùÓÐ·µ»Ø°´Å¥
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½ï¿½Ø°ï¿½Å¥
 	$hm_wrap.on('click', 'a.J_hm_back', function (e) {
 		e.preventDefault();
 		$('#J_emotions_pop').hide();
@@ -187,29 +187,29 @@
 		});
 	});
 
-	//¼ÓÈëºÚÃûµ¥&ÆÁ±Î ´ø²Ù×÷ÌáÊ¾
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 	$hm_wrap.on('click', 'a.J_hm_ajaxtip', function (e) {
 		e.preventDefault();
 		var $this = $(this),
-				role = $this.data('role'),				//ÀàÐÍ
-				name = $this.data('name'),				//²Ù×÷¶ÔÏó
-				referer = $this.data('referer');	//Ìø×ªµØÖ·
+				role = $this.data('role'),				//ï¿½ï¿½ï¿½ï¿½
+				name = $this.data('name'),				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				referer = $this.data('referer');	//ï¿½ï¿½×ªï¿½ï¿½Ö·
 
 		$.getJSON($this.attr('href'), function(data){
 			if(data.state === 'success') {
 				var tip_text, btn_text;
 
 				if(role == 'blacklist') {
-					tip_text = 'ÒÑ°Ñ '+ name +' ÁÐÈëºÚÃûµ¥£¬Äú²»»áÔÙÊÕµ½TaµÄË½ÐÅ¡£';
-					btn_text = '²é¿´ºÚÃûµ¥';
+					tip_text = 'ï¿½Ñ°ï¿½ '+ name +' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½Taï¿½ï¿½Ë½ï¿½Å¡ï¿½';
+					btn_text = 'ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 				}else if(role == 'app'){
-					tip_text = 'Äú½«²»»áÔÙÊÕµ½ '+ name +' Í¨Öª';
-					btn_text = '²é¿´Í¨ÖªÉèÖÃ';
+					tip_text = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ '+ name +' Í¨Öª';
+					btn_text = 'ï¿½é¿´Í¨Öªï¿½ï¿½ï¿½ï¿½';
 				}
 
 				headMsgUtil.topTipsAdd(tip_text);
 
-				//ÐÞ¸Ä°´Å¥×´Ì¬£¬ÒÆ³ý°ó¶¨class
+				//ï¿½Þ¸Ä°ï¿½Å¥×´Ì¬ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½class
 				$this.text(btn_text).removeClass('J_hm_ajaxtip').attr('href', referer);
 
 			}else if(data.state === 'fail'){
@@ -220,7 +220,7 @@
 			}
 		});
 	}).on('click', 'a.J_notice_ignore', function(e){
-		//ºöÂÔ
+		//ï¿½ï¿½ï¿½ï¿½
 		e.preventDefault();
 		var $this = $(this),
 			role = $this.data('role'),
@@ -229,9 +229,9 @@
 			anti_text;
 
 		if(role == 'reply') {
-			anti_text = (ignore == '0' ? '¹Ø±Õ»Ø¸´ÌáÐÑ' : '¿ªÆô»Ø¸´ÌáÐÑ');
+			anti_text = (ignore == '0' ? 'ï¿½Ø±Õ»Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½' : 'ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½');
 		}else{
-			anti_text = (ignore == '0' ? 'ºöÂÔ' : 'È¡ÏûºöÂÔ');
+			anti_text = (ignore == '0' ? 'ï¿½ï¿½ï¿½ï¿½' : 'È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
 		}
 
 		if(postlock) {
@@ -244,7 +244,7 @@
 				$this.text(anti_text).data('ignore', anti_ignore);
 
 				if(ignore == '1') {
-					headMsgUtil.topTipsAdd('Äú²»»áÔÙÊÕµ½ '+ $this.data('type') +' Í¨Öª');
+					headMsgUtil.topTipsAdd('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ '+ $this.data('type') +' Í¨Öª');
 				}else{
 					headMsgUtil.topTipsDel();
 				}
@@ -263,7 +263,7 @@
 
 
 
-	//±íÇé
+	//ï¿½ï¿½ï¿½ï¿½
 	$hm_wrap.on('click', 'a.J_insert_emotions', function(e){
 		e.preventDefault();
 		var head_msg_pop = $('#J_head_msg_pop'),
@@ -271,14 +271,14 @@
 
 		insertEmotions($this, $('#J_head_msg_textarea'), head_msg_pop);
 	}).on('click', 'a.J_msg_follow', function(e){
-		//¼Ó¹Ø×¢
+		//ï¿½Ó¹ï¿½×¢
 		e.preventDefault();
 		var $this = $(this);
 		$.post(this.href, {
 			uid: $this.data('uid')
 		}, function(data){
 			if(data.state == 'success') {
-				$this.replaceWith('<span class="core_unfollow">ÒÑ¹Ø×¢</span>');
+				$this.replaceWith('<span class="core_unfollow">ï¿½Ñ¹ï¿½×¢</span>');
 			}else if(data.state == 'fail'){
 				//global.js
 				Wind.Util.resultTip({
@@ -290,9 +290,9 @@
 		}, 'json');
 	});
 
-	//·¢ËÍ
+	//ï¿½ï¿½ï¿½ï¿½
 	$hm_wrap.on('click', '#J_hm_reply_placeholder', function (e) {
-		//ÏÔÊ¾ÊäÈë
+		//ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 		$(this).hide();
 		$('#J_message_reply').fadeIn();
 		var head_msg_textarea = $('#J_head_msg_textarea'),
@@ -325,13 +325,13 @@
 		<div class="face"><a href=""><img height="25" width="25" data-type="small" src="'+ GV.U_AVATAR +'" class="J_avatar"></a></div>\
 		<div class="bubble">\
 			<div class="arrow"><em></em><span></span></div>\
-			<a class="b" href="http://www.phpwind.dev/index.php?m=space&amp;uid=2">ÎÒ</a>£º'+ $.trim(textarea.val()) +'<div class="io"><span class="time">¸Õ¸Õ</span></div>\
+			<a class="b" href="http://www.phpwind.dev/index.blade.php?m=space&amp;uid=2">ï¿½ï¿½</a>ï¿½ï¿½'+ $.trim(textarea.val()) +'<div class="io"><span class="time">ï¿½Õ¸ï¿½</span></div>\
 		</div>\
 	</div>');
 					textarea.val('');
 					Wind.Util.postTip({
 						elem : textarea,
-						msg : '·¢ËÍ³É¹¦',
+						msg : 'ï¿½ï¿½ï¿½Í³É¹ï¿½',
 						zindex : 11,
 						callback : function(){
 							$('#J_message_reply').hide();
@@ -351,7 +351,7 @@
 		});
 	});
 
-	//Í³Ò»´¦ÀíËùÓÐajaxÒ³ÃæÇëÇó
+	//Í³Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ajaxÒ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	$hm_wrap.on('click', 'a.J_hm_page', function (e) {
 		e.preventDefault();
 		headMsgUtil.getPage($(this).attr('href'));
@@ -361,32 +361,32 @@
 
 
 
-//·¢Ìû
+//ï¿½ï¿½ï¿½ï¿½
 (function(){
-	var forum_data = {}, //°æ¿éÊý¾Ý
-		head_forum_ct = $('#J_head_forum_ct'), //°æ¿éµ¯´°ÁÐ±íÇø
-		post_to_forum = $('#J_post_to_forum'), //·¢Ìûµ½_°æ¿é
-		head_forum_sub = $('#J_head_forum_sub'), //È·¶¨
+	var forum_data = {}, //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		head_forum_ct = $('#J_head_forum_ct'), //ï¿½ï¿½éµ¯ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½
+		post_to_forum = $('#J_post_to_forum'), //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½
+		head_forum_sub = $('#J_head_forum_sub'), //È·ï¿½ï¿½
 		forum_ul,
-		cur_cid = head_forum_ct.data('cid'), //µ±Ç°cid
-		cur_fid = head_forum_ct.data('fid'), //µ±Ç°fid
+		cur_cid = head_forum_ct.data('cid'), //ï¿½ï¿½Ç°cid
+		cur_fid = head_forum_ct.data('fid'), //ï¿½ï¿½Ç°fid
 		fid = '';
 
 	if(!forum_data.data) {
-		//ÇëÇó°æ¿éÊý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		$.post(GV.URL.FORUM_LIST, {
 				'withMyforum' : 1
 			}, function(data){
 			if(data.state == 'success') {
 				forum_data.data = data.data;
 
-				//Ñ­»·Ð´Èë·ÖÀàÊý¾Ý
-				var cate_data = forum_data.data['cate'],		//·ÖÀàÊý¾Ý
+				//Ñ­ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				var cate_data = forum_data.data['cate'],		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						cate_arr = [];
 				for(i=0, len=cate_data.length;i<len;i++) {
 					cate_arr.push('<li tabindex="0" role="option" class="J_cate_item" data-cid="'+ cate_data[i][0] +'" aria-label='+ cate_data[i][1] +'>'+ cate_data[i][1] +'</li>');
 				}
-				head_forum_ct.html('<div class="source_forum" tabindex="0" role="combobox" aria-owns="J_forum_list" aria-label="Ñ¡ÔñÒª·¢Ìû°æ¿éµÄ·ÖÀà£¬°´»Ø³µ¼üÑ¡¶¨£¬°´tab¼üÅÌ½øÐÐÇÐ»»"><h4>Ñ¡Ôñ·ÖÀà</h4><ul id="J_forum_list">'+ cate_arr.join('') +'</ul></div><div class="target_forum" tabindex="0" role="combobox" aria-owns="J_forum_ul" aria-label="Ñ¡ÔñÒª·¢ÌûµÄ°æ¿é£¬°´»Ø³µ¼üÑ¡¶¨£¬°´tab¼üÅÌ½øÐÐÇÐ»»"><h4>Ñ¡Ôñ°æ¿é</h4><ul id="J_forum_ul"></ul></div>');
+				head_forum_ct.html('<div class="source_forum" tabindex="0" role="combobox" aria-owns="J_forum_list" aria-label="Ñ¡ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½à£¬ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tabï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½"><h4>Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½</h4><ul id="J_forum_list">'+ cate_arr.join('') +'</ul></div><div class="target_forum" tabindex="0" role="combobox" aria-owns="J_forum_ul" aria-label="Ñ¡ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ä°ï¿½é£¬ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tabï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½"><h4>Ñ¡ï¿½ï¿½ï¿½ï¿½</h4><ul id="J_forum_ul"></ul></div>');
 				forum_ul = $('#J_forum_ul');
 
 				if(cur_cid) {
@@ -399,7 +399,7 @@
 	}
 
 
-	//µã»÷·ÖÀà
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	head_forum_ct.on('click keydown', 'li.J_cate_item', function(e) {
 		if(e.type === 'keydown' && e.keyCode !== 13) {
 			return;
@@ -407,10 +407,10 @@
 		var current_cid = $(this).data('cid');
 
 		$(this).addClass('current').siblings().removeClass('current');
-		post_to_forum.text('');																								//·¢Ìûµ½_°æ¿é
-		head_forum_sub.addClass('disabled').prop('disabled', 'disabled');		//È·¶¨°´Å¥²»¿ÉÓÃ
+		post_to_forum.text('');																								//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½
+		head_forum_sub.addClass('disabled').prop('disabled', 'disabled');		//È·ï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-		//Ñ­»·Ð´Èë°æ¿éÊý¾Ý
+		//Ñ­ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		var data_forum = forum_data.data['forum'][current_cid],
 				forum_arr = [];
@@ -426,7 +426,7 @@
 		
 	});
 
-	//µã»÷°æ¿é
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	head_forum_ct.on('click keydown', 'li.J_forum_item', function(e) {
 		if(e.type === 'keydown' && e.keyCode !== 13) {
 			return;
@@ -435,14 +435,14 @@
 		}
 		fid = $(this).data('fid');
 		$(this).addClass('current').siblings('.current').removeClass('current');
-		post_to_forum.text($(this).text().replace(/-/g, ''));								//·¢Ìûµ½_°æ¿é
-		head_forum_sub.removeClass('disabled').removeProp('disabled');		//È·¶¨°´Å¥¿ÉÓÃ
+		post_to_forum.text($(this).text().replace(/-/g, ''));								//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½
+		head_forum_sub.removeClass('disabled').removeProp('disabled');		//È·ï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
 		if(e.type === 'keydown') {
 			$('#head_forum_join').focus();
 		}
 	});
 
-	//Ìø×ª·¢ÌûÒ³
+	//ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Ò³
 	head_forum_sub.on('click', function(e) {
 		e.preventDefault();
 		var $this = $(this),
@@ -450,7 +450,7 @@
 			head_forum_join = $('#J_head_forum_join');
 
 		if(head_forum_join.prop('checked')) {
-			//¼ÓÈë°æ¿é
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			$.post(head_forum_join.data('url'), {fid : fid}, function(data){
 				location.href = href;
 			}, 'json');
@@ -459,7 +459,7 @@
 		}
 	});
 
-	//¹Ø±Õ
+	//ï¿½Ø±ï¿½
 	$('#J_head_forum_close').on('click', function(e){
 		e.preventDefault();
 		$('#J_head_forum_pop').hide();

@@ -17,12 +17,13 @@
             </ul><!-- .breadcrumb -->
 
             <div class="nav-search" id="nav-search">
-                <form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input"
+                <form  method="get" action="{{url('/admin/reply/select')}}">
+                    {{ csrf_field() }}
+                    <span class="input-icon">
+									<input type="text" placeholder="Search ..." name="search" class="nav-search-input"
                                            id="nav-search-input" autocomplete="off"/>
 									<i class="icon-search nav-search-icon"></i>
-									<button class="btn btn-xs btn-info">搜索</button>
+									<button class="btn btn-xs btn-info" type="submit">搜索</button>
 								</span>
                 </form>
             </div><!-- #nav-search -->
@@ -85,7 +86,8 @@
 
                                             <td>{{$v->pid}}</td>
                                             <td>{{$v->name}}({{$v->fid}})</td>
-                                            <td>{{$v->title}}({{$v->tid}})</td>
+
+                                            <td>({{$v->tid}})</td>
                                             <td>{{$v->rid}}</td>
                                             <td>{{$v->rauthor}}</td>
                                             <td>{{$v->rauthorid}}</td>
@@ -102,6 +104,7 @@
 
 
                                 </table>
+                                {{ $result->links() }}
                             </div><!-- /.table-responsive -->
                         </div><!-- /span -->
                     </div><!-- /row -->

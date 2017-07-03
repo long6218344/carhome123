@@ -87,7 +87,7 @@ class UserpowerController extends Controller
                     ])
                     ->select()
                     ->first();
-//                dd($result);
+
             }elseif($result->credits >= 0 && $result->credits < 100){
 //                dd($result->credits);
                 $level = 100 - $result->credits;
@@ -106,8 +106,9 @@ class UserpowerController extends Controller
                     ->select()
                     ->first();
             }
+        }else{
+            $level=0;
         }
         return view('/user.user_power')->with('icon',$icon->icon)->with('power',$result)->with('credits',$icon->credits)->with('level',$level)->with('groupname',$groupname);
     }
-
 }

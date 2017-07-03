@@ -85,6 +85,23 @@ class LoginController extends Controller
 
     }
 
+    public function out(Request $request)
+    {
+
+
+
+        $_SESSION['username'] = null;
+
+        $_SESSION['uid'] = null;
+
+
+
+        $this->notice('退出成功',url('/'));
+
+
+
+    }
+
 
     /**
      * @param $msg

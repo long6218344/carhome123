@@ -35,6 +35,9 @@
                         <div class="dynD">
                         </div>
                         <div id="dynamicList">
+                        @if(count($user1) == 0)
+                          <p style="padding:10px">他最近好像都没有动态....</p>
+                        @else
                            <ul class="duList" id="duList">
                            	@foreach($user1 as $k)
                                <li>
@@ -54,6 +57,7 @@
                                @endforeach
                            </ul>
                            {{$user1->links()}}
+                           @endif
                         </div>
                     </div>
                 </div>

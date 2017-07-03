@@ -21,6 +21,7 @@
 
 //前台 登录
 Route::get('/home/login','LoginController@index');
+Route::get('/home/login/exit','LoginController@exit');
 Route::post('/home/login/join','LoginController@join');
 
 
@@ -343,54 +344,60 @@ Route::get('/admin/point/delete/{typeid}','admin\PointController@delete');
 Route::get('person/{id}', 'user\PersonController@show');
 
 // Route::group(['prefix'=>'user'],function(){
-// 前台用户模块
-Route::get('user/index', 'user\IndexController@show');
-// Route::get('user/myword', function(){return view('/user/user_myword');});
-Route::get('user/show', 'user\EditController@show');
-Route::get('user/edit', 'user\EditController@show_edit');
-Route::post('user/edits', 'user\EditController@edit');
-// 编辑个人信息  帖子页面 隐私私信权限
-Route::get('user/myword', 'user\WordController@show');
-Route::get('user/niceword', 'user\WordController@niceshow');
-Route::get('user/secret', 'user\WordController@secret');
-Route::get('user/secretsetting/{m}', 'user\WordController@set');
-Route::get('user/password', 'user\WordController@password');
-Route::post('user/editpwd', 'user\WordController@edit');
-// 头像和提示页
-Route::get('user/icon', 'user\WordController@icon');
-Route::post('user/editicon', 'user\WordController@editicon');
-Route::get('user/notice', 'user\NoticeController@index');
-// 关注好友 取消关注 以及相互关注 粉丝
-Route::get('user/friend', 'user\FriendController@friend');
-Route::get('user/follow', 'user\FansController@show');
-Route::get('user/fans/{id}', 'user\FriendController@fans');
-Route::get('user/addfans/{uid}', 'user\FriendController@addfans');
-Route::get('user/bothfriend', 'user\BothFriendController@show');
+Route::group(['middleware'=>['login']],function() {
+
+    // 前台用户模块
+    Route::get('user/index', 'user\IndexController@show');
+    // Route::get('user/myword', function(){return view('/user/user_myword');});
+    Route::get('user/show', 'user\EditController@show');
+    Route::get('user/edit', 'user\EditController@show_edit');
+    Route::post('user/edits', 'user\EditController@edit');
+    // 编辑个人信息  帖子页面 隐私私信权限
+    Route::get('user/myword', 'user\WordController@show');
+    Route::get('user/niceword', 'user\WordController@niceshow');
+    Route::get('user/secret', 'user\WordController@secret');
+    Route::get('user/secretsetting/{m}', 'user\WordController@set');
+    Route::get('user/password', 'user\WordController@password');
+    Route::post('user/editpwd', 'user\WordController@edit');
+    // 头像和提示页
+    Route::get('user/icon', 'user\WordController@icon');
+    Route::post('user/editicon', 'user\WordController@editicon');
+    Route::get('user/notice', 'user\NoticeController@index');
+    // 关注好友 取消关注 以及相互关注 粉丝
+    Route::get('user/friend', 'user\FriendController@friend');
+    Route::get('user/follow', 'user\FansController@show');
+    Route::get('user/fans/{id}', 'user\FriendController@fans');
+    Route::get('user/addfans/{uid}', 'user\FriendController@addfans');
+    Route::get('user/bothfriend', 'user\BothFriendController@show');
 
 
-//前台发私信
-Route::get('/home/message-write/{jd}/{id?}','user\MessageController@index');
-Route::post('/home/message/write','user\MessageController@write');
-//ajax 检测用户是否存在
-Route::get('/home/message/detection/{data}','user\MessageController@detection');
-//ajax 私信详情
-Route::get('/home/message/read/{id}','user\MessageController@read');
-//ajax 删除私信
-Route::get('/home/message/delete/{id}','user\MessageController@delete');
+    //前台发私信
+    Route::get('/home/message-write/{jd}/{id?}','user\MessageController@index')->middleware('message');
+    Route::post('/home/message/write','user\MessageController@write');
+    //ajax 检测用户是否存在
+    Route::get('/home/message/detection/{data}','user\MessageController@detection');
+    //ajax 私信详情
+    Route::get('/home/message/read/{id}','user\MessageController@read');
+    //ajax 删除私信
+    Route::get('/home/message/delete/{id}','user\MessageController@delete');
 
-// 好友动态
-Route::get('user/newsfeed', 'user\NewsFeedController@show');
-Route::get('user/allfeeds', 'user\AllFeedsController@show');
+    // 好友动态
+    Route::get('user/newsfeed', 'user\NewsFeedController@show');
+    Route::get('user/allfeeds', 'user\AllFeedsController@show');
 
-// 回复 收藏..
-Route::get('user/reply', 'user\ReplyController@reply');
-Route::get('user/get', 'user\GetReplyController@get');
-Route::get('user/store', 'user\StoreController@show');
-Route::get('user/addstore/{id}', 'user\StoreController@add');
-Route::get('user/notstore/{id?}', 'user\StoreController@del');
-Route::get('user/forum', 'user\StoreController@showforum');
-Route::get('user/cancelbbs/{id?}', 'user\StoreController@cancel');
 
+    // 回复 收藏..
+    Route::get('user/reply', 'user\ReplyController@reply');
+    Route::get('user/get', 'user\GetReplyController@get');
+    Route::get('user/store', 'user\StoreController@show');
+    Route::get('user/addstore/{id}', 'user\StoreController@add');
+    Route::get('user/notstore/{id?}', 'user\StoreController@del');
+    Route::get('user/forum', 'user\StoreController@showforum');
+    Route::get('user/cancelbbs/{id?}', 'user\StoreController@cancel');
+    // 签到
+    Route::get('user/mark/{t}', 'user\MarkController@mark');
+
+});
 // -----------------------周天野----------------------------
 
 
@@ -402,14 +409,6 @@ Route::get('user/cancelbbs/{id?}', 'user\StoreController@cancel');
 Route::get('/home/sign','SignController@index');
 Route::post('/home/sign/create','SignController@create')->middleware('sign');
 Route::get('/home/sign/selete/{data?}','SignController@selete');
-
-
-
-Route::get('/home/{fid}/posting','PostingController@index');
-Route::post('/home/posting/submit','PostingController@submit');
-Route::post('/home/post/submit','PostDetailsController@submit');
-Route::get('/home/reply/{tid}','HomereplyController@index');
-
 
 //Route::get('/admin/login',function(){
 //    return view('/admin.public.login');
@@ -443,24 +442,28 @@ Route::get('/admin/forum','ForumController@index');
 Route::post('/admin/forum/add','ForumController@add');
 Route::get('/admin/forum/edit/{fid}/{status}','ForumController@edit');
 Route::get('/admin/forum/delete/{fid}','ForumController@delete');
+Route::get('/admin/forum/select','ForumController@select');
 
 //后台帖子管理
 Route::get('/admin/thread','ThreadController@index');
 Route::get('/admin/thread/edit/{tid}/{type}/{num}/{fid?}','ThreadController@edit');
 Route::get('/admin/thread/delete/{tid}/{fid}','ThreadController@delete');
+Route::get('/admin/thread/select','ThreadController@select');
 
 //后台帖子详情管理
 Route::get('/admin/post','PostController@index');
 Route::get('/admin/post/delete/{pid}','PostController@delete');
+Route::get('/admin/post/select','PostController@select');
 
 //后台回复管理
 Route::get('/admin/reply','ReplyController@index');
 Route::get('/admin/reply/delete/{rid}','ReplyController@delete');
+Route::get('/admin/reply/select','ReplyController@select');
 
 
 Route::get('/home/login','LoginController@index');
 Route::post('/home/login/join','LoginController@join');
-
+Route::get('/home/login/out','LoginController@out');
 
 //前台注册
 Route::get('/home/sign','SignController@index');
@@ -525,7 +528,18 @@ Route::get('/user/user_power','user\UserpowerController@index');
 // --------------------周天野--------------------------
 
 Route::get('/','HomeIndexController@index');
+Route::get('/{getinfo?}','HomeIndexController@getinfo');
+Route::get('/order/post','HomeIndexController@post');
+Route::get('/order/reply','HomeIndexController@reply');
+Route::get('/order/hot','HomeIndexController@hot');
+Route::get('/order/best','HomeIndexController@best');
 Route::get('/home/blog/{fid}','BlogPlateController@index');
+Route::get('{fid}/orderby/post','BlogPlateController@post');
+Route::get('{fid}/orderby/reply','BlogPlateController@reply');
+Route::get('{fid}/orderby/hot','BlogPlateController@hot');
+Route::get('{fid}/orderby/best','BlogPlateController@best');
+
+
 Route::get('/home/post/{tid}','PostDetailsController@index');
 
 // --------------------周天野--------------------------
@@ -576,6 +590,35 @@ Route::get('/user/user_point','user\PointController@index');
 // 权限
 Route::get('/user/user_power','user\UserpowerController@index');
 
+// -----------勋章---------
+// 前台
+Route::get('/user/medle','user\MedleController@index');
+
+// 前台徽章第二页显示
+Route::get('/user/medle2','user\MedleController@index2');
+
+// 前台徽章添加
+Route::get('/user/medle/add/{id}','user\MedleController@insert');
+
+// 后台
+Route::get('/admin/medle','admin\MedleController@index');
+
+// 添加页面
+Route::get('/admin/medle/addshow','admin\MedleController@addshow');
+// 添加徽章
+Route::post('/admin/medle/add','admin\MedleController@add');
+// 修改页面
+Route::get('/admin/medle/modshow/{id}','admin\MedleController@modshow');
+// 修改控制器
+Route::post('/admin/medle/mod/{id}','admin\MedleController@mod');
+
+// 删除
+Route::get('/admin/medle/del/{id}','admin\MedleController@delete');
+
+
+
+// -------徽章
+// -----------------龙淼end---------------
 
 
 // -----------------龙淼end---------------
@@ -599,6 +642,7 @@ Route::post('/home/post/submit','PostDetailsController@submit');
 //版块页
 Route::get('/home/blog/{fid}','BlogPlateController@index');
 //帖子详情页
-Route::get('/home/post/{tid}','PostDetailsController@index');
+Route::get('/home/post/{tid}','PostDetailsController@index')->middleware('postdetails');
+
 
 // --------------------周天野--------------------------

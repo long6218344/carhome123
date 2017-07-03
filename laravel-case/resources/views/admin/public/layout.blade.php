@@ -475,30 +475,30 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                        <i class="icon-list"></i>
-                        <span class="menu-text"> 导航管理 </span>
+                {{--<li>--}}
+                    {{--<a href="#" class="dropdown-toggle">--}}
+                        {{--<i class="icon-list"></i>--}}
+                        {{--<span class="menu-text"> 导航管理 </span>--}}
 
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
+                        {{--<b class="arrow icon-angle-down"></b>--}}
+                    {{--</a>--}}
 
-                    <ul class="submenu">
-                        <li>
-                            <a href="__APP__/Nav/index">
-                                <i class="icon-double-angle-right"></i>
-                                浏览导航信息
-                            </a>
-                        </li>
+                    {{--<ul class="submenu">--}}
+                        {{--<li>--}}
+                            {{--<a href="__APP__/Nav/index">--}}
+                                {{--<i class="icon-double-angle-right"></i>--}}
+                                {{--浏览导航信息--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
 
-                        <li>
-                            <a href="__APP__/Nav/add">
-                                <i class="icon-double-angle-right"></i>
-                                添加导航信息
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                        {{--<li>--}}
+                            {{--<a href="__APP__/Nav/add">--}}
+                                {{--<i class="icon-double-angle-right"></i>--}}
+                                {{--添加导航信息--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
 
                 <li>
                     <a href="__APP__/Type/index" class="dropdown-toggle">
@@ -559,6 +559,7 @@
                             <a href="{{url('/admin/thread')}}">
                                 <i class="icon-double-angle-right"></i>
                                 所有帖子
+
                             </a>
                         </li>
 
@@ -566,6 +567,7 @@
                             <a href="{{url('/admin/post')}}">
                                 <i class="icon-double-angle-right"></i>
                                 内容概览
+
                             </a>
                         </li>
 
@@ -590,50 +592,50 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                        <i class="icon-edit"></i>
-                        <span class="menu-text"> 帖子审核 </span>
+                {{--<li>--}}
+                    {{--<a href="#" class="dropdown-toggle">--}}
+                        {{--<i class="icon-edit"></i>--}}
+                        {{--<span class="menu-text"> 帖子审核 </span>--}}
 
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
+                        {{--<b class="arrow icon-angle-down"></b>--}}
+                    {{--</a>--}}
 
-                    <ul class="submenu">
-                        <li>
-                            <a href="__APP__/Verify/index">
-                                <i class="icon-double-angle-right"></i>
-                                主题审核
-                            </a>
-                        </li>
+                    {{--<ul class="submenu">--}}
+                        {{--<li>--}}
+                            {{--<a href="__APP__/Verify/index">--}}
+                                {{--<i class="icon-double-angle-right"></i>--}}
+                                {{--主题审核--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
 
-                        <li>
-                            <a href="__APP__/Verify/index">
-                                <i class="icon-double-angle-right"></i>
-                                回复审核
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                        {{--<li>--}}
+                            {{--<a href="__APP__/Verify/index">--}}
+                                {{--<i class="icon-double-angle-right"></i>--}}
+                                {{--回复审核--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
 
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                        <i class="icon-edit"></i>
-                        <span class="menu-text"> 数据统计 </span>
+                {{--<li>--}}
+                    {{--<a href="#" class="dropdown-toggle">--}}
+                        {{--<i class="icon-edit"></i>--}}
+                        {{--<span class="menu-text"> 数据统计 </span>--}}
 
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
+                        {{--<b class="arrow icon-angle-down"></b>--}}
+                    {{--</a>--}}
 
-                    <ul class="submenu">
-                        <li>
-                            <a href="__APP__/Total/index">
-                                <i class="icon-double-angle-right"></i>
-                                数据统计浏览
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                    {{--<ul class="submenu">--}}
+                        {{--<li>--}}
+                            {{--<a href="__APP__/Total/index">--}}
+                                {{--<i class="icon-double-angle-right"></i>--}}
+                                {{--数据统计浏览--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
 
-                <li>
+            <!--     <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-edit"></i>
                         <span class="menu-text"> 敏感词管理 </span>
@@ -649,9 +651,9 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
-                <li>
+               <!--  <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-edit"></i>
                         <span class="menu-text"> 举报管理 </span>
@@ -674,57 +676,57 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                        <i class="icon-edit"></i>
-                        <span class="menu-text"> 置顶管理 </span>
+                {{--<li>--}}
+                    {{--<a href="#" class="dropdown-toggle">--}}
+                        {{--<i class="icon-edit"></i>--}}
+                        {{--<span class="menu-text"> 置顶管理 </span>--}}
 
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
+                        {{--<b class="arrow icon-angle-down"></b>--}}
+                    {{--</a>--}}
 
-                    <ul class="submenu">
-                        <li>
-                            <a href="__APP__/Cardtop/index">
-                                <i class="icon-double-angle-right"></i>
-                                浏览置顶帖子
-                            </a>
-                        </li>
+                    {{--<ul class="submenu">--}}
+                        {{--<li>--}}
+                            {{--<a href="__APP__/Cardtop/index">--}}
+                                {{--<i class="icon-double-angle-right"></i>--}}
+                                {{--浏览置顶帖子--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
 
-                        <li>
-                            <a href="__APP__/Cardtop/add">
-                                <i class="icon-double-angle-right"></i>
-                                添加置顶帖子
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                        {{--<li>--}}
+                            {{--<a href="__APP__/Cardtop/add">--}}
+                                {{--<i class="icon-double-angle-right"></i>--}}
+                                {{--添加置顶帖子--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
 
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                        <i class="icon-edit"></i>
-                        <span class="menu-text"> 精华管理 </span>
+                {{--<li>--}}
+                    {{--<a href="#" class="dropdown-toggle">--}}
+                        {{--<i class="icon-edit"></i>--}}
+                        {{--<span class="menu-text"> 精华管理 </span>--}}
 
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
+                        {{--<b class="arrow icon-angle-down"></b>--}}
+                    {{--</a>--}}
 
-                    <ul class="submenu">
-                        <li>
-                            <a href="__APP__/Essence/index">
-                                <i class="icon-double-angle-right"></i>
-                                浏览精华帖子
-                            </a>
-                        </li>
+                    {{--<ul class="submenu">--}}
+                        {{--<li>--}}
+                            {{--<a href="__APP__/Essence/index">--}}
+                                {{--<i class="icon-double-angle-right"></i>--}}
+                                {{--浏览精华帖子--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
 
-                        <li>
-                            <a href="__APP__/Essence/add">
-                                <i class="icon-double-angle-right"></i>
-                                添加精华帖子
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                        {{--<li>--}}
+                            {{--<a href="__APP__/Essence/add">--}}
+                                {{--<i class="icon-double-angle-right"></i>--}}
+                                {{--添加精华帖子--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
 
                 <li>
                     <a href="#" class="dropdown-toggle">
@@ -788,44 +790,44 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="__APP__/Medalinfo/index">
+                            <a href="{{url('/admin/medle')}}">
                                 <i class="icon-double-angle-right"></i>
                                 勋章列表
                             </a>
                         </li>
 
                         <li>
-                            <a href="__APP__/Medalinfo/add">
+                            <a href="{{url('/admin/medle/addshow')}}">
                                 <i class="icon-double-angle-right"></i>
                                 添加勋章
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                        <i class="icon-list"></i>
-                        <span class="menu-text"> 信息管理 </span>
+                {{--<li>--}}
+                    {{--<a href="#" class="dropdown-toggle">--}}
+                        {{--<i class="icon-list"></i>--}}
+                        {{--<span class="menu-text"> 信息管理 </span>--}}
 
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
+                        {{--<b class="arrow icon-angle-down"></b>--}}
+                    {{--</a>--}}
 
-                    <ul class="submenu">
-                        <li>
-                            <a href="__APP__/Message/index">
-                                <i class="icon-double-angle-right"></i>
-                                信息列表
-                            </a>
-                        </li>
+                    {{--<ul class="submenu">--}}
+                        {{--<li>--}}
+                            {{--<a href="__APP__/Message/index">--}}
+                                {{--<i class="icon-double-angle-right"></i>--}}
+                                {{--信息列表--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
 
-                        <li>
-                            <a href="__APP__/Message/add">
-                                <i class="icon-double-angle-right"></i>
-                                添加信息
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                        {{--<li>--}}
+                            {{--<a href="__APP__/Message/add">--}}
+                                {{--<i class="icon-double-angle-right"></i>--}}
+                                {{--添加信息--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
                 <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-list"></i>

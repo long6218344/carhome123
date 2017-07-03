@@ -56,7 +56,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-//        'adminlogin'=> \App\Http\Middleware\LoginMiddleware::class,
+        'login'=> \App\Http\Middleware\LoginMiddleware::class,
         'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
         'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
         'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
@@ -64,6 +64,8 @@ class Kernel extends HttpKernel
         'sign' => \App\Http\Middleware\SignMiddleware::class,
         'post' => \App\Http\Middleware\PostpowerMiddleware::class,
         'reply'=> \App\Http\Middleware\ReplypowerMiddleware::class,
+        'postdetails'=> \App\Http\Middleware\PostdetailsMiddleware::class,
+        'message'=> \App\Http\Middleware\MessageMiddleware::class,
 
     ];
 }

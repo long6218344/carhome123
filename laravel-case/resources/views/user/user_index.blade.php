@@ -284,13 +284,16 @@
 	        <div class="app-box-content" style="position: static; top: 0px;">
 	            <!--签到-->
 	            <div class="sign-box" id="usersignInfo">
-	                <h3><strong>每日签到</strong><i class="icon12 icon12-askmark1" data-toggle="tip" data-title="连续签到30天可额外获得500万里通积分奖励" data-placement="top" data-offset="0,10"></i><span class="count">连续签到<b id="continuationSign">1</b>天</span></h3>
-
-	                <div class="handle"><i class="i-icon icon-calendar"></i><span>签到</span></div>
-
+	                <h3><strong>每日签到</strong></i><span class="count">连续签到<b id="markSign">{{$day}}</b>天</span></h3>
+					@if( ($time == '0') || ($time - time())/3600 > 24)
+	                <div class="handle" id="handle"><i class="i-icon icon-calendar"></i><span>签到</span></div>
+	                @else
+	                <div class="handle" id="handle"><i class="i-icon icon-calendar"></i><span>已签到</span></div>
+					@endif
 	            </div>
 	        </div>
-			新闻头条>>&nbsp;&nbsp;{{$news[rand(0,20)]->title}}
+			新闻头条>>&nbsp;&nbsp;{{$news[$link]->title}}
+			<p>>>><a href="{{url($news[$link]->url)}}" target="_blank">点击阅读</a></p>
 	    </div>
 	</div>
 
@@ -307,8 +310,32 @@
 	            $(this).addClass('current').siblings().removeClass('current');
 	            $('#ustore > div').eq(index).addClass('current').siblings().removeClass('current');
 
+
+	        });
+	        // 签到
+	        $("#handle").click(function(){
+	        	var t = new Date().getTime();
+	        	$.ajax({
+	        	    url:"{{url('user/mark')}}/"+t,
+	        	    type:'get',
+	        	    dataType: 'json',
+	        	    headers:{
+	        	        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+	        	    },
+	        	    success: function( t ) {
+        	            $("#markSign").html(t);
+        	            $("#handle span").html('已签到');
+	        	    },
+	        	    error: function() {
+
+	        	        alert('今天已经签过到了');
+	        	       
+	        	    }
+	        	});
 	        })
+
 	    })
+	    // alert(document.cookie.time);
 	</script>
 
 @endsection

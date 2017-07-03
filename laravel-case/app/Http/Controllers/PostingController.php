@@ -13,6 +13,7 @@ class PostingController extends Controller
 //            ->where('thread.fid',$request->fid)
 //            ->join('post', 'forum.fid', '=', 'post.fid')
 //            ->get();
+//        if($_SESSION['uid']==null){ return redirect(url('/user/notice'))->with(['message'=>'请先登录','url' =>url('/home/login'), 'jumpTime'=>3,'status'=>true]);}
         $forum = DB::table('forum')->where('forum.fid',$request->fid)->get();
 //        var_dump($forum);
         return view('/home/posting', ['forum' => $forum]);
@@ -20,6 +21,8 @@ class PostingController extends Controller
 
     public function submit(Request $request)
     {
+
+
 
         $tid = null;
         $title = $request->input('title');
@@ -34,43 +37,49 @@ class PostingController extends Controller
 //        var_dump($value[0]->posts);die;
         $posts = ($value[0]->posts+1);
         $todayposts = ($value[0]->todayposts+1);
+
+
+
+
 //        var_dump($tid, $title, $content, $fid, $now, $ip, $posts, $todayposts);die;
-        DB::transaction(function() use ($tid, $title, $content, $fid, $now, $ip, $posts, $todayposts)
-        {
-            try {
-            DB::table('forum')
-                ->where('fid',$fid)
-                ->update([
-                    'posts'=>$posts,
-                    'todayposts'=>$todayposts
-                ]);
+            DB::transaction(function() use ($tid, $title, $content, $fid, $now, $ip, $posts, $todayposts)
+            {
+                try {
+                    DB::table('forum')
+                        ->where('fid',$fid)
+                        ->update([
+                            'posts'=>$posts,
+                            'todayposts'=>$todayposts
+                        ]);
 //                var_dump(session('username'));die;
-                $tid = DB::table('thread')->insertGetId([
+                    $tid = DB::table('thread')->insertGetId([
 
-                'title'=>$title,
-                'fid'=>$fid,
-                'tauthor'=> $_SESSION['username'],
-                'tauthorid'=> $_SESSION['uid'],
-                'tdateline'=>$now,
-                'replies'=>$now
-            ]);
+                        'title'=>$title,
+                        'fid'=>$fid,
+                        'tauthor'=> $_SESSION['username'],
+                        'tauthorid'=> $_SESSION['uid'],
+                        'tdateline'=>$now,
+                        'replies'=>$now
+                    ]);
 //                var_dump($tid);die;
-                DB::table('post')->insert([
+                    DB::table('post')->insert([
 
-                'ptitle'=>$title,
-                'pmessage'=>$content,
-                'fid'=>$fid,
-                'tid'=>$tid,
-                'pauthor'=> $_SESSION['username'],
-                'pauthorid'=> $_SESSION['uid'],
-                'pdateline'=>$now,
-                'pauthorip'=>$ip
-            ]);
-            } catch (\Exception $e) {
+                        'ptitle'=>$title,
+                        'pmessage'=>$content,
+                        'fid'=>$fid,
+                        'tid'=>$tid,
+                        'pauthor'=> $_SESSION['username'],
+                        'pauthorid'=> $_SESSION['uid'],
+                        'pdateline'=>$now,
+                        'pauthorip'=>$ip
+                    ]);
+                } catch (\Exception $e) {
 //                var_dump('发帖失败',$e);
-                return redirect('/home/blog/'.$fid);
-            }
-        });
+                    return redirect('/home/blog/'.$fid);
+                }
+            });
+
+
 
         // 发帖得分
         $uid = $_SESSION['uid'];
@@ -105,4 +114,29 @@ class PostingController extends Controller
         return redirect('/home/blog/'.$fid);
 
     }
+
+
+
+
+//
+//    public function todaypost(Request $request)
+//    {
+////        $tomorrow = Carbon::tomorrow();
+////        $now = Carbon::now()->toDateTimeString();
+//        $today = Carbon::today()->toDateString;
+//        $tdateline->toDateString;
+//        $now->eq($tdateline);
+//
+////        if($now->gt($tomorrow)){echo 'dayule';}
+//
+//        DB::table('thread')
+//            ->where('fid',$fid)
+//            ->update([
+//                'posts'=>$posts,
+//                'todayposts'=>$todayposts
+//            ]);
+//    }
+
+
+
 }

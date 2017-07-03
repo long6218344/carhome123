@@ -11,6 +11,7 @@ class GetReplyController extends Controller
 {
 	public function get(){
 
+
         $user = DB::select('select `icon`, `username`, `regdate`,`sex`, `credits` from `bbs_user_info` where `uid` = '.$_SESSION['uid']);
         $info1 = DB::table('thread')->where('tauthorid',$_SESSION['uid'])->get();
         $info2 = DB::table('thread')->where([['tauthorid',$_SESSION['uid']],['best',1]])->get();

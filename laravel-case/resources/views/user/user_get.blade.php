@@ -25,11 +25,6 @@
                     <a href="">{{$num1}}篇精华帖</a> /
                     <a href="">{{$num}}篇帖子</a>
                 </li>
-                <li>
-                    <strong>勋章:</strong>
-                    <span>222</span>
-                    <!-- <a href="">000</a> -->
-                </li>
             </div>
         </div>
         <div class="dynNav2" id="dynNav2">

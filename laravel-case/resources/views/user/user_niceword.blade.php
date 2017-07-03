@@ -25,16 +25,7 @@
                     <a href="">{{$num1}}篇精华帖</a> /
                     <a href="">{{$num}}篇帖子</a>
                 </li>
-                <li>
-
-                    <strong>勋章:</strong>
-                    <span>222</span>
-                    <!-- <a href="">000</a> -->
-                </li>
-                <li>
-                    <strong>关注的车:</strong>
-                    <a href="">000</a>
-                </li>
+              
             </div>
         </div>
         <div class="dynNav2" id="dynNav2">
@@ -68,7 +59,7 @@
                         <td>{{$word1->clicknumber}}</td>
                         <td>{{$word1->renumber}}</td>
 
-                        <td><a href="">编辑</a></td>
+                        <td><a href="{{url('home/post/'.$word1->tid)}}">查看</a></td>
                         <td>{{$word1->tdateline}}</td>
                     </tr>
                 @endforeach

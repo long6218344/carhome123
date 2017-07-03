@@ -1,20 +1,20 @@
 /**
  * PHPWind PAGE JS
  * @Copyright Copyright 2011, phpwind.com
- * @Descript: Ç°Ì¨-Ï²»¶×é¼þ
+ * @Descript: Ç°Ì¨-Ï²ï¿½ï¿½ï¿½ï¿½ï¿½
  * @Author	: linhao87@gmail.com
- * @Depend	: core.js¡¢jquery.js(1.7 or later), global.js, jquery.form
+ * @Depend	: core.jsï¿½ï¿½jquery.js(1.7 or later), global.js, jquery.form
  * $Id$
  */
 ;
 (function () {
 	var html_like = '<div class="pop_read_like J_pop_like" style="">\
-								<div class="hd"><a id="J_like_close" href="" class="pop_close">¹Ø±Õ</a><span id="J_like_m"><a href="index.php?m=like&c=mylike">¹ÜÀíÏ²»¶</a></span></div>\
-								<!--µã»÷Ç°-->\
+								<div class="hd"><a id="J_like_close" href="" class="pop_close">ï¿½Ø±ï¿½</a><span id="J_like_m"><a href="index.blade.php?m=like&c=mylike">ï¿½ï¿½ï¿½ï¿½Ï²ï¿½ï¿½</a></span></div>\
+								<!--ï¿½ï¿½ï¿½Ç°-->\
 								<div class="ct" id="J_like_trigger">\
-									<input type="text" class="input" placeholder="ËµµãÊ²Ã´°É¡«" />\
+									<input type="text" class="input" placeholder="Ëµï¿½ï¿½Ê²Ã´ï¿½É¡ï¿½" />\
 								</div>\
-								<!--µã»÷ºó-->\
+								<!--ï¿½ï¿½ï¿½ï¿½ï¿½-->\
 								<form id="J_like_forwarding_form" method="post" action="'+ GV.URL.LIKE_FORWARDING +'&fid=_FID">\
 								<div id="J_like_enter" style="display:none;">\
 									<div class="ct">\
@@ -24,17 +24,17 @@
 										<input type="hidden" value="_PID" name="pid" />\
 										<input type="hidden" value="_TID" name="tid" />\
 										<input type="hidden" value="like" name="from_type" />\
-										<button class="btn" type="submit" id="J_like_forwarding_sub">È·ÈÏ</button><label><input type="checkbox" name="isfresh" value="1" />¸æËßÎÒµÄ·ÛË¿</label>\
+										<button class="btn" type="submit" id="J_like_forwarding_sub">È·ï¿½ï¿½</button><label><input type="checkbox" name="isfresh" value="1" />ï¿½ï¿½ï¿½ï¿½ï¿½ÒµÄ·ï¿½Ë¿</label>\
 									</div>\
 								</div>\
 								</form>\
-								<!--½áÊø-->\
+								<!--ï¿½ï¿½ï¿½ï¿½-->\
 								<div class="pop_read_like_arrow"></div>\
 							</div>';
 
 	var likeUtil = {
 		forwarding : function(){
-			//×ª·¢
+			//×ªï¿½ï¿½
 			var _this = this,
 				btn = $('#J_like_forwarding_sub');
 			 $('#J_like_forwarding_form').ajaxForm({
@@ -65,11 +65,11 @@
 			}); 
 		},
 		close : function(){
-			//Òþ²ØÊäÈë
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			$('div.J_pop_like').remove();
 		},
 		plus : function(elem, avatar){
-			//¼Ó1
+			//ï¿½ï¿½1
 			var c = Number(elem.text());
 			elem.slideUp('fast', function(){
 				$(this).text(c+1).slideDown(function(){
@@ -77,7 +77,7 @@
 				});
 			});
 			
-			//Ö÷Â¥ÏÔÊ¾×î½üÏ²»¶
+			//ï¿½ï¿½Â¥ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ï²ï¿½ï¿½
 			if(avatar) {
 				var read_like_list = $('#J_read_like_list');
 				read_like_list.show().find('.J_read_like_tit').after('<a class="J_user_card_show" data-uid="'+ GV.U_ID +'" href="'+ GV.U_CENTER +'"><img height="50" width="50" src="'+ GV.U_AVATAR +'" class="J_avatar" data-type="small"><span>'+ GV.U_NAME +'</span></a>');
@@ -91,7 +91,7 @@
 				e.preventDefault();
 
 				if(!GV.U_ID) {
-					//Î´µÇÂ¼
+					//Î´ï¿½ï¿½Â¼
 					Wind.Util.quickLogin();
 					return;
 				}
@@ -106,7 +106,7 @@
 					pid = $this.data('pid'),
 					tid = $this.data('tid'),
 					$wrap = $(html_like.replace('_FID', fid).replace('_PID', pid).replace('_TID', tid)),
-					role = $this.data('role'); //Çø·ÖÏ²»¶°´Å¥
+					role = $this.data('role'); //ï¿½ï¿½ï¿½ï¿½Ï²ï¿½ï¿½ï¿½ï¿½Å¥
 				
 				likeUtil.close();
 				var url;
@@ -121,13 +121,13 @@
 					if (data.state === 'success') {
 					
 						if(role == 'main') {
-							//Ï²»¶Ö÷Â¥
+							//Ï²ï¿½ï¿½ï¿½ï¿½Â¥
 							likeUtil.plus($this.children('.J_like_count'), true);
 						}else if(role == 'hot'){
-							//ÈÈÃÅÏ²»¶
+							//ï¿½ï¿½ï¿½ï¿½Ï²ï¿½ï¿½
 							likeUtil.plus($this.children('.J_like_count'), false);
 						}else{
-							//Ï²»¶Â¥²ã
+							//Ï²ï¿½ï¿½Â¥ï¿½ï¿½
 							likeUtil.plus($this.parent().find('a.J_like_user_btn'), false);
 						}
 					
@@ -146,7 +146,7 @@
 						
 						var like_enter = $('#J_like_enter');
 						
-						//µã»÷ÊäÈë
+						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						$('#J_like_trigger').on('click', function () {
 							var $this = $(this),
 							top_origin = $wrap.css('top');
@@ -157,13 +157,13 @@
 							$this.hide();
 							like_enter.show().find('textarea').focus();
 							
-							//ÖØÐÂ¼ÆËã´¹Ö±¾àÀë
+							//ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ã´¹Ö±ï¿½ï¿½ï¿½ï¿½
 							$wrap.css({
 								top : Number(top_origin.replace('px', '')) - (like_enter.innerHeight() - $this.innerHeight())
 							});
 							clearTimeout(timer);
 							
-							//×ª·¢Ìá½»
+							//×ªï¿½ï¿½ï¿½á½»
 							Wind.use('ajaxForm', function(){
 								likeUtil.forwarding();
 							});
