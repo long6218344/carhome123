@@ -75,6 +75,13 @@ class PostingController extends Controller
 
 
 
+        $preg = array(
+            '/[习近平]/',
+            '/[周天野]/',
+        );
+
+        $content = preg_replace($preg, '*', $content);
+
 
         DB::transaction(function() use ($tid, $title, $content, $fid, $now, $ip, $posts, $todayposts, $affix)
             {
