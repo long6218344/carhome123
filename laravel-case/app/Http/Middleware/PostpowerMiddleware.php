@@ -20,7 +20,7 @@ class PostpowerMiddleware
     public function handle($request, Closure $next)
     {
        $fid = $request->route('fid');
-        if (!$_SESSION['uid']) {
+        if (empty($_SESSION['uid'])) {
             return redirect(url('/user/notice'))->with(['message' => '请登录', 'url' => url('/home/login'), 'jumpTime' => 3, 'status' => false]);
         }
         $uid = $_SESSION['uid'];

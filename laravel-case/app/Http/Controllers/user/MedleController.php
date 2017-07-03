@@ -13,6 +13,9 @@ class MedleController extends Controller
     public function index()
     {
         // 传送头像
+        if (empty($_SESSION['uid'])) {
+            return redirect(url('/user/notice'))->with(['message' => '请登录', 'url' => url('/home/login'), 'jumpTime' => 3, 'status' => false]);
+        }
         //    $username = $_SESSION['username'];
         $username = $_SESSION['username'];
 

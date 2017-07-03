@@ -10,7 +10,9 @@ class PostDetailsController extends Controller
 {
     public function index(Request $request)
     {
-
+        if (empty($_SESSION['uid'])) {
+            return redirect(url('/user/notice'))->with(['message' => '请登录', 'url' => url('/home/login'), 'jumpTime' => 3, 'status' => false]);
+        }
         $tid = $request->tid;
         $uid = $_SESSION['uid'];
 //        var_dump(mt_rand());die;
