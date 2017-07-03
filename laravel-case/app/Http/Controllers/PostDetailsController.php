@@ -231,7 +231,10 @@ class PostDetailsController extends Controller
     public function submit(Request $request)
     {
 //        return 111;
-
+        $type = $request->type;
+        $target = $request->rid;
+        if($type==1){$rtype = 1;}else{$rtype = 0;};
+        if($target==null){$target = 0;};
         $rid = null;
         $content = $request->input('content');
         $tid = $request->input('tid');
@@ -241,7 +244,7 @@ class PostDetailsController extends Controller
         $ip = $_SERVER["REMOTE_ADDR"];
         $value = DB::table('thread')->where('tid',$tid)->get();
         $renumber = ($value[0]->renumber+1);
-        DB::transaction(function() use ($tid, $content, $fid, $now, $ip, $renumber, $pid)
+        DB::transaction(function() use ($tid, $content, $fid, $now, $ip, $renumber, $pid, $rtype, $target)
         {
             try {
                 $rid = DB::table('reply')->insertGetId([
@@ -252,7 +255,9 @@ class PostDetailsController extends Controller
                     'rauthor'=> $_SESSION['username'],
                     'rauthorid'=> $_SESSION['uid'],
                     'rauthorip'=>$ip,
-                    'rdateline'=>$now
+                    'rdateline'=>$now,
+                    'rtype'=>$rtype,
+                    'target'=>$target
                 ]);
 
                 DB::table('thread')->where('tid',$tid)->update([

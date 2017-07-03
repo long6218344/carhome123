@@ -7,21 +7,22 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="icon-home home-icon"></i>
-                    <a href="">评论管理</a>
+                    <a href="#">后台主页</a>
                 </li>
 
                 <li>
-                    <a href="">评论管理</a>
+                    <a href="#">帖子管理</a>
                 </li>
-                <li class="active">评论管理</li>
+                <li class="active">举报管理</li>
             </ul><!-- .breadcrumb -->
 
             <div class="nav-search" id="nav-search">
-                <form  method="get" action="{{url('/admin/reply/select')}}">
-                    {{ csrf_field() }}
-                    <span class="input-icon">
+                <form  method="get" action="{{url('/admin/thread/select')}}">
+                {{ csrf_field() }}
+                <span class="input-icon">
 									<input type="text" placeholder="Search ..." name="search" class="nav-search-input"
                                            id="nav-search-input" autocomplete="off"/>
+
 									<i class="icon-search nav-search-icon"></i>
 									<button class="btn btn-xs btn-info" type="submit">搜索</button>
 								</span>
@@ -32,10 +33,10 @@
         <div class="page-content">
             <div class="page-header">
                 <h1>
-                    评论管理
+                    帖子管理
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        评论管理
+                        举报管理
                     </small>
                 </h1>
             </div><!-- /.page-header -->
@@ -56,25 +57,23 @@
                                                 <span class="lbl"></span>
                                             </label>
                                         </th>
-                                        <th>PID</th>
+                                        <th>TID</th>
                                         <th>所属版块(FID)</th>
-                                        <th>所属帖子(TID)</th>
-                                        <th>RID</th>
-                                        <th>类型</th>
                                         <th>作者</th>
                                         <th>作者id</th>
-                                        {{--<th>标题</th>--}}
-                                        <th>内容</th>
+                                        <th>帖子标题</th>
+                                        {{--<th>精华帖</th>--}}
                                         {{--<th>置顶帖</th>--}}
-
+                                        {{--<th>点击数(次)</th>--}}
                                         {{--<th>回复数(次)</th>--}}
-                                        <th>评论时间</th>
-                                        {{--<th>内容</th>--}}
-                                        <th>评论者ip</th>
+                                        <th>发帖时间</th>
+                                        {{--<th>最后回复时间</th>--}}
+                                        <th>状态</th>
+                                        {{--<th>禁用</th>--}}
                                         <th>操作</th>
                                     </tr>
                                     </thead>
-
+                                    @if(!($result[0] == null))
                                     @foreach( $result as $k => $v )
                                         <tr>
                                             <td class="center">
@@ -85,24 +84,33 @@
                                             </td>
 
 
-                                            <td>{{$v->pid}}</td>
+                                            <td>{{$v->tid}}</td>
                                             <td>{{$v->name}}({{$v->fid}})</td>
-                                            <td>({{$v->tid}})</td>
-                                            <td>{{$v->rid}}</td>
-                                            <td>@if($v->rtype == 0)评论@else回复@endif</td>
-                                            <td>{{$v->rauthor}}</td>
-                                            <td>{{$v->rauthorid}}</td>
-                                            {{--<td>{{$v->rtitle}}</td>--}}
-                                            <td>{{$v->rmessage}}</td>
-                                            <td>{{$v->rdateline}}</td>
-                                            <td>{{$v->rauthorip}}</td>
-                                            {{--<td><a href="{{url('/admin/thread/delete')}}/{{$v->tid}}">删</a></td>--}}
-                                            <td><button class="btnclick" name={{$v->rid}}>删</button></td>
+                                            <td>{{$v->tauthor}}</td>
+                                            <td>{{$v->tauthorid}}</td>
+                                            <td>{{$v->title}}</td>
+                                            <td>{{$v->tdateline}}</td>
+                                            <td>{{$v->replies}}</td>
+                                            <td>
+                                                @if (($v->tstatus) === 0)
+                                                    <a href="{{url('/admin/thread/edit')}}/{{$v->tid}}/tstatus/1">开放</a>
+                                                @else
+                                                    <a href="{{url('/admin/thread/edit')}}/{{$v->tid}}/tstatus/0">禁用</a>
+                                                @endif
+
+                                            {{--<td><a href="{{url('/admin/thread/delete')}}/{{$v->tid}}">前往查看</a>|--}}
+                                            |<a href="{{url('/admin/cancel/'.$v->tid)}}">举报驳回</a></td>
+                                            {{--<td><button class="btnclick" name={{$v->tid}}/{{$v->fid}} >删</button></td>--}}
                                         </tr>
 
 
                                     @endforeach
-
+                                    @else
+                                        <tr class="center">
+                                            <td>暂无待处理帖子</td>
+                                            </tr>
+                                     @endif
+{{--{{var_dump($result)}}{{die}}--}}
 
                                 </table>
                                 {{ $result->links() }}
@@ -119,21 +127,22 @@
 
     <script>
 
-        //        var tid = document.getElementById("btn").getAttribute("name");
 
         $(function(){
             $('.btnclick').click(function(){
-                var rid = $(this).attr("name");
-                var path = '{{url('/admin/reply/delete')}}/'+rid;
-                console.log(path);
+                var id = $(this).attr("name");
+                var path = '{{url('/admin/thread/delete')}}/'+id;
+//                console.log(path);
                 $.ajax({
                     type: 'get',
                     url: path,
                     success: function (){
-                        alert('AJAX请求成功!');
+                        alert('删除成功!');
+//                        console.log(path);
                     },
                     error: function (){
-                        alert('AJAX请求出现错误!');
+                        alert('删除出现错误!');
+//                        console.log(path);
                     }
                 });
             })

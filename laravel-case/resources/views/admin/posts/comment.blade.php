@@ -58,19 +58,20 @@
                                         </th>
                                         <th>PID</th>
                                         <th>所属版块(FID)</th>
-                                        <th>所属帖子(TID)</th>
+                                        {{--<th>所属帖子(TID)</th>--}}
                                         <th>RID</th>
+                                        <th>回复的评论(回复的rid)</th>
                                         <th>类型</th>
                                         <th>作者</th>
                                         <th>作者id</th>
                                         {{--<th>标题</th>--}}
-                                        <th>内容</th>
+                                        <th>回复的内容</th>
                                         {{--<th>置顶帖</th>--}}
 
                                         {{--<th>回复数(次)</th>--}}
-                                        <th>评论时间</th>
+                                        <th>回复时间</th>
                                         {{--<th>内容</th>--}}
-                                        <th>评论者ip</th>
+                                        <th>回复者ip</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -87,8 +88,9 @@
 
                                             <td>{{$v->pid}}</td>
                                             <td>{{$v->name}}({{$v->fid}})</td>
-                                            <td>({{$v->tid}})</td>
+                                            {{--<td>({{$v->tid}})</td>--}}
                                             <td>{{$v->rid}}</td>
+                                            <td>{{DB::table('reply')->where('rid',$v->target)->value('rmessage')}}({{$v->target}})</td>
                                             <td>@if($v->rtype == 0)评论@else回复@endif</td>
                                             <td>{{$v->rauthor}}</td>
                                             <td>{{$v->rauthorid}}</td>

@@ -15,6 +15,7 @@ class HomeIndexController extends Controller
         $list3 =DB::select('select * from `Advertisement` order by rand( ) limit 1;');
         $list4 =DB::table('bbs_notice')->get();
 
+        $question = $this->getinfo()->list;
         $thread = DB::table('forum')
             ->join('thread', 'forum.fid', '=', 'thread.fid')->where('top',0)->orderBy('replies','desc')
             ->paginate(10,  ['*'],  'spage');;
@@ -24,32 +25,23 @@ class HomeIndexController extends Controller
             ->paginate(2,  ['*'],  'tpage');;
 
         $reply = DB::table('reply')->get();
-        $forum = DB::table('forum')->paginate(10,  ['*'],  'fpage');;
+        $forum = DB::table('forum')->where('fstatus',1)->paginate(10,  ['*'],  'fpage');;
 
 
-//        $today = Carbon::today()->toDateString();
-//        $tomorrow = Carbon::tomorrow()->toDateString();
-//        $tdateline = DB::table('forum')
-//            ->join('thread', 'forum.fid', '=', 'thread.fid')
-//            ->whereBetween('tdateline', [$today, $tomorrow])
-//            ->get();
-//    var_dump($question);die;
+//    var_dump($question[0]);die;
 
-        return view('home/newcard/index',['forum'=>$forum,'thread'=>$thread,'best'=>$best,'list'=>$list,'list2'=>$list2,'list3'=>$list3,'list4'=>$list4]);
-
+        return view('home/newcard/index',['forum'=>$forum,'thread'=>$thread,'best'=>$best,'question'=>$question,'list'=>$list,'list2'=>$list2,'list3'=>$list3,'list4'=>$list4]);
     }
 
     public function getinfo()
     {
-        $host = "http://jisuznwd.market.alicloudapi.com";
-        $path = "/iqa/query";
+        $host = "http://jisujiakao.market.alicloudapi.com";
+        $path = "/driverexam/query";
         $method = "GET";
         $appcode = "434cdcf95bca4ebe830053f9151ecd67";
         $headers = array();
         array_push($headers, "Authorization:APPCODE " . $appcode);
-//        if($q == null){$q = '上海天气';}
-        $querys = "question=上海天气";
-
+        $querys = "pagenum=1&pagesize=10&sort=rand&subject=1&type=C1";
         $bodys = "";
         $url = $host . $path . "?" . $querys;
 

@@ -1,7 +1,7 @@
 @extends('/home.public.layout')
 
 @section('main-content')
-
+        @if($post[0]->tstatus == 0)
     <div style="width: 80%;margin: auto;;">
 
         <div class="read_pages_wrap cc" style="margin: 20px 20px 20px 20px;">
@@ -118,7 +118,10 @@
                                 <div class="editor_content">
 
 
-                                    <p>{{$post[0]->pmessage}}</p>
+                                    <p>{{$post[0]->pmessage}}@if($post[0]->affix == 'null') @else<img src="{{asset($post[0]->affix)}}" alt="" style="width: 100px;height: 100px;">@endif</p>
+
+
+
 
 
 
@@ -203,7 +206,7 @@
 
                                 <div class="read_appbtn_wrap">
                                     <a role="button" rel="nofollow" href="" data-tid="3709782" data-pid="0" data-fid="163" class="icon_read_like J_like_btn J_qlogin_trigger" data-role="main" data-typeid="1" data-fromid="3709782">
-                                        <span>喜欢</span><em class="J_like_count">29</em>
+                                        <span>喜欢</span><em class="J_like_count">29</em>@if($post[0]->black==0)<a href="{{url('admin/black/'.$post[0]->tid)}}">举报该帖</a> @else <a style="color:green">已举报</a> @endif
                                     </a>
 
 
@@ -297,9 +300,9 @@
         </div>
         <hr>
 
-
+{{$i=1}}{{$l=1}}
         @foreach( $reply as $k => $v )
-
+            @if($v->rtype == 0)
             {{--<div class="design_layout_ct"><div class="design_layout_3_1_left J_layout_item"><div id="J_mod_190" style="" data-id="190" data-model="image" class="mod_box J_mod_box"><a href="http://click.aliyun.com/m/4095/" target="_blank"><img src="picture/tb1glvklvxxxxxpxvxxasup.pxx-900-90.jpg"></a></div></div><div class="design_layout_3_1_right J_layout_item"><div id="J_mod_191" style="" data-id="191" data-model="image" class="mod_box J_mod_box"><a href="http://market.aliyun.com/products/55586021/cmjz000388.html?spm=5176.9000004.0.0.ZQBEbS" target="_blank"><img src="picture/aaced9a54f1e9d0.jpg"></a></div></div></div>--}}
 
 
@@ -441,8 +444,9 @@
                             <div class="fl"><div class="floor_arrow"><em></em><span></span></div></div>
                             <div class="c"></div>
                             <div class="floor_top_tips cc">
-                                <div style="position:relative;"><span class="lou J_floor_copy" title="" data-hash="read_20546433"><sup>#</sup></span></div>
 
+                                <div style="position:relative;"><span class="lou J_floor_copy" title="" data-hash="read_20546433"><sup>{{$i++}}#</sup></span></div>
+                                <a href="{{url('/home/reply/'.$v->tid.'/1/'.$v->rid)}}">回复此楼</a>
                                 <span class="fl">发布于：{{$v->rdateline}}				</span>
                             </div>
                             <div id="J_read_main">
@@ -452,12 +456,25 @@
                                     <!--结束右侧广告位-->
                                 </div>
                                 <div class="editor_content">
-                                    {{$v->rmessage}}				</div>
+                                    {{$v->rmessage}}
+                                </div>
+
                             </div>
+
                         </td>
+
                     </tr>
+
                     <tr>
+
                         <td class="box_wrap floor_bottom" valign="bottom">
+                            @foreach( $reply as $a => $b )
+                            @if(($v->rid) == ($b->target))
+                                    <div style="border:1px solid">
+                                        <span style="color:#169">{{$b->rauthor}}回复：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$b->rmessage}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$b->rdateline}}&nbsp;&nbsp;&nbsp;&nbsp;{{$l++}}#</span>
+                                    </div>
+                                @endif
+                            @endforeach
                             <div id="app_read_floor_1"></div>
                             <div class="signature" style="max-height:100px;maxHeight:100px;"><table width="100%"><tbody><tr><td><a href="http://www.uyulu.cn " target="_blank">情感语录</a><a href="http://www.740c.com " target="_blank">内涵笑话</a><br><a href="http://www.xghmzx.com " target="_blank">孝感华美整形</a><br><a href="http://www.xghmyy.com " target="_blank">孝感双眼皮</a></td></tr></tbody></table>
 
@@ -484,7 +501,7 @@
                     </tr>
                     </tbody></table>
             </div>
-
+            @endif
         @endforeach
         {{ $reply->links() }}
 
@@ -521,4 +538,9 @@
             obj.onclick = function(){};
         }
 </script>
+
+    @else
+    <p style="color:red;font-size:30px;">该帖涉嫌违规内容已被封禁，申诉请联系管理员</p>
+    <div class="pages" style="margin-right:3px;"><a href="{{url('/home/blog/'.$post[0]->fid)}}" class="pages_pre" rel="nofollow">« 返回版块页</a></div>
+    @endif
 @endsection

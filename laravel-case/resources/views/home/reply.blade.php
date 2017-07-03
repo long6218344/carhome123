@@ -8,8 +8,9 @@
 
     <h2 style="text-align: center">输入回复的内容：</h2>
 {{--{{session(['uid' => '18','username' => 'zty'])}}--}}
-        <form action="{{url('/home/post/submit')}}" method="post" class="" style="margin-left: 10px;width: 70%">
-
+        <form action="{{url('/home/post/submit/'.$type.'/'.$rid)}}" method="post" class="" style="margin-left: 10px;width: 70%">
+{{--            {{var_dump($rid)}}--}}
+            {{--{{die}}--}}
             {{ csrf_field() }}
             <input type="hidden" value="{{$post[0]->tid}}" name="tid">
             <input type="hidden" value="{{$post[0]->fid}}" name="fid">
@@ -21,7 +22,7 @@
         </form>
 
     <div class="blog-center-top clearfix">
-        <a href="{{url('/home/post/'.$post[0]->tid)}}" > <button style="margin-top:10px;margin-left:20px" class="btn btn-default">返回帖子列表</button> </a>
+        <a href="{{url('/home/post/')}}" > <button style="margin-top:10px;margin-left:20px" class="btn btn-default">返回帖子列表</button> </a>
 
         <div class="blog-center-top-right">
 
