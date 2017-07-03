@@ -87,11 +87,11 @@ class UserGroupController extends Controller
                 }
 
             }
+            dd(1);
             $str = rtrim($str, ',');
 
             $result = DB::update('update `bbs_user_group` set ' . $str . ' where gid = ?', [$data['gid']]);
             $pic = DB::table('bbs_user_group')->where('gid',$data['gid'])->update(['groupicon'=>$groupicon]);
-
             if ($result || $pic) {
                 return back()->with('error', '更新成功');
             } else {

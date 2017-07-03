@@ -42,6 +42,12 @@ class LoginController extends Controller
             $this->notice('您输入的帐号不存在');
         }
 
+        // 判断用户有没有禁用
+        $status = DB::select('select `status` from `bbs_user_info` where `username` = '.$arr);
+        if ($status[0]->status == 2 ){
+            return redirect('/user/notice')->with(['message' => '用户被禁用', 'url' => '/home/login', 'jumpTime' => 3, 'status' => false]);
+        }
+
         foreach ($uname as $user) {
             $pwd =  $user->pwd;
             $uname = $user->username;
@@ -87,7 +93,6 @@ class LoginController extends Controller
 
     public function out(Request $request)
     {
-
 
 
         $_SESSION['username'] = null;

@@ -62,7 +62,7 @@ class PointController extends Controller
             ->get();
 //        dd($sum4);
         foreach ($sum4 as $v){
-        
+
             $post += $v->point;
         }
 //        dd($post);
