@@ -70,6 +70,7 @@ class MedleController extends Controller
         }else{
             return false;
         }
+
     }
 
     public function index2()

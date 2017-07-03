@@ -350,55 +350,61 @@ Route::get('/admin/point/delete/{typeid}','admin\PointController@delete');
 Route::get('person/{id}', 'user\PersonController@show');
 
 // Route::group(['prefix'=>'user'],function(){
-// 前台用户模块
-Route::get('user/index', 'user\IndexController@show');
-// Route::get('user/myword', function(){return view('/user/user_myword');});
-Route::get('user/show', 'user\EditController@show');
-Route::get('user/edit', 'user\EditController@show_edit');
-Route::post('user/edits', 'user\EditController@edit');
-// 编辑个人信息  帖子页面 隐私私信权限
-Route::get('user/myword', 'user\WordController@show');
-Route::get('user/niceword', 'user\WordController@niceshow');
-Route::get('user/secret', 'user\WordController@secret');
-Route::get('user/secretsetting/{m}', 'user\WordController@set');
-Route::get('user/password', 'user\WordController@password');
-Route::post('user/editpwd', 'user\WordController@edit');
-// 头像和提示页
-Route::get('user/icon', 'user\WordController@icon');
-Route::post('user/editicon', 'user\WordController@editicon');
-Route::get('user/notice', 'user\NoticeController@index');
-// 关注好友 取消关注 以及相互关注 粉丝
-Route::get('user/friend', 'user\FriendController@friend');
-Route::get('user/follow', 'user\FansController@show');
-Route::get('user/fans/{id}', 'user\FriendController@fans');
-Route::get('user/addfans/{uid}', 'user\FriendController@addfans');
-Route::get('user/bothfriend', 'user\BothFriendController@show');
+
+Route::group(['middleware'=>['login']],function() {
+
+    // 前台用户模块
+    Route::get('user/index', 'user\IndexController@show');
+    // Route::get('user/myword', function(){return view('/user/user_myword');});
+    Route::get('user/show', 'user\EditController@show');
+    Route::get('user/edit', 'user\EditController@show_edit');
+    Route::post('user/edits', 'user\EditController@edit');
+    // 编辑个人信息  帖子页面 隐私私信权限
+    Route::get('user/myword', 'user\WordController@show');
+    Route::get('user/niceword', 'user\WordController@niceshow');
+    Route::get('user/secret', 'user\WordController@secret');
+    Route::get('user/secretsetting/{m}', 'user\WordController@set');
+    Route::get('user/password', 'user\WordController@password');
+    Route::post('user/editpwd', 'user\WordController@edit');
+    // 头像和提示页
+    Route::get('user/icon', 'user\WordController@icon');
+    Route::post('user/editicon', 'user\WordController@editicon');
+    Route::get('user/notice', 'user\NoticeController@index');
+    // 关注好友 取消关注 以及相互关注 粉丝
+    Route::get('user/friend', 'user\FriendController@friend');
+    Route::get('user/follow', 'user\FansController@show');
+    Route::get('user/fans/{id}', 'user\FriendController@fans');
+    Route::get('user/addfans/{uid}', 'user\FriendController@addfans');
+    Route::get('user/bothfriend', 'user\BothFriendController@show');
 
 
-//前台发私信
-Route::get('/home/message-write/{jd}/{id?}','user\MessageController@index')->middleware('message');
-Route::post('/home/message/write','user\MessageController@write');
-//ajax 检测用户是否存在
-Route::get('/home/message/detection/{data}','user\MessageController@detection');
-//ajax 私信详情
-Route::get('/home/message/read/{id}','user\MessageController@read');
-//ajax 删除私信
-Route::get('/home/message/delete/{id}','user\MessageController@delete');
+    //前台发私信
+    Route::get('/home/message-write/{jd}/{id?}','user\MessageController@index')->middleware('message');
+    Route::post('/home/message/write','user\MessageController@write');
+    //ajax 检测用户是否存在
+    Route::get('/home/message/detection/{data}','user\MessageController@detection');
+    //ajax 私信详情
+    Route::get('/home/message/read/{id}','user\MessageController@read');
+    //ajax 删除私信
+    Route::get('/home/message/delete/{id}','user\MessageController@delete');
 
-// 好友动态
-Route::get('user/newsfeed', 'user\NewsFeedController@show');
-Route::get('user/allfeeds', 'user\AllFeedsController@show');
+    // 好友动态
+    Route::get('user/newsfeed', 'user\NewsFeedController@show');
+    Route::get('user/allfeeds', 'user\AllFeedsController@show');
 
 
-// 回复 收藏..
-Route::get('user/reply', 'user\ReplyController@reply');
-Route::get('user/get', 'user\GetReplyController@get');
-Route::get('user/store', 'user\StoreController@show');
-Route::get('user/addstore/{id}', 'user\StoreController@add');
-Route::get('user/notstore/{id?}', 'user\StoreController@del');
-Route::get('user/forum', 'user\StoreController@showforum');
-Route::get('user/cancelbbs/{id?}', 'user\StoreController@cancel');
+    // 回复 收藏..
+    Route::get('user/reply', 'user\ReplyController@reply');
+    Route::get('user/get', 'user\GetReplyController@get');
+    Route::get('user/store', 'user\StoreController@show');
+    Route::get('user/addstore/{id}', 'user\StoreController@add');
+    Route::get('user/notstore/{id?}', 'user\StoreController@del');
+    Route::get('user/forum', 'user\StoreController@showforum');
+    Route::get('user/cancelbbs/{id?}', 'user\StoreController@cancel');
+    // 签到
+    Route::get('user/mark/{t}', 'user\MarkController@mark');
 
+});
 // -----------------------周天野----------------------------
 
 

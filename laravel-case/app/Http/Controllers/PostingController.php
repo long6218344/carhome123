@@ -22,6 +22,8 @@ class PostingController extends Controller
     public function submit(Request $request)
     {
 
+
+
         $tid = null;
         $title = $request->input('title');
         $content = $request->input('content');

@@ -15,12 +15,13 @@ class LoginMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-//        if(!$request->session()->has('admin')){
-//            return redirect('/admin/login');
-//        }
+    { 
+       if(empty($_SESSION['uid'])){
+          
+           return redirect('home/login');
+       }
 
-
+       
         return $next($request);//通过了检测,进行下一步操作
     }
 }

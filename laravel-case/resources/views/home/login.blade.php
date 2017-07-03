@@ -72,7 +72,7 @@
         <img src="{{asset('img/login-img/carhome-login-logo.jpg')}}" alt="carhome-logo"
              class="carhome-logo-login" width="200">
 
-        <span class="iconfont back-home-login"><a href="" class="back-home-font">&#xe633;返回首页</a></span>
+        <span class="iconfont back-home-login" ><a style="list-style:none; " href="{{url('/')}}" class="back-home-font">返回首页</a></span>
 
     </div> {{--end login-top--}}
 

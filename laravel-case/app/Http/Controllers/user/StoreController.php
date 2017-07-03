@@ -13,7 +13,8 @@ class StoreController extends Controller
         $user = DB::table('bbs_user_info')->select('icon')->where('uid', $id)->first();
         // 收藏贴
 
-        $num = DB::table('bbs_astore')->select('thid')->where('uid',$id)->get();
+
+        $num = DB::table('bbs_astore')->select('thid')->where('uid',$id)->orderBy('time','desc')->get();
         // 如果有收藏贴
         if(count($num) != 0){
             // 收藏表 thread表 post表 查
@@ -23,8 +24,7 @@ class StoreController extends Controller
                 ->join('post','bbs_astore.thid','=','post.tid')
                 ->join('thread','thread.tid','=','bbs_astore.thid')
                 ->where('post.tid',$k->thid)
-                ->select('thid','ptitle','pmessage','time')
-                ->orderBy('time','desc')
+                ->select('thid','ptitle','pmessage','bbs_astore.time')
                 ->get();
             }
 
@@ -45,7 +45,7 @@ class StoreController extends Controller
 
     public function del($id){
         // dd($id);
-        $info = DB::table('bbs_astore')->where([['uid', $_SESSION['uid']],['postid',$id]])->delete();
+        $info = DB::table('bbs_astore')->where([['uid', $_SESSION['uid']],['thid',$id]])->delete();
         return $id;
     }
     // 收藏论坛

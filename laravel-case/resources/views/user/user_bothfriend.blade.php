@@ -50,10 +50,12 @@
                                     <p>
                                         关注&nbsp;<a href="">{{$k->views}}</a>&nbsp;|&nbsp;粉丝&nbsp;<a href="">{{$k->fans}}</a></p>
                                     <p>
-                                        
-                                        爱车：<a href="">奇瑞A3</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                        关注的车：
-                                        <a href="">宝马3系</a></p>
+                                        @if($k->userdetails == null)
+                                        签名: &nbsp;&nbsp;他很懒,没签名..
+                                        @else
+                                        签名：&nbsp;&nbsp;{{$k->userdetails}}
+                                        @endif
+                                    </p>
                                 </div>
                                 <div class="hasFcPos">
                                     <span class="hadFc">已关注</span>

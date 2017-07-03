@@ -27,24 +27,24 @@ class BothFriendController extends Controller
                 $arr[] = $a->fid; 
             }
             // 感兴趣的人 排除已经关注过的  whereNotIn() 随机得到inRandomOrder()
-
             $randomUser = DB::table('bbs_user_info')->where('uid','<>',$_SESSION['uid'])->whereNotIn('uid', $arr)->inRandomOrder()->get();
             if($info && $list){
-                
+//                dd($list);
                 foreach($list as $a){
-                    $arr1[] = $a->uid; 
+                    $arr1[] = $a->uid;
                 }
+//                dd($arr1);
                 // var_dump($list);die;
                 // 取交集 便利查询
                 $arr3=array_intersect($arr,$arr1);
-              
-               
-                // 是不是空的 分情况
-
-                foreach($arr3 as $a){
-                    $friend[] = DB::table('bbs_user_info')->where('uid', $a)->first();
+                // 是不是空的 分情况交集不是空 取好友
+                if($arr3 != null){
+                    foreach($arr3 as $a){
+                        $friend[] = DB::table('bbs_user_info')->where('uid', $a)->first();
+                    }
+                }else{
+                    $friend = '';
                 }
-                     
                 // $friend = $friend->paginate(3); 分页?
                 return view('user/user_bothfriend',[
                     'name'=>$user->username,

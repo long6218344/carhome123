@@ -23,7 +23,7 @@
                 <a href="{{url('user/icon')}}">修改头像</a>
             </p>
 
-            <div class="hint">注：填写性别、姓名、生日和所在地，绑定手机、邮箱和至少一个社交账号，添加地址信息，可得帮助值。</div>
+            <div class="hint" style="color:#f00">注: 去完善个人资料吧</div>
 
             <div>
                 

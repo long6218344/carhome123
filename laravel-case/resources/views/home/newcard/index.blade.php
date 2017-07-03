@@ -5,7 +5,6 @@
     </style>
 @endsection
 @section('main-content')
-    
 
     <script src="../js/jquery-1.8.3.min.js"></script>
     <div class="main_wrap">
@@ -277,9 +276,8 @@
                         }
 
 
+
                     </script>
-
-
 
 @endsection
 

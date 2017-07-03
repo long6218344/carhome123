@@ -126,13 +126,17 @@
 
                     <else />
                     <div class="header_login">
-                        <a rel="nofollow" href="/home/login" class="mr15">登录</a><a rel="nofollow" href="/home/sign">注册</a>
+                        @if(empty($_SESSION['username']))
+                        <a rel="nofollow" href="{{url('/home/login')}}" class="mr15">登录</a><a rel="nofollow" href="/home/sign">注册</a>
+                        @else
+                            <a rel="#" class="mr15">{{$_SESSION['username']}}</a><a rel="nofollow" href="{{url('/home/login/out')}}">退出</a>
+                            @endif
                     </div>
                 </if>
 
                 <div class="header_search" role="search">
                     <form action="#" method="post">
-                        <button  class="search-btn"type="submit" aria-label="搜索">搜索</button>
+                        <button  class="search-btn" type="submit" aria-label="搜索">搜索</button>
                         <input class="search-txt" type="text" id="s" aria-label="搜索关键词" accesskey="s" placeholder="按帖子标题搜索" x-webkit-speech speech name="title"/>
                         <input type="hidden" name="csrf_token" value="7c634c22f900c920"/>
                     </form>

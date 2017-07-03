@@ -11,10 +11,7 @@
             <ul class="dynNav m_t27">
                 <li class="current">个人资料</li>
 
-                <!-- <li><a href="#">修改头像</a></li> -->
-
-                <li><a href="#">隐私设置</a></li>
-                <li><a href="#">消息设置</a></li>
+                <li><a href="{{url('user/secret')}}">隐私设置</a></li>
             </ul>
             <div class="dynD">
             </div>
@@ -25,7 +22,7 @@
                 <a href="{{url('user/icon')}}">修改头像</a>
             </p>
 
-            <div class="hint">注：填写性别、姓名、生日和所在地，绑定手机、邮箱和至少一个社交账号，添加地址信息，可得帮助值。</div>
+            <div class="hint">注：完善个人资料有惊喜</div>
 
             <div>
             <form action="{{url('user/edits')}}" method="post" id="frombaseifno" >

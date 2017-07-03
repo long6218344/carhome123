@@ -15,7 +15,6 @@ class HomeIndexController extends Controller
         $list3 =DB::select('select * from `Advertisement` order by rand( ) limit 1;');
         $list4 =DB::table('bbs_notice')->get();
 
-//        $question = $this->getinfo();
         $thread = DB::table('forum')
             ->join('thread', 'forum.fid', '=', 'thread.fid')->where('top',0)->orderBy('replies','desc')
             ->paginate(10,  ['*'],  'spage');;
@@ -37,6 +36,7 @@ class HomeIndexController extends Controller
 //    var_dump($question);die;
 
         return view('home/newcard/index',['forum'=>$forum,'thread'=>$thread,'best'=>$best,'list'=>$list,'list2'=>$list2,'list3'=>$list3,'list4'=>$list4]);
+
     }
 
     public function getinfo()
@@ -138,7 +138,6 @@ class HomeIndexController extends Controller
         return view('home/newcard/index',['forum'=>$forum,'thread'=>$thread,'best'=>$best]);
 
     }
-
 
 
 }
