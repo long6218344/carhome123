@@ -22,9 +22,10 @@ class PostDetailsController extends Controller
             ->join('bbs_user_info', 'bbs_user_info.uid', '=', 'thread.tauthorid')
             ->get();
         // 发帖人UID
-         $postuid = $post[0]->uid;
+//        dd($post);
+        $postuid = $post[0]->uid;
 
-         // 回复人
+        // 回复人
         $reply = DB::table('thread')
             ->join('reply', 'thread.tid', '=', 'reply.tid')
             ->join('bbs_user_info','bbs_user_info.uid','=','reply.rauthorid')

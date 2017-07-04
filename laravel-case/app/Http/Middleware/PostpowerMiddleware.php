@@ -362,6 +362,7 @@ class PostpowerMiddleware
             if (count($list)) {
                 foreach ($list as $v) {
                     $i++;
+
                     if ($i <= $postnum) {
                         $datelist[] = $v->tdateline;
                     }

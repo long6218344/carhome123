@@ -17,8 +17,8 @@ class LoginMiddleware
     public function handle($request, Closure $next)
     { 
        if(empty($_SESSION['uid'])){
-          
-           return redirect('home/login');
+
+           return redirect('/home/login');
        }
 
        

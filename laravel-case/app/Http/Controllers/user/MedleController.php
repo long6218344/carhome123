@@ -66,7 +66,7 @@ class MedleController extends Controller
         if ($credits <= $points){
             return false;
         }
-        return $points;
+//        return $points;
         $result = DB::table('bbs_user_medle')->insert(['uid' => $uid, 'medal_id' => $id, 'statues' => 1]);
         if ($result){
             return $id;

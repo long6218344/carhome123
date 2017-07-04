@@ -36,7 +36,7 @@ class CheckPower
             ->select('id')
             ->where('name', '=', $e)
             ->first();
-
+            
 
         // 4.判断用户当前操作是否在规则里面
         $result1 = DB::table('bbs_auth_group_access')

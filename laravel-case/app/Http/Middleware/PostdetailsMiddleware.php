@@ -44,7 +44,6 @@ class PostdetailsMiddleware
                     ->select()
                     ->first();
                 $readpower = $result->allow_read;
-
                 // 判断有没有发帖权限
                 if($readpower == 1){
                     return $next($request);

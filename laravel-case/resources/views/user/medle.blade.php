@@ -55,7 +55,7 @@
                                                         <button id="lq" class="btn {$use[$name['medal_id']]}" type="submit"  name="sub"
             {{--@if()--}}
 
-            onclick="store(this,{{$v->medal_id}})" >领取</button>
+            onclick="store(this,$v->medal_id)" >领取</button>
                                                     </li>
                                                     @endif
 

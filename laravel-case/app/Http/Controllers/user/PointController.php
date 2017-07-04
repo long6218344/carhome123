@@ -28,12 +28,15 @@ class PointController extends Controller
 //        dd($sum1);
         // 1. 登录注册积分
         $loginsum ='';
+//        dd($loginsum);
+        if(empty($sum1)){
+            return back()->with('icon', $icon->icon);
+        }
         foreach ($sum1 as $v){
 //            dd($v->point);
             $loginsum += $v->point;
 
         }
-//            dd($loginsum);
 
         // 3. 发帖
         $reply = '';
