@@ -17,7 +17,7 @@ class MessageMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (!$_SESSION['uid']){
+        if (empty($_SESSION['uid'])){
             return redirect(url('/user/notice'))->with(['message'=>'请登录','url' =>url('/home/login'), 'jumpTime'=>3,'status'=>false]);
         }
 
